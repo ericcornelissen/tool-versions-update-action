@@ -1,0 +1,20 @@
+# Check out hadolint at: https://github.com/hadolint/hadolint
+
+failure-threshold: style
+format: tty
+
+override:
+  error: ~
+  warning: ~
+  info: ~
+  style: ~
+
+ignored:
+  - DL3018 # "Pin versions in apk add"
+  - SC1091 # "Not following: [file not found]"
+
+label-schema: ~
+strict-labels: true
+
+trustedRegistries:
+  - docker.io

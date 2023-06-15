@@ -1,0 +1,6 @@
+# Check out ShellCheck at: https://www.shellcheck.net/
+
+enable=avoid-nullary-conditions
+enable=deprecate-which
+enable=quote-safe-variables
+enable=require-variable-braces

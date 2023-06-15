@@ -1,0 +1,46 @@
+name: Tool Versions Update Action
+description: Update tools in your .tool-versions file
+branding:
+  icon: arrow-up-circle
+  color: blue
+
+inputs:
+  token:
+    description: |
+      The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
+    required: false
+    default: ${{ github.token }}
+  max:
+    description: |
+      The maximum number of tools to update. 0 indicates no maximum.
+    required: false
+    default: 0
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Install asdf
+      uses: asdf-vm/actions/install@v2
+    - name: Look for updates
+      shell: bash
+      run: $GITHUB_ACTION_PATH/bin/update.sh
+      env:
+        MAX: ${{ inputs.max }}
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ inputs.token }}
+
+        # Pull Request
+        title: Update `.tool-versions`
+        body: Bump tools in `.tool-versions`
+
+        # Branch
+        branch: tool-versions-updates
+        branch-suffix: random
+
+        # Commit
+        commit-message: Update .tool-versions
+        add-paths: .tool-versions

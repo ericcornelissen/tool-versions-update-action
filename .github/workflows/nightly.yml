@@ -1,0 +1,22 @@
+name: Nightly
+on:
+  schedule:
+    - cron: 0 4 * * *
+  workflow_dispatch: ~
+
+permissions: read-all
+
+jobs:
+  tooling:
+    name: Update tooling
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write # To push a commit
+      pull-requests: write # To open a Pull Request
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+      - name: Update tooling
+        uses: ./
+        with:
+          max: 2
