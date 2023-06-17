@@ -8,6 +8,10 @@ Versioning].
 
 ## [Unreleased]
 
+- _No changes yet_
+
+## [0.1.1] - 2023-06-17
+
 - Fix creating multiple Pull Requests.
 - Fix logging format & hide debug logs by default.
 

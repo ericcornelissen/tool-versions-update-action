@@ -37,13 +37,13 @@ found in this file (using v0.1.2 as an example):
    ```
 
    The date should follow the year-month-day format where single-digit months
-  and days should be prefixed with a `0` (e.g. `2022-01-01`).ma
+   and days should be prefixed with a `0` (e.g. `2022-01-01`).
 
 1. Commit the changes to a new branch and push using:
 
    ```shell
    git checkout -b release-$(sha1sum .version | awk '{print $1}')
-   git add .version CHANGELOG.md
+   git add .version CHANGELOG.md README.md
    git commit --message "Version bump"
    git push origin release-$(sha1sum .version | awk '{print $1}')
    ```
