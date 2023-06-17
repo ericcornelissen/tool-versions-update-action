@@ -18,7 +18,7 @@ The first stable release (if reached) will be v1.0.0.
 ## Usage
 
 ```yml
-- uses: ericcornelissen/tool-versions-update-action@v0.1.0
+- uses: ericcornelissen/tool-versions-update-action@v0.1.1
   with:
     # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
     # Default: $GITHUB_TOKEN
@@ -50,7 +50,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action@v0.1.0
+        uses: ericcornelissen/tool-versions-update-action@v0.1.1
         with:
           max: 2
 ```
