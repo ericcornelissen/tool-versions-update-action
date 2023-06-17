@@ -39,7 +39,6 @@ runs:
 
         # Branch
         branch: tool-versions-updates
-        branch-suffix: random
 
         # Commit
         commit-message: Update .tool-versions

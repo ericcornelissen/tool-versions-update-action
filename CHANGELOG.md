@@ -8,7 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Fix creating multiple Pull Requests.
 
 ## [0.1.0] - 2023-06-15
 
