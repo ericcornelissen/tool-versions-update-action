@@ -8,7 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Don't unnecessarily install tools.
 
 ## [0.1.1] - 2023-06-17
 

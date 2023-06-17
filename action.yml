@@ -22,7 +22,7 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Install asdf
-      uses: asdf-vm/actions/install@v2
+      uses: asdf-vm/actions/setup@v2
     - name: Look for updates
       shell: bash
       run: $GITHUB_ACTION_PATH/bin/update.sh
