@@ -6,7 +6,7 @@ file through a Pull Request.
 ## Usage
 
 ```yml
-- uses: ericcornelissen/tool-versions-update-action/pr@v0.1.1
+- uses: ericcornelissen/tool-versions-update-action/pr@v0.2.0
   with:
     # The maximum number of tools to update. 0 indicates no maximum.
     #
@@ -40,7 +40,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action/pr@v0.1.1
+        uses: ericcornelissen/tool-versions-update-action/pr@v0.2.0
         with:
           max: 2
 ```
