@@ -30,26 +30,6 @@ jobs:
         run: make lint-docker
       - name: Build
         run: make dev-img
-  semgrep:
-    name: Semgrep
-    runs-on: ubuntu-22.04
-    if: ${{ github.actor != 'dependabot[bot]' }}
-    permissions:
-      security-events: write # To upload SARIF results
-    container:
-      image: returntocorp/semgrep
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
-      - name: Perform Semgrep analysis
-        run: semgrep ci --sarif --output semgrep.sarif
-        env:
-          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-      - name: Upload Semgrep report to GitHub
-        uses: github/codeql-action/upload-sarif@6c089f53dd51dc3fc7e599c3cb5356453a52ca9e # v2.20.0
-        if: ${{ failure() || success() }}
-        with:
-          sarif_file: semgrep.sarif
   shell:
     name: Shell scripts
     runs-on: ubuntu-22.04
