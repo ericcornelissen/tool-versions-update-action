@@ -6,6 +6,10 @@ yaml-files:
   - "*.yml"
 
 rules:
+  anchors:
+    forbid-duplicated-anchors: true
+    forbid-undeclared-aliases: true
+    forbid-unused-anchors: true
   braces:
     level: error
     forbid: true
