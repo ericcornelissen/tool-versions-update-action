@@ -11,6 +11,7 @@ Versioning].
 - BREAKING: action moved to `ericcornelissen/tool-versions-update-action/pr`.
 - Add new action `ericcornelissen/tool-versions-update-action/commit`.
 - Add log grouping.
+- Improve debug logs with more details.
 
 ## [0.1.1] - 2023-06-17
 
