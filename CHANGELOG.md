@@ -8,7 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Add log grouping.
 
 ## [0.1.1] - 2023-06-17
 
