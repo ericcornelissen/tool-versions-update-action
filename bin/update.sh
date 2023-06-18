@@ -12,6 +12,14 @@ debug() {
 	echo "::debug::$1"
 }
 
+group_start() {
+	echo "::group::$1"
+}
+
+group_end() {
+	echo "::endgroup::"
+}
+
 ################################################################################
 ### Main #######################################################################
 ################################################################################
@@ -19,6 +27,7 @@ debug() {
 max_capacity=${MAX}
 remaining_capacity=${MAX}
 
+group_start "Updating tools"
 debug "starting with update capacity: ${remaining_capacity}"
 
 while read -r line; do
@@ -60,3 +69,5 @@ while read -r line; do
 		;;
 	esac
 done <".tool-versions"
+
+group_end

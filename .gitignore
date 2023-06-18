@@ -2,6 +2,8 @@
 /*
 # except ...
 
+!/.version
+
 ## Build tooling
 !/Dockerfile
 !/Makefile
@@ -26,8 +28,14 @@
 !/.gitignore
 
 ## GitHub Actions
-!/.version
-!/action.yml
+!/commit/
+/commit/**
+!/commit/action.yml
+!/commit/README.md
+!/pr/
+/pr/**
+!/pr/action.yml
+!/pr/README.md
 
 ## GitHub platform
 !/.github/
@@ -39,5 +47,5 @@
 
 ## Source
 !/bin/
-bin/**
+/bin/**
 !/bin/*.sh
