@@ -1,20 +1,20 @@
-name: Tool Versions Update Action
-description: Update tools in your .tool-versions file
+name: Tool Versions Update Action - Pull Request
+description: Update tools in your .tool-versions file through a Pull Request
 branding:
   icon: arrow-up-circle
   color: blue
 
 inputs:
-  token:
-    description: |
-      The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
-    required: false
-    default: ${{ github.token }}
   max:
     description: |
       The maximum number of tools to update. 0 indicates no maximum.
     required: false
     default: 0
+  token:
+    description: |
+      The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
+    required: false
+    default: ${{ github.token }}
 
 runs:
   using: composite
@@ -25,7 +25,7 @@ runs:
       uses: asdf-vm/actions/install@v2
     - name: Look for updates
       shell: bash
-      run: $GITHUB_ACTION_PATH/bin/update.sh
+      run: $GITHUB_ACTION_PATH/../bin/update.sh
       env:
         MAX: ${{ inputs.max }}
     - name: Create Pull Request
