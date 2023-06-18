@@ -8,6 +8,10 @@ Versioning].
 
 ## [Unreleased]
 
+- _No changes yet_
+
+## [0.2.0] - 2023-06-18
+
 - BREAKING: action moved to `ericcornelissen/tool-versions-update-action/pr`.
 - Add new action `ericcornelissen/tool-versions-update-action/commit`.
 - Add log grouping.
