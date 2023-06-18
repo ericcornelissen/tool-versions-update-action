@@ -1,0 +1,48 @@
+name: Tool Versions Update Action - commit
+description: Update tools in your .tool-versions file through a commit
+branding:
+  icon: arrow-up-circle
+  color: blue
+
+inputs:
+  branch:
+    description: |
+      The branch to commit to.
+    required: false
+    default: ${{ github.head_ref }}
+  max:
+    description: |
+      The maximum number of tools to update. 0 indicates no maximum.
+    required: false
+    default: 0
+  token:
+    description: |
+      The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
+    required: false
+    default: ${{ github.token }}
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+        token: ${{ inputs.token }}
+    - name: Install asdf
+      uses: asdf-vm/actions/install@v2
+    - name: Look for updates
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/update.sh
+      env:
+        MAX: ${{ inputs.max }}
+    - name: Create commit
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        skip_dirty_check: false
+
+        # Branch
+        branch: ${{ inputs.branch }}
+
+        # Commit
+        commit_message: Update `.tool-versions`
