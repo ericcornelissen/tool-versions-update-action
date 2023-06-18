@@ -8,7 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Improve debug logs with more details.
 
 ## [0.1.1] - 2023-06-17
 
