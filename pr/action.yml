@@ -10,6 +10,11 @@ inputs:
       The maximum number of tools to update. 0 indicates no maximum.
     required: false
     default: 0
+  labels:
+    description: |
+      A comma or newline-separated list of labels.
+    required: false
+    default: ""
   token:
     description: |
       The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
@@ -36,6 +41,7 @@ runs:
         # Pull Request
         title: Update `.tool-versions`
         body: Bump tools in `.tool-versions`
+        labels: ${{ inputs.labels }}
 
         # Branch
         branch: tool-versions-updates

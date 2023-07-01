@@ -19,4 +19,5 @@ jobs:
       - name: Update tooling
         uses: ./pr
         with:
+          labels: dependencies
           max: 2
