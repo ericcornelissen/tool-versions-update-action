@@ -1,0 +1,23 @@
+name: Tool Versions Update Action
+description: Update tools in your .tool-versions file
+branding:
+  icon: arrow-up-circle
+  color: blue
+
+inputs:
+  max:
+    description: |
+      The maximum number of tools to update. 0 indicates no maximum.
+    required: false
+    default: 0
+
+runs:
+  using: composite
+  steps:
+    - name: Install asdf
+      uses: asdf-vm/actions/install@v2
+    - name: Look for updates
+      shell: bash
+      run: $GITHUB_ACTION_PATH/bin/update.sh
+      env:
+        MAX: ${{ inputs.max }}

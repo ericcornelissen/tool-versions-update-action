@@ -8,6 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
+- Add action that just updates tools at `tool-versions-update-action`.
 - Add labels option to `tool-versions-update-action/pr`.
 
 ## [0.2.0] - 2023-06-18

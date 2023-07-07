@@ -28,6 +28,7 @@
 !/.gitignore
 
 ## GitHub Actions
+!action.yml
 !/commit/
 /commit/**
 !/commit/action.yml
