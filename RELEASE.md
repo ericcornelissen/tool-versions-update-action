@@ -43,7 +43,7 @@ found in this file (using v0.1.2 as an example):
 
    ```shell
    git checkout -b release-$(sha1sum .version | awk '{print $1}')
-   git add .version CHANGELOG.md commit/README.md pr/README.md
+   git add .version CHANGELOG.md README.md commit/README.md pr/README.md
    git commit --message "Version bump"
    git push origin release-$(sha1sum .version | awk '{print $1}')
    ```

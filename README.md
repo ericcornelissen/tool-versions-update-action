@@ -18,7 +18,7 @@ The first stable release (if reached) will be v1.0.0.
 ## Usage
 
 ```yml
-- uses: ericcornelissen/tool-versions-update-action@v0.2.0
+- uses: ericcornelissen/tool-versions-update-action@v0.2.1
   with:
     # The maximum number of tools to update. 0 indicates no maximum.
     #
@@ -54,7 +54,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3.0.0
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action/commit@v0.2.0
+        uses: ericcornelissen/tool-versions-update-action/commit@v0.2.1
         with:
           max: 2
       - name: Log tooling changes
