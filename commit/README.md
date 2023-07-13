@@ -10,13 +10,13 @@ file through a commit.
   with:
     # The branch to commit to.
     #
-    # Default: _current or default branch_
+    # Default: *current or default branch*
     branch: develop
 
     # The maximum number of tools to update. 0 indicates no maximum.
     #
     # Default: 0
-    max: 0
+    max: 2
 
     # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
     #
@@ -49,9 +49,9 @@ jobs:
           max: 2
 ```
 
-## Security
+### Security
 
-### Permissions
+#### Permissions
 
 This action requires the following permissions:
 
@@ -60,7 +60,7 @@ permissions:
   contents: write # To push a commit
 ```
 
-### Network
+#### Network
 
 This action requires network access to:
 
