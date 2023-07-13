@@ -12,6 +12,10 @@ debug() {
 	echo "::debug::$1"
 }
 
+error() {
+	echo "::error::$1"
+}
+
 group_start() {
 	echo "::group::$1"
 }
@@ -26,6 +30,12 @@ group_end() {
 
 max_capacity=${MAX}
 remaining_capacity=${MAX}
+
+debug "checking if .tool-versions file exists"
+if [[ ! -f '.tool-versions' ]]; then
+	error "no .tool-versions file found, it must be present at the root of your project in order for this action to work"
+	exit 1
+fi
 
 group_start "Updating tools"
 debug "starting with update capacity: ${remaining_capacity}"
