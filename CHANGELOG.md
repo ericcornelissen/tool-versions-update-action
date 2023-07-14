@@ -8,7 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Add missing `.tool-versions` detection to each action.
 
 ## [0.2.1] - 2023-07-07
 
