@@ -23,7 +23,7 @@ The first stable release (if reached) will be v1.0.0.
     # The maximum number of tools to update. 0 indicates no maximum.
     #
     # Default: 0
-    max: 1
+    max: 2
 ```
 
 ### Batteries Included

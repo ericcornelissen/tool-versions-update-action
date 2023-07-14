@@ -5,16 +5,16 @@ branding:
   color: blue
 
 inputs:
-  max:
-    description: |
-      The maximum number of tools to update. 0 indicates no maximum.
-    required: false
-    default: 0
   labels:
     description: |
       A comma or newline-separated list of labels.
     required: false
     default: ""
+  max:
+    description: |
+      The maximum number of tools to update. 0 indicates no maximum.
+    required: false
+    default: 0
   token:
     description: |
       The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).

@@ -8,15 +8,15 @@ file through a Pull Request.
 ```yml
 - uses: ericcornelissen/tool-versions-update-action/pr@v0.2.1
   with:
-    # The maximum number of tools to update. 0 indicates no maximum.
-    #
-    # Default: 0
-    max: 2
-
     # A comma or newline-separated list of labels.
     #
     # Default: *no labels*
     labels: tools
+
+    # The maximum number of tools to update. 0 indicates no maximum.
+    #
+    # Default: 0
+    max: 2
 
     # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
     #
@@ -50,9 +50,9 @@ jobs:
           max: 2
 ```
 
-## Security
+### Security
 
-### Permissions
+#### Permissions
 
 This action requires the following permissions:
 
@@ -62,7 +62,7 @@ permissions:
   pull-requests: write # To open a Pull Request
 ```
 
-### Network
+#### Network
 
 This action requires network access to:
 
