@@ -15,6 +15,12 @@ inputs:
       The maximum number of tools to update. 0 indicates no maximum.
     required: false
     default: 0
+  plugins:
+    description: |
+      A list of newline-separated "plugin url" pairs that should be installed.
+      If omitted the default plugins will be available.
+    required: false
+    default: ""
   token:
     description: |
       The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
@@ -31,6 +37,11 @@ runs:
         token: ${{ inputs.token }}
     - name: Install asdf
       uses: asdf-vm/actions/install@v2
+    - name: Install asdf plugins
+      if: ${{ inputs.plugins != "" }}
+      run: $GITHUB_ACTION_PATH/../bin/install-plugins.sh
+      env:
+        LIST: ${{ inputs.plugins }}
     - name: Look for updates
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/update.sh

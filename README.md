@@ -53,6 +53,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.0.0
+      - name: Install asdf
+        uses: asdf-vm/actions/install@
+      # Optionally configure asdf plugins depending on your needs.
+      # - name: Configure asdf plugins
+      #   run: |
+      #     asdf plugin add example https://github.com/ericcornelissen/asdf-example
       - name: Update tooling
         uses: ericcornelissen/tool-versions-update-action/commit@v0.2.1
         with:

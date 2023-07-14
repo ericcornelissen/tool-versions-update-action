@@ -14,8 +14,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Install asdf
-      uses: asdf-vm/actions/install@v2
     - name: Look for updates
       shell: bash
       run: $GITHUB_ACTION_PATH/bin/update.sh
