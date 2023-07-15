@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source "./lib/actions.sh"
+bin_dir=$(dirname "${BASH_SOURCE[0]}")
+source "${bin_dir}/../lib/actions.sh"
 
 max_capacity=${MAX}
 remaining_capacity=${MAX}

@@ -35,13 +35,17 @@ runs:
       with:
         ref: ${{ github.head_ref }}
         token: ${{ inputs.token }}
-    - name: Install asdf
-      uses: asdf-vm/actions/install@v2
-    - name: Install asdf plugins
-      if: ${{ inputs.plugins != "" }}
+    - name: Setup asdf
+      if: ${{ inputs.plugins != '' }}
+      uses: asdf-vm/actions/setup@v2
+    - name: Configure asdf plugins
+      if: ${{ inputs.plugins != '' }}
+      shell: bash
       run: $GITHUB_ACTION_PATH/../bin/install-plugins.sh
       env:
         LIST: ${{ inputs.plugins }}
+    - name: Install asdf
+      uses: asdf-vm/actions/install@v2
     - name: Look for updates
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/update.sh

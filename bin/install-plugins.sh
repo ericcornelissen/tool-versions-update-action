@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source "./lib/actions.sh"
+bin_dir=$(dirname "${BASH_SOURCE[0]}")
+source "${bin_dir}/../lib/actions.sh"
 
 plugin_list=${LIST}
 
@@ -18,7 +19,7 @@ while read -r line; do
 		url="$(echo "${line}" | awk '{print $2}')"
 		debug "provided url for ${name} is '${url}'"
 
-		info "installing plugin ${name}..."
+		info "installing plugin for ${name}..."
 		asdf plugin add "${name}" "${url}" &>/dev/null
 
 		result=$?
