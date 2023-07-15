@@ -1,6 +1,8 @@
 #!/bin/bash
 
 bin_dir=$(dirname "${BASH_SOURCE[0]}")
+
+# shellcheck source=./lib/actions.sh
 source "${bin_dir}/../lib/actions.sh"
 
 plugin_list=${LIST}
