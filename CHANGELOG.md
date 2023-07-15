@@ -8,6 +8,10 @@ Versioning].
 
 ## [Unreleased]
 
+- _No changes yet_
+
+## [0.3.0] - 2023-07-15
+
 - BREAKING: action at `tool-versions-update-action` no longer install asdf.
 - Add missing `.tool-versions` detection to each action.
 - Add `plugins` option to `tool-versions-update-action/commit`.

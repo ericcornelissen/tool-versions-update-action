@@ -6,7 +6,7 @@ file through a commit.
 ## Usage
 
 ```yml
-- uses: ericcornelissen/tool-versions-update-action/commit@v0.2.1
+- uses: ericcornelissen/tool-versions-update-action/commit@v0.3.0
   with:
     # The branch to commit to.
     #
@@ -52,7 +52,7 @@ jobs:
       contents: write
     steps:
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action/commit@v0.2.1
+        uses: ericcornelissen/tool-versions-update-action/commit@v0.3.0
         with:
           max: 2
 ```
