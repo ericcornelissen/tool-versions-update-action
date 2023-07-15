@@ -1,4 +1,4 @@
-SHELL_SCRIPTS:=./bin/*.sh
+SHELL_SCRIPTS:=./bin/*.sh ./lib/*.sh
 
 TMP_DIR:=./.tmp
 ASDF:=$(TMP_DIR)/.asdf

@@ -50,3 +50,6 @@
 !/bin/
 /bin/**
 !/bin/*.sh
+!/lib/
+/lib/**
+!/lib/*.sh

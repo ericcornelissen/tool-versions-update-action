@@ -18,6 +18,14 @@ file through a Pull Request.
     # Default: 0
     max: 2
 
+    # A list of newline-separated "plugin url" pairs that should be installed.
+    # If omitted the default plugins will be available.
+    #
+    # Default: ""
+    plugins: |
+      actionlint https://github.com/crazy-matt/asdf-actionlint
+      shellcheck https://github.com/luizm/asdf-shellcheck
+
     # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
     #
     # Default: $GITHUB_TOKEN
