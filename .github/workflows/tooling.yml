@@ -1,4 +1,4 @@
-name: Nightly
+name: Tooling
 on:
   schedule:
     - cron: 0 4 * * *
@@ -8,7 +8,7 @@ permissions: read-all
 
 jobs:
   tooling:
-    name: Update tooling
+    name: Update
     runs-on: ubuntu-22.04
     permissions:
       contents: write # To push a commit
