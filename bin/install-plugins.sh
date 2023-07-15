@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 bin_dir=$(dirname "${BASH_SOURCE[0]}")
 
 # shellcheck source=./lib/actions.sh

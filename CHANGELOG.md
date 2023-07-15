@@ -8,7 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Configure actions to exit immediately when an error occurs.
 
 ## [0.3.0] - 2023-07-15
 
