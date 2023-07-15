@@ -9,6 +9,9 @@ RUN apk add --no-cache \
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+WORKDIR /setup
+COPY .tool-versions .
+
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.1 \
 	&& echo '. "$HOME/.asdf/asdf.sh"' > ~/.bashrc \
 	&& . "$HOME/.asdf/asdf.sh" \
@@ -16,6 +19,7 @@ RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.1 \
 	&& asdf plugin add hadolint \
 	&& asdf plugin add shellcheck \
 	&& asdf plugin add shfmt \
-	&& asdf plugin add yamllint
+	&& asdf plugin add yamllint \
+	&& asdf install
 
 ENTRYPOINT ["/bin/bash"]
