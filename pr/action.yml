@@ -32,6 +32,7 @@ runs:
   steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+
     - name: Setup asdf
       if: ${{ inputs.plugins != '' }}
       uses: asdf-vm/actions/setup@v2
@@ -41,13 +42,16 @@ runs:
       run: $GITHUB_ACTION_PATH/../bin/install-plugins.sh
       env:
         LIST: ${{ inputs.plugins }}
+
     - name: Install asdf
       uses: asdf-vm/actions/install@v2
+
     - name: Look for updates
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/update.sh
       env:
         MAX: ${{ inputs.max }}
+
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:

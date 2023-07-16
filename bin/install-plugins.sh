@@ -1,13 +1,18 @@
 #!/bin/bash
 
+# --- Setup ------------------------------------------------------------------ #
+
 set -eo pipefail
 
 bin_dir=$(dirname "${BASH_SOURCE[0]}")
+plugin_list=${LIST}
+
+# --- Import ----------------------------------------------------------------- #
 
 # shellcheck source=./lib/actions.sh
 source "${bin_dir}/../lib/actions.sh"
 
-plugin_list=${LIST}
+# --- Script ----------------------------------------------------------------- #
 
 group_start "Configuring asdf plugins"
 
