@@ -18,6 +18,11 @@ file through a commit.
     # Default: 0
     max: 2
 
+    # A comma-separated list of tools that should NOT be updated.
+    #
+    # Default: ""
+    not: actionlint,shfmt
+
     # A list of newline-separated "plugin url" pairs that should be installed.
     # If omitted the default plugins will be available.
     #

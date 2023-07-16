@@ -24,6 +24,11 @@ The first stable release (if reached) will be v1.0.0.
     #
     # Default: 0
     max: 2
+
+    # A comma-separated list of tools that should NOT be updated.
+    #
+    # Default: ""
+    not: actionlint,shfmt
 ```
 
 ### Batteries Included

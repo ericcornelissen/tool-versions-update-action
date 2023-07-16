@@ -8,6 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
+- Add input `not:` to exclude certain tools from being updated to each action.
 - Configure actions to exit immediately when an error occurs.
 
 ## [0.3.0] - 2023-07-15

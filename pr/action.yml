@@ -15,6 +15,11 @@ inputs:
       The maximum number of tools to update. 0 indicates no maximum.
     required: false
     default: 0
+  not:
+    description: |
+      A comma-separated list of tools that should NOT be updated.
+    required: false
+    default: ""
   plugins:
     description: |
       A list of newline-separated "plugin url" pairs that should be installed.
@@ -51,6 +56,7 @@ runs:
       run: $GITHUB_ACTION_PATH/../bin/update.sh
       env:
         MAX: ${{ inputs.max }}
+        NOT: ${{ inputs.not }}
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
