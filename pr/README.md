@@ -6,7 +6,7 @@ file through a Pull Request.
 ## Usage
 
 ```yml
-- uses: ericcornelissen/tool-versions-update-action/pr@v0.3.0
+- uses: ericcornelissen/tool-versions-update-action/pr@v0.3.1
   with:
     # A comma or newline-separated list of labels.
     #
@@ -58,7 +58,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action/pr@v0.3.0
+        uses: ericcornelissen/tool-versions-update-action/pr@v0.3.1
         with:
           max: 2
 ```
