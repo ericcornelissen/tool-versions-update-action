@@ -5,6 +5,7 @@
 set -eo pipefail
 
 bin_dir=$(dirname "${BASH_SOURCE[0]}")
+exclusions=${NOT}
 max_capacity=${MAX}
 remaining_capacity=${MAX}
 
@@ -36,6 +37,13 @@ while read -r line; do
 		debug "processing line ('${line}')"
 
 		tool="$(echo "${line}" | awk '{print $1}')"
+
+		debug "checking if ${tool} should be evaluated"
+		if [[ ${exclusions} =~ (^|,)" "*"${tool}"" "*($|,) ]]; then
+			info "skipping ${tool} because it is configured in the exclusion rule"
+			continue
+		fi
+
 		info "evaluating ${tool}..."
 
 		current_version="$(echo "${line}" | awk '{print $2}')"

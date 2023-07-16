@@ -10,6 +10,11 @@ inputs:
       The maximum number of tools to update. 0 indicates no maximum.
     required: false
     default: 0
+  not:
+    description: |
+      A comma-separated list of tools that should NOT be updated.
+    required: false
+    default: ""
 
 runs:
   using: composite
@@ -19,3 +24,4 @@ runs:
       run: $GITHUB_ACTION_PATH/bin/update.sh
       env:
         MAX: ${{ inputs.max }}
+        NOT: ${{ inputs.not }}
