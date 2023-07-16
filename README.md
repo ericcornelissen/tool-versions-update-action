@@ -18,7 +18,7 @@ The first stable release (if reached) will be v1.0.0.
 ## Usage
 
 ```yml
-- uses: ericcornelissen/tool-versions-update-action@v0.3.0
+- uses: ericcornelissen/tool-versions-update-action@v0.3.1
   with:
     # The maximum number of tools to update. 0 indicates no maximum.
     #
@@ -65,7 +65,7 @@ jobs:
       #   run: |
       #     asdf plugin add example https://github.com/ericcornelissen/asdf-example
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action/commit@v0.3.0
+        uses: ericcornelissen/tool-versions-update-action/commit@v0.3.1
         with:
           max: 2
       - name: Log tooling changes
