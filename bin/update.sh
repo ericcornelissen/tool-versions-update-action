@@ -1,14 +1,19 @@
 #!/bin/bash
 
+# --- Setup ------------------------------------------------------------------ #
+
 set -eo pipefail
 
 bin_dir=$(dirname "${BASH_SOURCE[0]}")
+max_capacity=${MAX}
+remaining_capacity=${MAX}
+
+# --- Import ----------------------------------------------------------------- #
 
 # shellcheck source=./lib/actions.sh
 source "${bin_dir}/../lib/actions.sh"
 
-max_capacity=${MAX}
-remaining_capacity=${MAX}
+# --- Script ----------------------------------------------------------------- #
 
 debug "checking if .tool-versions file exists"
 if [[ ! -f '.tool-versions' ]]; then

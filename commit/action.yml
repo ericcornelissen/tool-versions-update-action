@@ -35,6 +35,7 @@ runs:
       with:
         ref: ${{ github.head_ref }}
         token: ${{ inputs.token }}
+
     - name: Setup asdf
       if: ${{ inputs.plugins != '' }}
       uses: asdf-vm/actions/setup@v2
@@ -44,13 +45,16 @@ runs:
       run: $GITHUB_ACTION_PATH/../bin/install-plugins.sh
       env:
         LIST: ${{ inputs.plugins }}
+
     - name: Install asdf
       uses: asdf-vm/actions/install@v2
+
     - name: Look for updates
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/update.sh
       env:
         MAX: ${{ inputs.max }}
+
     - name: Create commit
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
