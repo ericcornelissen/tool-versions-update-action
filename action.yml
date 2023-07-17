@@ -15,6 +15,11 @@ inputs:
       A comma-separated list of tools that should NOT be updated.
     required: false
     default: ""
+  only:
+    description: |
+      A comma-separated list of tools that should be updated, ignoring others.
+    required: false
+    default: ""
 
 runs:
   using: composite
@@ -25,3 +30,4 @@ runs:
       env:
         MAX: ${{ inputs.max }}
         NOT: ${{ inputs.not }}
+        ONLY: ${{ inputs.only }}

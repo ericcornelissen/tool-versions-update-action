@@ -29,6 +29,11 @@ The first stable release (if reached) will be v1.0.0.
     #
     # Default: ""
     not: actionlint,shfmt
+
+    # A comma-separated list of tools that should be updated, ignoring others.
+    #
+    # Default: ""
+    only: shellcheck
 ```
 
 ### Batteries Included
