@@ -23,6 +23,11 @@ file through a commit.
     # Default: ""
     not: actionlint,shfmt
 
+    # A comma-separated list of tools that should be updated, ignoring others.
+    #
+    # Default: ""
+    only: shellcheck
+
     # A list of newline-separated "plugin url" pairs that should be installed.
     # If omitted the default plugins will be available.
     #

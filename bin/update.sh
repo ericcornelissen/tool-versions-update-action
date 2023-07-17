@@ -7,6 +7,7 @@ set -eo pipefail
 
 bin_dir=$(dirname "${BASH_SOURCE[0]}")
 exclusions=${NOT}
+inclusions=${ONLY}
 max_capacity=${MAX}
 remaining_capacity=${MAX}
 
@@ -43,6 +44,13 @@ while read -r line; do
 		if [[ ${exclusions} =~ (^|,)" "*"${tool}"" "*($|,) ]]; then
 			info "skipping ${tool} because it is configured in the exclusion rule"
 			continue
+		fi
+
+		if [[ -n ${inclusions} ]]; then
+			if [[ ! ${inclusions} =~ (^|,)" "*"${tool}"" "*($|,) ]]; then
+				info "skipping ${tool} because it is NOT configured in the inclusion rule"
+				continue
+			fi
 		fi
 
 		info "evaluating ${tool}..."

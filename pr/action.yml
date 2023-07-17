@@ -20,6 +20,11 @@ inputs:
       A comma-separated list of tools that should NOT be updated.
     required: false
     default: ""
+  only:
+    description: |
+      A comma-separated list of tools that should be updated, ignoring others.
+    required: false
+    default: ""
   plugins:
     description: |
       A list of newline-separated "plugin url" pairs that should be installed.
@@ -57,6 +62,7 @@ runs:
       env:
         MAX: ${{ inputs.max }}
         NOT: ${{ inputs.not }}
+        ONLY: ${{ inputs.only }}
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5

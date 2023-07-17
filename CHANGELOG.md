@@ -8,7 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Add input `only:` to consider updating only certain tools to each action.
 
 ## [0.3.1] - 2023-07-16
 
