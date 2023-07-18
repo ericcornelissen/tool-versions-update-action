@@ -24,9 +24,6 @@ found in this file (using v0.1.2 as an example):
    + 0.1.2
    ```
 
-1. Update all version numbers referenced in all `README.md`s to match the value
-   in the `.version` file.
-
 1. Update the changelog by manually adding the following after the
    `## [Unreleased]` line:
 
@@ -43,7 +40,7 @@ found in this file (using v0.1.2 as an example):
 
    ```shell
    git checkout -b release-$(sha1sum .version | awk '{print $1}')
-   git add .version CHANGELOG.md README.md commit/README.md pr/README.md
+   git add .version CHANGELOG.md
    git commit --message "Version bump"
    git push origin release-$(sha1sum .version | awk '{print $1}')
    ```
