@@ -16,8 +16,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+      - name: Create token to create Pull Request
+        uses: tibdex/github-app-token@b62528385c34dbc9f38e5f4225ac829252d1ea92 # v1.8.0
+        id: automation-token
+        with:
+          app_id: ${{ secrets.AUTOMATION_ID }}
+          private_key: ${{ secrets.AUTOMATION_PRIVATE_KEY }}
       - name: Update tooling
         uses: ./pr
         with:
           labels: dependencies
           max: 2
+          token: ${{ steps.automation-token.outputs.token }}
