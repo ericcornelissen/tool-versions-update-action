@@ -64,7 +64,6 @@ lint-yml: $(ASDF) ## Lint YAML files
 .PHONY: update-actions
 update-actions: ## Update (and pin) all actions used by these actions
 	@docker run \
-		-it \
 		--rm \
 		--workdir "/tool-versions-update-action" \
 		--mount "type=bind,source=$(shell pwd),target=/tool-versions-update-action" \
