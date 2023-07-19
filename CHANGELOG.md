@@ -8,7 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Pin all actions used by these actions.
 
 ## [0.3.2] - 2023-07-18
 

@@ -41,14 +41,14 @@ runs:
   using: composite
   steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # pin@v3
       with:
         ref: ${{ github.head_ref }}
         token: ${{ inputs.token }}
 
     - name: Setup asdf
       if: ${{ inputs.plugins != '' }}
-      uses: asdf-vm/actions/setup@v2
+      uses: asdf-vm/actions/setup@6a442392015fbbdd8b48696d41e0051b2698b2e4 # pin@v2
     - name: Configure asdf plugins
       if: ${{ inputs.plugins != '' }}
       shell: bash
@@ -57,7 +57,7 @@ runs:
         LIST: ${{ inputs.plugins }}
 
     - name: Install asdf
-      uses: asdf-vm/actions/install@v2
+      uses: asdf-vm/actions/install@6a442392015fbbdd8b48696d41e0051b2698b2e4 # pin@v2
 
     - name: Look for updates
       shell: bash
@@ -68,7 +68,7 @@ runs:
         ONLY: ${{ inputs.only }}
 
     - name: Create commit
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # pin@v4
       with:
         skip_dirty_check: false
 

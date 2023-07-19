@@ -26,8 +26,8 @@ dev-env: dev-img ## Run an ephemeral development environment with Docker
 		--rm \
 		--workdir "/tool-versions-update-action" \
 		--mount "type=bind,source=$(shell pwd),target=/tool-versions-update-action" \
-		--name $(DEV_ENV_NAME) \
-		$(DEV_IMG_NAME)
+		--name "$(DEV_ENV_NAME)" \
+		"$(DEV_IMG_NAME)"
 
 dev-img: $(DEV_IMG) ## Build a development environment image with Docker
 
@@ -60,6 +60,23 @@ lint-sh: $(ASDF) ## Lint shell scripts
 
 lint-yml: $(ASDF) ## Lint YAML files
 	@yamllint -c .yamllint.yml .
+
+.PHONY: update-actions
+update-actions: ## Update (and pin) all actions used by these actions
+	@docker run \
+		-it \
+		--rm \
+		--workdir "/tool-versions-update-action" \
+		--mount "type=bind,source=$(shell pwd),target=/tool-versions-update-action" \
+		--name "tool-versions-update-action-update-actions" \
+		--entrypoint "npx" \
+		--env "GH_ADMIN_TOKEN" \
+		"node:current-alpine" \
+		\
+		"--update-notifier=false" \
+		"--yes" \
+		"pin-github-action@^1.5.0" \
+		"commit/action.yml" "pr/action.yml" "action.yml"
 
 .PHONY: verify
 verify: format-check lint ## Verify project is in a good state
