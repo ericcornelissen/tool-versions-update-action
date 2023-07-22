@@ -8,6 +8,11 @@ file through a Pull Request.
 ```yml
 - uses: ericcornelissen/tool-versions-update-action/pr@v0
   with:
+    # The message to use for update commits.
+    #
+    # Default: Update .tool-versions
+    commit-message: Update tooling
+
     # A comma or newline-separated list of labels.
     #
     # Default: *no labels*
@@ -35,6 +40,17 @@ file through a Pull Request.
     plugins: |
       actionlint https://github.com/crazy-matt/asdf-actionlint
       shellcheck https://github.com/luizm/asdf-shellcheck
+
+    # The body text to use for Pull Requests.
+    #
+    # Default: Bump tools in `.tool-versions`
+    pr-body: |
+      _This Pull Request was generated using the `tool-versions-update-action`_
+
+    # The title to use for Pull Requests.
+    #
+    # Default: Update `.tool-versions`
+    pr-title: Update tooling
 
     # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
     #

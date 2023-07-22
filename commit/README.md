@@ -13,6 +13,11 @@ file through a commit.
     # Default: *current or default branch*
     branch: develop
 
+    # The message to use for update commits.
+    #
+    # Default: Update .tool-versions
+    commit-message: Update tooling
+
     # The maximum number of tools to update. 0 indicates no maximum.
     #
     # Default: 0
