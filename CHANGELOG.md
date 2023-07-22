@@ -8,6 +8,8 @@ Versioning].
 
 ## [Unreleased]
 
+- Add `commit-message` input to `tool-versions-update-action/commit` and
+  `tool-versions-update-action/pr`.
 - Pin all actions used by these actions.
 
 ## [0.3.2] - 2023-07-18

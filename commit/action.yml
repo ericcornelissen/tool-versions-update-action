@@ -10,6 +10,11 @@ inputs:
       The branch to commit to.
     required: false
     default: ${{ github.head_ref }}
+  commit-message:
+    description: |
+      The message to use for update commits.
+    required: false
+    default: Update .tool-versions
   max:
     description: |
       The maximum number of tools to update. 0 indicates no maximum.
@@ -76,4 +81,4 @@ runs:
         branch: ${{ inputs.branch }}
 
         # Commit
-        commit_message: Update `.tool-versions`
+        commit_message: ${{ inputs.commit-message }}

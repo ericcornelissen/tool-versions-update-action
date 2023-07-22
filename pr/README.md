@@ -8,6 +8,11 @@ file through a Pull Request.
 ```yml
 - uses: ericcornelissen/tool-versions-update-action/pr@v0
   with:
+    # The message to use for update commits.
+    #
+    # Default: Update .tool-versions
+    commit-message: Update tooling
+
     # A comma or newline-separated list of labels.
     #
     # Default: *no labels*

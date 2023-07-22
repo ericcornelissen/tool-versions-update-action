@@ -5,6 +5,11 @@ branding:
   color: blue
 
 inputs:
+  commit-message:
+    description: |
+      The message to use for update commits.
+    required: false
+    default: Update .tool-versions
   labels:
     description: |
       A comma or newline-separated list of labels.
@@ -78,5 +83,5 @@ runs:
         branch: tool-versions-updates
 
         # Commit
-        commit-message: Update .tool-versions
+        commit-message: ${{ inputs.commit-message }}
         add-paths: .tool-versions
