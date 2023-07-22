@@ -41,6 +41,17 @@ file through a Pull Request.
       actionlint https://github.com/crazy-matt/asdf-actionlint
       shellcheck https://github.com/luizm/asdf-shellcheck
 
+    # The body text to use for Pull Requests.
+    #
+    # Default: Bump tools in `.tool-versions`
+    pr-body: |
+      _This Pull Request was generated using the `tool-versions-update-action`_
+
+    # The title to use for Pull Requests.
+    #
+    # Default: Update `.tool-versions`
+    pr-title: Update tooling
+
     # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
     #
     # Default: $GITHUB_TOKEN

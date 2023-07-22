@@ -36,6 +36,16 @@ inputs:
       If omitted the default plugins will be available.
     required: false
     default: ""
+  pr-body:
+    description: |
+      The body text to use for Pull Requests.
+    required: false
+    default: Bump tools in `.tool-versions`
+  pr-title:
+    description: |
+      The title to use for Pull Requests.
+    required: false
+    default: Update `.tool-versions`
   token:
     description: |
       The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
@@ -75,8 +85,8 @@ runs:
         token: ${{ inputs.token }}
 
         # Pull Request
-        title: Update `.tool-versions`
-        body: Bump tools in `.tool-versions`
+        title: ${{ inputs.pr-title }}
+        body: ${{ inputs.pr-body }}
         labels: ${{ inputs.labels }}
 
         # Branch
