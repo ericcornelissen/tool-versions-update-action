@@ -8,6 +8,10 @@ Versioning].
 
 ## [Unreleased]
 
+- _No changes yet_
+
+## [0.3.3] - 2023-07-22
+
 - Add `commit-message` input to `tool-versions-update-action/commit` and
   `tool-versions-update-action/pr`.
 - Add `pr-title` and `pr-body` inputs to `tool-versions-update-action/pr`.
