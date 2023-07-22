@@ -82,3 +82,4 @@ runs:
 
         # Commit
         commit_message: ${{ inputs.commit-message }}
+        file_pattern: .tool-versions
