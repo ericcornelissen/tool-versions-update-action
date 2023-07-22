@@ -1,0 +1,32 @@
+# Check out Labeler at: https://github.com/actions/labeler
+
+action:base:
+  - action.yml
+
+action:commit:
+  - commit/*
+
+action:pr:
+  - pr/*
+
+ci/cd:
+  - .github/workflows/*
+  - .github/dependabot.yml
+  - .github/labeler.yml
+
+dependencies:
+  - .tool-versions
+
+documentation:
+  - commit/README.md
+  - pr/README.md
+  - README.md
+
+meta:
+  - .github/dependabot.yml
+  - .github/labeler.yml
+  - .editorconfig
+  - .gitattributes
+  - .hadolint.yml
+  - .shellcheckrc
+  - .yamllint.yml

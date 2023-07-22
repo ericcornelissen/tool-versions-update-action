@@ -28,7 +28,7 @@
 !/.gitignore
 
 ## GitHub Actions
-!action.yml
+!/action.yml
 !/commit/
 /commit/**
 !/commit/action.yml
@@ -42,6 +42,7 @@
 !/.github/
 /.github/**
 !/.github/dependabot.yml
+!/.github/labeler.yml
 !/.github/workflows
 /.github/workflows/**
 !/.github/workflows/*.yml
