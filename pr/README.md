@@ -41,6 +41,11 @@ file through a Pull Request.
       actionlint https://github.com/crazy-matt/asdf-actionlint
       shellcheck https://github.com/luizm/asdf-shellcheck
 
+    # The base branch to use for Pull Requests.
+    #
+    # Default: *current branch*
+    pr-base: develop
+
     # The body text to use for Pull Requests.
     #
     # Default: Bump tools in `.tool-versions`

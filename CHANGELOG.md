@@ -8,7 +8,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Add `pr-base` input to `tool-versions-update-action/pr`.
 
 ## [0.3.3] - 2023-07-22
 
