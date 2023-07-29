@@ -36,6 +36,11 @@ inputs:
       If omitted the default plugins will be available.
     required: false
     default: ""
+  pr-base:
+    description: |
+      The base branch to use for Pull Requests.
+    required: false
+    default: ${{ github.head_ref }}
   pr-body:
     description: |
       The body text to use for Pull Requests.
@@ -87,6 +92,7 @@ runs:
         # Pull Request
         title: ${{ inputs.pr-title }}
         body: ${{ inputs.pr-body }}
+        base: ${{ inputs.pr-base }}
         labels: ${{ inputs.labels }}
 
         # Branch

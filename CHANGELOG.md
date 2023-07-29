@@ -8,8 +8,6 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
-
 ### `tool-versions-update-action`
 
 - _No changes yet_
@@ -20,7 +18,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet_
+- Add input `pr-base` input to configure the base branch of the Pull Request.
 
 ## [0.3.3] - 2023-07-22
 
