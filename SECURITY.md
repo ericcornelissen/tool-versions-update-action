@@ -46,8 +46,6 @@ Try to include as many of the following items as possible in a security report:
 - The latest affected version
 - The earliest affected version
 - A suggested patch
-- An automated regression test
-- A fuzz input seed or test
 
 [cwe]: https://cwe.mitre.org/
 
