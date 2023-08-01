@@ -10,15 +10,16 @@ Versioning].
 
 ### `tool-versions-update-action`
 
-- _No changes yet_
+- Add output `did-update`.
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet_
+- Add output `did-update`.
 
 ### `tool-versions-update-action/pr`
 
 - Add input `pr-base` input to configure the base branch of the Pull Request.
+- Add output `did-update`.
 
 ## [0.3.3] - 2023-07-22
 

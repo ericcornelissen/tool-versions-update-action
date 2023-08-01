@@ -18,6 +18,9 @@ source "${bin_dir}/../lib/actions.sh"
 
 # --- Script ----------------------------------------------------------------- #
 
+debug "initializing outputs to their default value"
+set_output 'did-update' 'false'
+
 debug "checking if .tool-versions file exists"
 if [[ ! -f '.tool-versions' ]]; then
 	error "no .tool-versions file found, it must be present at the root of your project in order for this action to work"
@@ -66,6 +69,9 @@ while read -r line; do
 			asdf install "${tool}" "${latest_version}"
 			debug "applying ${tool}@${latest_version} locally"
 			asdf local "${tool}" "${latest_version}"
+
+			debug "overriding 'did-update' output to true"
+			set_output 'did-update' 'true'
 
 			remaining_capacity=$((remaining_capacity - 1))
 			debug "remaining update capacity: ${remaining_capacity}"

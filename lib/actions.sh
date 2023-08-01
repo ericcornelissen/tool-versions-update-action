@@ -20,3 +20,7 @@ group_start() {
 group_end() {
 	echo "::endgroup::"
 }
+
+set_output() {
+	echo "$1=$2" >>"${GITHUB_OUTPUT}"
+}
