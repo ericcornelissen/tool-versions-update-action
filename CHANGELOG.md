@@ -10,6 +10,20 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [0.3.4] - 2023-08-03
+
+### `tool-versions-update-action`
+
 - Add output `did-update`.
 
 ### `tool-versions-update-action/commit`
