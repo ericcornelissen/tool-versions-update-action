@@ -21,10 +21,16 @@ inputs:
     required: false
     default: ""
 
+outputs:
+  did-update:
+    description: true if at least one tool was updated, false otherwise
+    value: ${{ steps.update.outputs.did-update }}
+
 runs:
   using: composite
   steps:
     - name: Look for updates
+      id: update
       shell: bash
       run: $GITHUB_ACTION_PATH/bin/update.sh
       env:

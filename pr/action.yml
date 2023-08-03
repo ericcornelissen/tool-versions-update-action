@@ -57,6 +57,11 @@ inputs:
     required: false
     default: ${{ github.token }}
 
+outputs:
+  did-update:
+    description: true if at least one tool was updated, false otherwise
+    value: ${{ steps.update.outputs.did-update }}
+
 runs:
   using: composite
   steps:
@@ -77,6 +82,7 @@ runs:
       uses: asdf-vm/actions/install@6a442392015fbbdd8b48696d41e0051b2698b2e4 # pin@v2
 
     - name: Look for updates
+      id: update
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/update.sh
       env:
