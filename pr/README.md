@@ -63,6 +63,14 @@ file through a Pull Request.
     token: ${{ github.token }}
 ```
 
+### Outputs
+
+The following outputs are made available:
+
+| Name         | Description                                                |
+| ------------ | ---------------------------------------------------------- |
+| `did-update` | `true` if at least one tool was updated, `false` otherwise |
+
 ### Full Example
 
 This example is for a workflow that can be triggered manually to create a Pull

@@ -44,6 +44,14 @@ sub-actions to get up-and-running quickly with one-step automated tooling jobs.
 - [`tool-versions-update-action/commit`](./commit/README.md)
 - [`tool-versions-update-action/pr`](./pr/README.md)
 
+### Outputs
+
+The following outputs are made available:
+
+| Name         | Description                                                |
+| ------------ | ---------------------------------------------------------- |
+| `did-update` | `true` if at least one tool was updated, `false` otherwise |
+
 ### Full Example
 
 This example is for a workflow that can be triggered manually to log available
@@ -71,9 +79,11 @@ jobs:
       #     asdf plugin add example https://github.com/ericcornelissen/asdf-example
       - name: Update tooling
         uses: ericcornelissen/tool-versions-update-action/commit@v0
+        id: tooling
         with:
           max: 2
       - name: Log tooling changes
+        if: steps.tooling.outputs.did-update == 'true'
         run: git diff .tool-versions
 ```
 
