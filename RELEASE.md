@@ -24,13 +24,28 @@ found in this file (using v0.1.2 as an example):
    + 0.1.2
    ```
 
+1. Update the changelog by replacing all instances of `_No changes yet._` with
+   `_Version bump only._`
+
 1. Update the changelog by manually adding the following after the
    `## [Unreleased]` line:
 
    ```markdown
-   - _No changes yet_
+
+   ### `tool-versions-update-action`
+
+   - _No changes yet._
+
+   ### `tool-versions-update-action/commit`
+
+   - _No changes yet._
+
+   ### `tool-versions-update-action/pr`
+
+   - _No changes yet._
 
    ## [0.1.2] - YYYY-MM-DD
+
    ```
 
    The date should follow the year-month-day format where single-digit months
