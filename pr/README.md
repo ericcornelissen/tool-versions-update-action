@@ -70,6 +70,7 @@ The following outputs are made available:
 | Name         | Description                                                |
 | ------------ | ---------------------------------------------------------- |
 | `did-update` | `true` if at least one tool was updated, `false` otherwise |
+| `pr-number`  | The number of the created Pull Request                     |
 
 ### Full Example
 
