@@ -61,6 +61,10 @@ lint-sh: $(ASDF) ## Lint shell scripts
 lint-yml: $(ASDF) ## Lint YAML files
 	@yamllint -c .yamllint.yml .
 
+.PHONY: test-e2e
+test-e2e: ## Run end-to-end tests
+	@act --job test-bare
+
 .PHONY: update-actions
 update-actions: ## Update (and pin) all actions used by these actions
 	@docker run \
