@@ -18,7 +18,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Add output `pr-number`.
 
 ## [0.3.4] - 2023-08-03
 

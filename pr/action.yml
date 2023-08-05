@@ -61,6 +61,9 @@ outputs:
   did-update:
     description: true if at least one tool was updated, false otherwise
     value: ${{ steps.update.outputs.did-update }}
+  pr-number:
+    description: The number of the created Pull Request
+    value: ${{ steps.create-pr.outputs.pull-request-number }}
 
 runs:
   using: composite
@@ -91,6 +94,7 @@ runs:
         ONLY: ${{ inputs.only }}
 
     - name: Create Pull Request
+      id: create-pr
       uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # pin@v5
       with:
         token: ${{ inputs.token }}
