@@ -8,6 +8,12 @@ file through a Pull Request.
 ```yml
 - uses: ericcornelissen/tool-versions-update-action/pr@v0
   with:
+    # A comma or newline-separated list of assignees for the Pull Request (by
+    # their GitHub username).
+    #
+    # Default: ""
+    assignees: ericcornelissen
+
     # The message to use for update commits.
     #
     # Default: Update .tool-versions
