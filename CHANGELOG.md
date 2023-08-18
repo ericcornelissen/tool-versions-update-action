@@ -18,6 +18,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
+- Add input `assignees` to configure the user(s) assigned to the Pull Request.
 - Add output `pr-number`.
 
 ## [0.3.4] - 2023-08-03

@@ -5,6 +5,12 @@ branding:
   color: blue
 
 inputs:
+  assignees:
+    description: |
+      A comma or newline-separated list of assignees for the Pull Request (by
+      their GitHub username).
+    required: false
+    default: ""
   commit-message:
     description: |
       The message to use for update commits.
@@ -103,6 +109,7 @@ runs:
         title: ${{ inputs.pr-title }}
         body: ${{ inputs.pr-body }}
         base: ${{ inputs.pr-base }}
+        assignees: ${{ inputs.assignees }}
         labels: ${{ inputs.labels }}
 
         # Branch
