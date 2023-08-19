@@ -79,6 +79,8 @@ The following outputs are made available:
 | `did-update` | `true` if at least one tool was updated, `false` otherwise |
 | `pr-number`  | The number of the created Pull Request                     |
 
+For information on how to use outputs see the [GitHub Actions output docs].
+
 ### Full Example
 
 This example is for a workflow that can be triggered manually to create a Pull
@@ -135,3 +137,4 @@ The contents of this document are licensed under [CC BY 4.0].
 [asdf]: https://asdf-vm.com/
 [cc by 4.0]: https://creativecommons.org/licenses/by/4.0/
 [github action]: https://github.com/features/actions
+[github actions output docs]: https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#steps-context
