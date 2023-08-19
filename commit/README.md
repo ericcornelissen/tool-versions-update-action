@@ -13,7 +13,7 @@ file through a commit.
     # Default: *current or default branch*
     branch: develop
 
-    # The message to use for update commits.
+    # The message to use for commits.
     #
     # Default: Update .tool-versions
     commit-message: Update tooling
@@ -33,7 +33,7 @@ file through a commit.
     # Default: ""
     only: shellcheck
 
-    # A list of newline-separated "plugin url" pairs that should be installed.
+    # A newline-separated list of "plugin url" pairs that should be installed.
     # If omitted the default plugins will be available.
     #
     # Default: ""

@@ -12,7 +12,7 @@ inputs:
     default: ${{ github.head_ref }}
   commit-message:
     description: |
-      The message to use for update commits.
+      The message to use for commits.
     required: false
     default: Update .tool-versions
   max:
@@ -32,7 +32,7 @@ inputs:
     default: ""
   plugins:
     description: |
-      A list of newline-separated "plugin url" pairs that should be installed.
+      A newline-separated list of "plugin url" pairs that should be installed.
       If omitted the default plugins will be available.
     required: false
     default: ""
