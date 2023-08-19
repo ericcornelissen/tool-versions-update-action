@@ -43,8 +43,11 @@ inputs:
     default: ${{ github.token }}
 
 outputs:
+  commit-sha:
+    description: The SHA identifier of the created commit.
+    value: ${{ steps.create-commit.outputs.commit_hash }}
   did-update:
-    description: true if at least one tool was updated, false otherwise
+    description: true if at least one tool was updated, false otherwise.
     value: ${{ steps.update.outputs.did-update }}
 
 runs:
@@ -79,6 +82,7 @@ runs:
         ONLY: ${{ inputs.only }}
 
     - name: Create commit
+      id: create-commit
       uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # pin@v4
       with:
         skip_dirty_check: false
