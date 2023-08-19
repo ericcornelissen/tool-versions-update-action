@@ -57,6 +57,12 @@ inputs:
       The title to use for Pull Requests.
     required: false
     default: Update `.tool-versions`
+  reviewers:
+    description: |
+      A comma or newline-separated list of reviewers for the Pull Request (by
+      their GitHub username).
+    required: false
+    default: ""
   token:
     description: |
       The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
@@ -112,6 +118,7 @@ runs:
         title: ${{ inputs.pr-title }}
         body: ${{ inputs.pr-body }}
         base: ${{ inputs.pr-base }}
+        reviewers: ${{ inputs.reviewers }}
         assignees: ${{ inputs.assignees }}
         labels: ${{ inputs.labels }}
 

@@ -19,6 +19,7 @@ Versioning].
 ### `tool-versions-update-action/pr`
 
 - Add input `assignees` to configure the user(s) assigned to the Pull Request.
+- Add input `reviewers` to configure the user(s) to review the Pull Request.
 - Add output `commit-sha`.
 - Add output `pr-number`.
 
