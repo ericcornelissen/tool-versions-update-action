@@ -8,18 +8,18 @@ file through a Pull Request.
 ```yml
 - uses: ericcornelissen/tool-versions-update-action/pr@v0
   with:
-    # A comma or newline-separated list of assignees for the Pull Request (by
-    # their GitHub username).
+    # A comma or newline-separated list of assignees for Pull Requests (by their
+    # GitHub username).
     #
     # Default: ""
     assignees: ericcornelissen
 
-    # The message to use for update commits.
+    # The message to use for commits.
     #
     # Default: Update .tool-versions
     commit-message: Update tooling
 
-    # A comma or newline-separated list of labels.
+    # A comma or newline-separated list of labels for Pull Requests.
     #
     # Default: *no labels*
     labels: tools
@@ -39,7 +39,7 @@ file through a Pull Request.
     # Default: ""
     only: shellcheck
 
-    # A list of newline-separated "plugin url" pairs that should be installed.
+    # A newline-separated list of "plugin url" pairs that should be installed.
     # If omitted the default plugins will be available.
     #
     # Default: ""
@@ -63,8 +63,8 @@ file through a Pull Request.
     # Default: Update `.tool-versions`
     pr-title: Update tooling
 
-    # A comma or newline-separated list of reviewers for the Pull Request (by
-    # their GitHub username).
+    # A comma or newline-separated list of reviewers for Pull Requests (by their
+    # GitHub username).
     #
     # Default: ""
     reviewers: ericcornelissen
