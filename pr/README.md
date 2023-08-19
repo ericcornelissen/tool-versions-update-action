@@ -63,6 +63,12 @@ file through a Pull Request.
     # Default: Update `.tool-versions`
     pr-title: Update tooling
 
+    # A comma or newline-separated list of reviewers for the Pull Request (by
+    # their GitHub username).
+    #
+    # Default: ""
+    reviewers: ericcornelissen
+
     # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
     #
     # Default: $GITHUB_TOKEN
