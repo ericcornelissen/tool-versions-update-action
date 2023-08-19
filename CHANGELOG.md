@@ -14,6 +14,20 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [0.3.5] - 2023-08-19
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
 - Add output `commit-sha`.
 
 ### `tool-versions-update-action/pr`

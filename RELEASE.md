@@ -54,10 +54,10 @@ found in this file (using v0.1.2 as an example):
 1. Commit the changes to a new branch and push using:
 
    ```shell
-   git checkout -b release-$(sha1sum .version | awk '{print $1}')
+   git checkout -b release-$(sha1sum .version | awk '{print $1}' | head -c 7)
    git add .version CHANGELOG.md
    git commit --message "Version bump"
-   git push origin release-$(sha1sum .version | awk '{print $1}')
+   git push origin release-$(sha1sum .version | awk '{print $1}' | head -c 7)
    ```
 
 1. Create a Pull Request to merge the new branch into `main`.
