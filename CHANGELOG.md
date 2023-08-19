@@ -14,11 +14,12 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Add output `commit-sha`.
 
 ### `tool-versions-update-action/pr`
 
 - Add input `assignees` to configure the user(s) assigned to the Pull Request.
+- Add output `commit-sha`.
 - Add output `pr-number`.
 
 ## [0.3.4] - 2023-08-03

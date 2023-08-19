@@ -64,11 +64,14 @@ inputs:
     default: ${{ github.token }}
 
 outputs:
+  commit-sha:
+    description: The SHA identifier of the created commit.
+    value: ${{ steps.create-pr.outputs.pull-request-head-sha }}
   did-update:
-    description: true if at least one tool was updated, false otherwise
+    description: true if at least one tool was updated, false otherwise.
     value: ${{ steps.update.outputs.did-update }}
   pr-number:
-    description: The number of the created Pull Request
+    description: The number of the created Pull Request.
     value: ${{ steps.create-pr.outputs.pull-request-number }}
 
 runs:
