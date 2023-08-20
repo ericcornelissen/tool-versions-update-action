@@ -14,6 +14,11 @@ file through a Pull Request.
     # Default: ""
     assignees: ericcornelissen
 
+    # The branch name to use for Pull Requests.
+    #
+    # Default: "tool-versions-updates"
+    branch: update-tooling
+
     # The message to use for commits.
     #
     # Default: "Update .tool-versions"
