@@ -16,7 +16,7 @@ file through a Pull Request.
 
     # The message to use for commits.
     #
-    # Default: Update .tool-versions
+    # Default: "Update .tool-versions"
     commit-message: Update tooling
 
     # A comma or newline-separated list of labels for Pull Requests.
@@ -54,13 +54,13 @@ file through a Pull Request.
 
     # The body text to use for Pull Requests.
     #
-    # Default: Bump tools in `.tool-versions`
+    # Default: "Bump tools in `.tool-versions`"
     pr-body: |
       _This Pull Request was generated using the `tool-versions-update-action`_
 
     # The title to use for Pull Requests.
     #
-    # Default: Update `.tool-versions`
+    # Default: "Update `.tool-versions`"
     pr-title: Update tooling
 
     # A comma or newline-separated list of reviewers for Pull Requests (by their
