@@ -15,7 +15,7 @@ file through a commit.
 
     # The message to use for commits.
     #
-    # Default: Update .tool-versions
+    # Default: "Update .tool-versions"
     commit-message: Update tooling
 
     # The maximum number of tools to update. 0 indicates no maximum.
