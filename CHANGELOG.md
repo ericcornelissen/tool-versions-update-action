@@ -18,7 +18,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Add input `branch` to configure the branch name for the Pull Request.
 
 ## [0.3.5] - 2023-08-19
 

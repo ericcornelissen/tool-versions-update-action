@@ -11,6 +11,11 @@ inputs:
       GitHub username).
     required: false
     default: ""
+  branch:
+    description: |
+      The branch name to use for Pull Requests.
+    required: false
+    default: tool-versions-updates
   commit-message:
     description: |
       The message to use for commits.
@@ -123,7 +128,7 @@ runs:
         labels: ${{ inputs.labels }}
 
         # Branch
-        branch: tool-versions-updates
+        branch: ${{ inputs.branch }}
 
         # Commit
         commit-message: ${{ inputs.commit-message }}
