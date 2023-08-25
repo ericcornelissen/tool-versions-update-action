@@ -14,11 +14,12 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Bump `actions/checkout` from v3.5.3 to v3.6.0.
 
 ### `tool-versions-update-action/pr`
 
 - Add input `branch` to configure the branch name for the Pull Request.
+- Bump `actions/checkout` from v3.5.3 to v3.6.0.
 
 ## [0.3.5] - 2023-08-19
 
