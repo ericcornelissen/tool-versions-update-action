@@ -14,11 +14,11 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- BREAKING: Bump `actions/checkout` from v3.6.0 to v4.0.0.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- BREAKING: Bump `actions/checkout` from v3.6.0 to v4.0.0.
 
 ## [0.3.6] - 2023-09-12
 
