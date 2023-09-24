@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+
 # Tool Versions Update Action - Commit
 
 A [GitHub Action] to automatically update the tools in your `.tool-versions`
