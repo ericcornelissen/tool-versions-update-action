@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC0-1.0 -->
+
 # Release Guidelines
 
 To release a new version of the _Tool Versions Update Action_ follow the steps

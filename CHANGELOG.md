@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC0-1.0 -->
+
 # Changelog
 
 All notable changes to _Tool Versions Update Action_ will be documented in this
