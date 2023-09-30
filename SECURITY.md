@@ -14,7 +14,7 @@ with security updates.
 
 | Version | End-of-life                        |
 | ------: | :--------------------------------- |
-|   0.x.x | 2023-09-30 _or_ upon release 1.0.0 |
+|   0.x.x | 2023-11-30 _or_ upon release 1.0.0 |
 
 _This table only includes information on versions `<1.0.0`._
 
