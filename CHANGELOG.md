@@ -17,14 +17,14 @@ Versioning].
 ### `tool-versions-update-action/commit`
 
 - BREAKING: Require support for the Node.js v20 runtime from the Actions runner.
-- Bump `actions/checkout` from v3.6.0 to v4.1.0.
+- Bump `actions/checkout` from v3.6.0 to v4.1.1.
 - Bump `asdf-vm/actions` from v2.2.0 to v3.0.2.
 - Bump `stefanzweifel/git-auto-commit-action` from v4.16.0 to v5.0.0.
 
 ### `tool-versions-update-action/pr`
 
 - BREAKING: Require support for the Node.js v20 runtime from the Actions runner.
-- Bump `actions/checkout` from v3.6.0 to v4.1.0.
+- Bump `actions/checkout` from v3.6.0 to v4.1.1.
 - Bump `asdf-vm/actions` from v2.2.0 to v3.0.2.
 
 ## [0.3.6] - 2023-09-12
