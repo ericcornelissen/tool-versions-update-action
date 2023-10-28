@@ -12,6 +12,20 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [0.3.7] - 2023-10-29
+
+### `tool-versions-update-action`
+
 - Add output `updated-count`.
 
 ### `tool-versions-update-action/commit`
