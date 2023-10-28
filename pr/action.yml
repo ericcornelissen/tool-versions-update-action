@@ -84,6 +84,9 @@ outputs:
   pr-number:
     description: The number of the created Pull Request.
     value: ${{ steps.create-pr.outputs.pull-request-number }}
+  updated-count:
+    description: The number of tools that were updated.
+    value: ${{ steps.update.outputs.updated-count }}
 
 runs:
   using: composite

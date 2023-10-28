@@ -10,6 +10,7 @@ exclusions=${NOT}
 inclusions=${ONLY}
 max_capacity=${MAX}
 remaining_capacity=${MAX}
+updated_count=0
 
 # --- Import ----------------------------------------------------------------- #
 
@@ -20,6 +21,7 @@ source "${bin_dir}/../lib/actions.sh"
 
 debug "initializing outputs to their default value"
 set_output 'did-update' 'false'
+set_output 'updated-count' "${updated_count}"
 
 debug "checking if .tool-versions file exists"
 if [[ ! -f '.tool-versions' ]]; then
@@ -72,6 +74,10 @@ while read -r line; do
 
 			debug "overriding 'did-update' output to true"
 			set_output 'did-update' 'true'
+
+			debug "overriding 'updated-count' output with new value"
+			((updated_count += 1))
+			set_output 'updated-count' "${updated_count}"
 
 			remaining_capacity=$((remaining_capacity - 1))
 			debug "remaining update capacity: ${remaining_capacity}"
