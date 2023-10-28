@@ -80,7 +80,7 @@ outputs:
     value: ${{ steps.create-pr.outputs.pull-request-head-sha }}
   did-update:
     description: true if at least one tool was updated, false otherwise.
-    value: ${{ steps.update.outputs.did-update }}
+    value: ${{ steps.update.outputs.updated-count != '0' }}
   pr-number:
     description: The number of the created Pull Request.
     value: ${{ steps.create-pr.outputs.pull-request-number }}

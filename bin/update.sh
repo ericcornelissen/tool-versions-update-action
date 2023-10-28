@@ -12,7 +12,6 @@ max_capacity=${MAX}
 remaining_capacity=${MAX}
 updated_count=0
 
-output_name_did_update='did-update'
 output_name_updated_count='updated-count'
 
 # --- Import ----------------------------------------------------------------- #
@@ -23,7 +22,6 @@ source "${bin_dir}/../lib/actions.sh"
 # --- Script ----------------------------------------------------------------- #
 
 debug "initializing outputs to their default value"
-set_output "${output_name_did_update}" 'false'
 set_output "${output_name_updated_count}" "${updated_count}"
 
 debug "checking if .tool-versions file exists"
@@ -74,9 +72,6 @@ while read -r line; do
 			asdf install "${tool}" "${latest_version}"
 			debug "applying ${tool}@${latest_version} locally"
 			asdf local "${tool}" "${latest_version}"
-
-			debug "overriding '${output_name_did_update}' output to true"
-			set_output "${output_name_did_update}" 'true'
 
 			debug "overriding '${output_name_updated_count}' output with new value"
 			((updated_count += 1))

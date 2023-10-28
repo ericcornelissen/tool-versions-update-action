@@ -24,7 +24,7 @@ inputs:
 outputs:
   did-update:
     description: true if at least one tool was updated, false otherwise.
-    value: ${{ steps.update.outputs.did-update }}
+    value: ${{ steps.update.outputs.updated-count != '0' }}
   updated-count:
     description: The number of tools that were updated.
     value: ${{ steps.update.outputs.updated-count }}
