@@ -86,11 +86,12 @@ file through a Pull Request.
 
 The following outputs are made available:
 
-| Name         | Description                                                |
-| ------------ | ---------------------------------------------------------- |
-| `commit-sha` | The SHA identifier of the created commit                   |
-| `did-update` | `true` if at least one tool was updated, `false` otherwise |
-| `pr-number`  | The number of the created Pull Request                     |
+| Name            | Description                                                |
+| --------------- | ---------------------------------------------------------- |
+| `commit-sha`    | The SHA identifier of the created commit                   |
+| `did-update`    | `true` if at least one tool was updated, `false` otherwise |
+| `pr-number`     | The number of the created Pull Request                     |
+| `updated-count` | The number of tools that were updated                      |
 
 For information on how to use outputs see the [GitHub Actions output docs].
 

@@ -53,10 +53,11 @@ file through a commit.
 
 The following outputs are made available:
 
-| Name         | Description                                                |
-| ------------ | ---------------------------------------------------------- |
-| `commit-sha` | The SHA identifier of the created commit                   |
-| `did-update` | `true` if at least one tool was updated, `false` otherwise |
+| Name            | Description                                                |
+| --------------- | ---------------------------------------------------------- |
+| `commit-sha`    | The SHA identifier of the created commit                   |
+| `did-update`    | `true` if at least one tool was updated, `false` otherwise |
+| `updated-count` | The number of tools that were updated                      |
 
 For information on how to use outputs see the [GitHub Actions output docs].
 
