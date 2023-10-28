@@ -20,7 +20,6 @@ source "${bin_dir}/../lib/actions.sh"
 # --- Script ----------------------------------------------------------------- #
 
 debug "initializing outputs to their default value"
-set_output 'did-update' 'false'
 set_output 'updated-count' "${updated_count}"
 
 debug "checking if .tool-versions file exists"
@@ -71,9 +70,6 @@ while read -r line; do
 			asdf install "${tool}" "${latest_version}"
 			debug "applying ${tool}@${latest_version} locally"
 			asdf local "${tool}" "${latest_version}"
-
-			debug "overriding 'did-update' output to true"
-			set_output 'did-update' 'true'
 
 			debug "overriding 'updated-count' output with new value"
 			((updated_count += 1))
