@@ -13,14 +13,17 @@ Versioning].
 ### `tool-versions-update-action`
 
 - Add input `skip` to configure versions of tools to skip when updating.
+- Improve debug logs with more details.
 
 ### `tool-versions-update-action/commit`
 
 - Add input `skip` to configure versions of tools to skip when updating.
+- Improve debug logs with more details.
 
 ### `tool-versions-update-action/pr`
 
 - Add input `skip` to configure versions of tools to skip when updating.
+- Improve debug logs with more details.
 
 ## [0.3.7] - 2023-10-29
 
