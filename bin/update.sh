@@ -78,26 +78,28 @@ while read -r line; do
 			info "update available for ${tool}"
 
 			if [[ -n ${skips} ]]; then
-				debug "checking if ${tool}@${latest_version} should be skipped..."
+				debug "checking if ${tool}@${latest_version} is in the skip input"
 				while read -r line; do
 					case "${line}" in
 					"")
-						debug "skipping empty line"
+						debug "skipping empty skip input line"
 						;;
 					*)
-						debug "processing skip line ('${line}')"
+						debug "processing skip input line ('${line}')"
 
 						name="$(echo "${line}" | awk '{print $1}')"
 						version="$(echo "${line}" | awk '{print $2}')"
 						debug "found skip mandate for ${name}@${version}"
 
 						if [ "${name}" == "${tool}" ] && [ "${version}" == "${latest_version}" ]; then
-							info "skipping ${name}@${version} because it is configured in the skip rule"
+							info "skipping ${name}@${version} because it is in the skip input"
 							continue 2
 						fi
 						;;
 					esac
 				done <<<"${skips}"
+			else
+				debug "no skips configured"
 			fi
 
 			debug "installing ${tool}@${latest_version}"
