@@ -12,15 +12,15 @@ Versioning].
 
 ### `tool-versions-update-action`
 
-- _No changes yet._
+- Add input `skip` to configure versions of tools to skip when updating.
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Add input `skip` to configure versions of tools to skip when updating.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Add input `skip` to configure versions of tools to skip when updating.
 
 ## [0.3.7] - 2023-10-29
 
