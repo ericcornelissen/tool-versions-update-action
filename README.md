@@ -36,6 +36,14 @@ The first stable release (if reached) will be v1.0.0.
     #
     # Default: ""
     only: shellcheck
+
+    # A newline-separated list of "tool version" pairs that should NOT be
+    # updated to.
+    #
+    # Default: ""
+    skip: |
+      shfmt 3.6.0
+      yamllint 1.31.0
 ```
 
 ### Batteries Included

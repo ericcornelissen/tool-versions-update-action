@@ -20,6 +20,12 @@ inputs:
       A comma-separated list of tools that should be updated, ignoring others.
     required: false
     default: ""
+  skip:
+    description: |
+      A newline-separated list of "tool version" pairs that should NOT be
+      updated to.
+    required: false
+    default: ""
 
 outputs:
   did-update:
@@ -40,3 +46,4 @@ runs:
         MAX: ${{ inputs.max }}
         NOT: ${{ inputs.not }}
         ONLY: ${{ inputs.only }}
+        SKIP: ${{ inputs.skip }}

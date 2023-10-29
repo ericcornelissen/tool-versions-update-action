@@ -36,6 +36,12 @@ inputs:
       If omitted the default plugins will be available.
     required: false
     default: ""
+  skip:
+    description: |
+      A newline-separated list of "tool version" pairs that should NOT be
+      updated to.
+    required: false
+    default: ""
   token:
     description: |
       The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
@@ -83,6 +89,7 @@ runs:
         MAX: ${{ inputs.max }}
         NOT: ${{ inputs.not }}
         ONLY: ${{ inputs.only }}
+        SKIP: ${{ inputs.skip }}
 
     - name: Create commit
       id: create-commit
