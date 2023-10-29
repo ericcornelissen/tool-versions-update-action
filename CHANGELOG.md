@@ -23,6 +23,7 @@ Versioning].
 ### `tool-versions-update-action/pr`
 
 - Add input `skip` to configure versions of tools to skip when updating.
+- Bump `peter-evans/create-pull-request` from v5.0.2 to v6-rc.
 - Improve debug logs with more details.
 
 ## [0.3.7] - 2023-10-29
