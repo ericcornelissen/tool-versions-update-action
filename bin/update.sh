@@ -11,7 +11,6 @@ inclusions=${ONLY}
 max_capacity=${MAX}
 remaining_capacity=${MAX}
 skips=${SKIP}
-updated_count=0
 
 output_name_updated_count='updated-count'
 
@@ -23,7 +22,7 @@ source "${bin_dir}/../lib/actions.sh"
 # --- Script ----------------------------------------------------------------- #
 
 debug "initializing outputs to their default value"
-set_output "${output_name_updated_count}" "${updated_count}"
+set_output "${output_name_updated_count}" "0"
 
 debug "checking if .tool-versions file exists"
 if [[ ! -f '.tool-versions' ]]; then
@@ -107,12 +106,11 @@ while read -r line; do
 			debug "applying ${tool}@${latest_version} locally"
 			asdf local "${tool}" "${latest_version}"
 
-			debug "overriding '${output_name_updated_count}' output with new value"
-			((updated_count += 1))
-			set_output "${output_name_updated_count}" "${updated_count}"
-
 			remaining_capacity=$((remaining_capacity - 1))
 			debug "remaining update capacity: ${remaining_capacity}"
+
+			debug "overriding '${output_name_updated_count}' output with new value"
+			set_output "${output_name_updated_count}" "$((max_capacity - remaining_capacity))"
 
 			if [ "${remaining_capacity}" -eq 0 ]; then
 				info "finished updating after ${max_capacity} update(s)"
