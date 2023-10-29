@@ -76,6 +76,14 @@ file through a Pull Request.
     # Default: ""
     reviewers: ericcornelissen
 
+    # A newline-separated list of "tool version" pairs that should NOT be
+    # updated to.
+    #
+    # Default: ""
+    skip: |
+      shfmt 3.6.0
+      yamllint 1.31.0
+
     # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
     #
     # Default: $GITHUB_TOKEN
