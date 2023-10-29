@@ -47,16 +47,24 @@ while read -r line; do
 		tool="$(echo "${line}" | awk '{print $1}')"
 
 		debug "checking if ${tool} should be evaluated"
-		if [[ ${exclusions} =~ (^|,)" "*"${tool}"" "*($|,) ]]; then
-			info "skipping ${tool} because it is configured in the exclusion rule"
-			continue
+		if [[ -n ${exclusions} ]]; then
+			debug "checking if ${tool} is in the exclusion input"
+			if [[ ${exclusions} =~ (^|,)" "*"${tool}"" "*($|,) ]]; then
+				info "skipping ${tool} because it is in the exclusion input"
+				continue
+			fi
+		else
+			debug "no exclusions configured"
 		fi
 
 		if [[ -n ${inclusions} ]]; then
+			debug "checking if ${tool} is NOT in the inclusion input"
 			if [[ ! ${inclusions} =~ (^|,)" "*"${tool}"" "*($|,) ]]; then
-				info "skipping ${tool} because it is NOT configured in the inclusion rule"
+				info "skipping ${tool} because it is NOT in the inclusion input"
 				continue
 			fi
+		else
+			debug "no inclusions configured"
 		fi
 
 		info "evaluating ${tool}..."
