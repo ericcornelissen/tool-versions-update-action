@@ -28,5 +28,5 @@ jobs:
           labels: dependencies
           max: 2
           skip: |
-            act 0.2.52
+            act 0.2.53
           token: ${{ steps.automation-token.outputs.token }}
