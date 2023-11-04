@@ -19,6 +19,7 @@ RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.1 \
 	&& asdf plugin add actionlint \
 	&& asdf plugin add hadolint \
 	&& asdf plugin add shellcheck \
+	&& asdf plugin add shellspec \
 	&& asdf plugin add shfmt \
 	&& asdf plugin add yamllint \
 	&& asdf install

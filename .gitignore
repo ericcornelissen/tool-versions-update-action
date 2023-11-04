@@ -60,5 +60,10 @@
 ## Test
 !/spec/
 /spec/**
-!/spec/*_spec.sh
+!/spec/bin/
+/spec/bin/**
+!/spec/bin/*_spec.sh
+!/spec/lib/
+/spec/lib/**
+!/spec/lib/*_spec.sh
 !/spec/spec_helper.sh
