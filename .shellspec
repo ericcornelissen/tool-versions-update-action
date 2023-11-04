@@ -1,0 +1,4 @@
+# Check out ShellSpec at: https://shellspec.info/
+
+--require spec_helper
+--shell bash

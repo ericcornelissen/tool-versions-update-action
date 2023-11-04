@@ -61,7 +61,10 @@ lint-sh: $(ASDF) ## Lint shell scripts
 lint-yml: $(ASDF) ## Lint YAML files
 	@yamllint -c .yamllint.yml .
 
-.PHONY: test-e2e
+.PHONY: test test-e2e
+test: ## Run tests
+	@shellspec
+
 test-e2e: ## Run end-to-end tests
 	@act --job test-bare
 
@@ -82,7 +85,7 @@ update-actions: ## Update (and pin) all actions used by these actions
 		"commit/action.yml" "pr/action.yml" "action.yml"
 
 .PHONY: verify
-verify: format-check lint ## Verify project is in a good state
+verify: format-check lint test ## Verify project is in a good state
 
 ################################################################################
 ### Targets ####################################################################

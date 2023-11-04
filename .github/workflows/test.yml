@@ -8,9 +8,11 @@ on:
 permissions: read-all
 
 jobs:
-  test-bare:
+  bare-action:
     name: Bare action
     runs-on: ubuntu-22.04
+    needs:
+      - unit
     steps:
       - name: Checkout repository
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
@@ -18,3 +20,13 @@ jobs:
         uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # v3.0.2
       - name: Run bare action
         uses: ./
+  unit:
+    name: Unit
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      - name: Install tooling
+        uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # v3.0.2
+      - name: Run unit tests
+        run: make test

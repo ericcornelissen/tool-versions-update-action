@@ -13,6 +13,7 @@
 !/.editorconfig
 !/.hadolint.yml
 !/.shellcheckrc
+!/.shellspec
 !/.tool-versions
 !/.yamllint.yml
 
@@ -55,3 +56,9 @@
 !/lib/
 /lib/**
 !/lib/*.sh
+
+## Test
+!/spec/
+/spec/**
+!/spec/*_spec.sh
+!/spec/spec_helper.sh
