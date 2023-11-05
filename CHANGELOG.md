@@ -12,18 +12,36 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- Bump `peter-evans/create-pull-request` from v5.0.2 to v6-rc.
+
+## [0.3.8] - 2023-11-05
+
+### `tool-versions-update-action`
+
 - Add input `skip` to configure versions of tools to skip when updating.
+- Fix a bug where a log group wouldn't be closed when max. updates is reached.
 - Improve debug logs with more details.
 
 ### `tool-versions-update-action/commit`
 
 - Add input `skip` to configure versions of tools to skip when updating.
+- Fix a bug where a log group wouldn't be closed when max. updates is reached.
+- Fix a bug where an error occurs when a plugin is already installed.
 - Improve debug logs with more details.
 
 ### `tool-versions-update-action/pr`
 
 - Add input `skip` to configure versions of tools to skip when updating.
-- Bump `peter-evans/create-pull-request` from v5.0.2 to v6-rc.
+- Fix a bug where a log group wouldn't be closed when max. updates is reached.
+- Fix a bug where an error occurs when a plugin is already installed.
 - Improve debug logs with more details.
 
 ## [0.3.7] - 2023-10-29

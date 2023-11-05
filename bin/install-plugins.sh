@@ -3,9 +3,10 @@
 
 # --- Setup ------------------------------------------------------------------ #
 
-set -eo pipefail
+set -o pipefail
 
 bin_dir=$(dirname "${BASH_SOURCE[0]}")
+exit_code=0
 plugin_list=${LIST}
 
 # --- Import ----------------------------------------------------------------- #
@@ -39,9 +40,12 @@ while read -r line; do
 			info "plugin ${name} already installed"
 		else
 			info "plugin ${name} could not be installed"
+			exit_code=1
 		fi
 		;;
 	esac
 done <<<"${plugin_list}"
 
 group_end
+
+exit "${exit_code}"
