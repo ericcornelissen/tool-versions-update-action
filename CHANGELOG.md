@@ -12,6 +12,20 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [0.3.8] - 2023-11-05
+
+### `tool-versions-update-action`
+
 - Add input `skip` to configure versions of tools to skip when updating.
 - Fix a bug where a log group wouldn't be closed when max. updates is reached.
 - Improve debug logs with more details.
