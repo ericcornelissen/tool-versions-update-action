@@ -546,4 +546,56 @@ Describe 'update.sh'
 			End
 		End
 	End
+
+	Describe 'no .tool-versions file'
+		exclusions() {
+			echo
+		}
+
+		inclusions() {
+			echo
+		}
+
+		max_capacity() {
+			echo '0'
+		}
+
+		skips() {
+			echo
+		}
+
+		tool_versions() {
+			echo
+		}
+
+		snapshot_stdout() {
+			%text
+			#|::debug::initializing outputs to their default value
+			#|::debug::checking if .tool-versions file exists
+			#|::error::no .tool-versions file found, it must be present at the root of your project in order for this action to work
+		}
+
+		snapshot_outputs() {
+			%text
+			#|updated-count=0
+		}
+
+		remove_tool_versions() {
+			export NOT="$(exclusions)"
+			export ONLY="$(inclusions)"
+			export MAX="$(max_capacity)"
+			export SKIP="$(skips)"
+
+			rm -f .tool-versions
+		}
+
+		BeforeEach 'remove_tool_versions'
+
+		It 'succeeds'
+			When run script bin/update.sh
+			The status should equal 1
+			The output should equal "$(snapshot_stdout)"
+			The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_outputs)"
+		End
+	End
 End
