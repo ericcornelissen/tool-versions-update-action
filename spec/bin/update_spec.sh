@@ -469,4 +469,81 @@ Describe 'update.sh'
 			The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_outputs)"
 		End
 	End
+
+	Describe 'asdf failure'
+		exclusions() {
+			echo
+		}
+
+		inclusions() {
+			echo
+		}
+
+		max_capacity() {
+			echo '0'
+		}
+
+		skips() {
+			echo
+		}
+
+		tool_versions() {
+			%text
+			#|shellcheck 0.8.0
+		}
+
+		Describe 'latest could not be obtained'
+			Mock asdf
+				case "$1" in
+				"latest")
+					exit 1
+					;;
+				esac
+			End
+
+			It 'fails'
+				When run script bin/update.sh
+				The status should equal 1
+				The output should not equal ''
+			End
+		End
+
+		Describe 'latest could not be installed'
+			Mock asdf
+				case "$1" in
+				"latest")
+					echo "0.9.0"
+					;;
+				"install")
+					exit 2
+					;;
+				esac
+			End
+
+			It 'fails'
+				When run script bin/update.sh
+				The status should equal 2
+				The output should not equal ''
+			End
+		End
+
+		Describe 'latest could not be applied locally'
+			Mock asdf
+				case "$1" in
+				"latest")
+					echo "0.9.0"
+					;;
+				"local")
+					exit 3
+					;;
+				esac
+			End
+
+			It 'fails'
+				When run script bin/update.sh
+				The status should equal 3
+				The output should not equal ''
+			End
+		End
+	End
 End
