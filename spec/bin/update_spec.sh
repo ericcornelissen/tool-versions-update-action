@@ -1,9 +1,9 @@
-# shellcheck shell=bash
+# shellcheck shell=bash disable=SC2155,SC2317
 # SPDX-License-Identifier: MIT
 
 BeforeEach 'clear_github_output'
 
-Describe 'update.sh'
+Describe 'bin/update.sh'
 	setup() {
 		export NOT="$(exclusions)"
 		export ONLY="$(inclusions)"
@@ -23,18 +23,27 @@ Describe 'update.sh'
 
 	Mock asdf
 		case "$1" in
-		"latest")
+		'latest')
 			case "$2" in
-				"shellcheck")
-					echo "0.9.0"
+				'shellcheck')
+					echo '0.9.0'
 					;;
-				"shellspec")
-					echo "0.28.1"
+				'shellspec')
+					echo '0.28.1'
 					;;
-				"shfmt")
-					echo "3.7.0"
+				'shfmt')
+					echo '3.7.0'
 					;;
 			esac
+			;;
+		'install')
+			# Nothing to do..
+			;;
+		'local')
+			# Nothing to do..
+			;;
+		*)
+			exit 127
 			;;
 		esac
 	End
@@ -495,8 +504,15 @@ Describe 'update.sh'
 		Describe 'latest could not be obtained'
 			Mock asdf
 				case "$1" in
-				"latest")
+				'latest')
 					exit 1
+					;;
+				'install')
+					;;
+				'local')
+					;;
+				*)
+					exit 127
 					;;
 				esac
 			End
@@ -511,11 +527,16 @@ Describe 'update.sh'
 		Describe 'latest could not be installed'
 			Mock asdf
 				case "$1" in
-				"latest")
-					echo "0.9.0"
+				'latest')
+					echo '0.9.0'
 					;;
-				"install")
+				'install')
 					exit 2
+					;;
+				'local')
+					;;
+				*)
+					exit 127
 					;;
 				esac
 			End
@@ -530,11 +551,16 @@ Describe 'update.sh'
 		Describe 'latest could not be applied locally'
 			Mock asdf
 				case "$1" in
-				"latest")
-					echo "0.9.0"
+				'latest')
+					echo '0.9.0'
 					;;
-				"local")
+				'install')
+					;;
+				'local')
 					exit 3
+					;;
+				*)
+					exit 127
 					;;
 				esac
 			End
@@ -581,11 +607,6 @@ Describe 'update.sh'
 		}
 
 		remove_tool_versions() {
-			export NOT="$(exclusions)"
-			export ONLY="$(inclusions)"
-			export MAX="$(max_capacity)"
-			export SKIP="$(skips)"
-
 			rm -f .tool-versions
 		}
 

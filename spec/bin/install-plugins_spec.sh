@@ -1,16 +1,16 @@
-# shellcheck shell=bash
+# shellcheck shell=bash disable=SC2155,SC2317
 # SPDX-License-Identifier: MIT
 
 BeforeEach 'clear_github_output'
 
-Describe 'install-plugins.sh'
+Describe 'bin/install-plugins.sh'
 	setup() {
 		export LIST="$(plugin_list)"
 	}
 
 	BeforeEach 'setup'
 
-	Describe 'can install'
+	Describe 'installation possible'
 		plugin_list() {
 			%text
 			#|
@@ -39,14 +39,14 @@ Describe 'install-plugins.sh'
 			# Nothing to do
 		End
 
-		It 'installs and succeeds'
+		It 'can install and succeeds'
 			When run script bin/install-plugins.sh
 			The status should equal 0
 			The output should equal "$(snapshot_stdout)"
 		End
 	End
 
-	Describe 'already installed'
+	Describe 'installion unnecessary'
 		plugin_list() {
 			%text
 			#|actionlint https://github.com/crazy-matt/asdf-actionlint
@@ -63,21 +63,17 @@ Describe 'install-plugins.sh'
 		}
 
 		Mock asdf
-			already_installed() {
-				return 2
-			}
-
-			already_installed
+			exit 2
 		End
 
-		It 'succeeds'
+		It 'does nothing and succeeds'
 			When run script bin/install-plugins.sh
 			The status should equal 0
 			The output should equal "$(snapshot_stdout)"
 		End
 	End
 
-	Describe 'cannot install'
+	Describe 'installation impossible'
 		plugin_list() {
 			%text
 			#|shellcheck https://github.com/luizm/asdf-shellcheck
@@ -94,14 +90,10 @@ Describe 'install-plugins.sh'
 		}
 
 		Mock asdf
-			not_installed() {
-				return 1
-			}
-
-			not_installed
+			exit 1
 		End
 
-		It 'fails'
+		It 'fails gracefully'
 			When run script bin/install-plugins.sh
 			The status should equal 1
 			The output should equal "$(snapshot_stdout)"

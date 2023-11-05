@@ -1,4 +1,5 @@
 SHELL_SCRIPTS:=./bin/*.sh ./lib/*.sh
+SPEC_SCRIPTS:=./spec/*.sh ./spec/**/*.sh
 
 TMP_DIR:=./.tmp
 ASDF:=$(TMP_DIR)/.asdf
@@ -58,7 +59,7 @@ lint-docker: $(ASDF) ## Lint the Dockerfile
 	@hadolint Dockerfile
 
 lint-sh: $(ASDF) ## Lint shell scripts
-	@shellcheck $(SHELL_SCRIPTS)
+	@shellcheck $(SHELL_SCRIPTS) $(SPEC_SCRIPTS)
 
 lint-yml: $(ASDF) ## Lint YAML files
 	@yamllint -c .yamllint.yml .

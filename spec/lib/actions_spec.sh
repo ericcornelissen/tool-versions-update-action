@@ -3,49 +3,56 @@
 
 BeforeEach 'clear_github_output'
 
-Describe 'actions.sh'
+Describe 'lib/actions.sh'
 	Include lib/actions.sh
 
 	Describe 'debug logging'
 		Parameters
-			'#1' 'foobar'
-			'#2' 'Something interesting happened'
+			'foobar'
+			'Something happened'
 		End
 
-		It "can write a debug log (case $1)"
-			When call debug "$2"
-			The output should equal "::debug::$2"
+		It "can write a debug log ('$1')"
+			When call debug "$1"
+			The output should equal "::debug::$1"
 		End
 	End
 
 	Describe 'error logging'
 		Parameters
-			'#1' 'foobar'
-			'#2' 'That didn''t go well'
+			'foobar'
+			'That didn''t go well'
 		End
 
-		It "can write an error log (case $1)"
-			When call error "$2"
-			The output should equal "::error::$2"
+		It "can write an error log ('$1')"
+			When call error "$1"
+			The output should equal "::error::$1"
 		End
 	End
 
 	Describe 'info logging'
 		Parameters
-			'#1' 'foobar'
-			'#2' 'Making progres...'
+			'foobar'
+			'Making progres'
 		End
 
-		It "can write an info log (case $1)"
-			When call info "$2"
-			The output should equal "$2"
+		It "can write an info log ('$1')"
+			When call info "$1"
+			The output should equal "$1"
 		End
 	End
 
 	Describe 'log groups'
-		It 'can start a (named) group'
-			When call group_start name
-			The output should equal '::group::name'
+		Describe 'start'
+			Parameters
+				'foobar'
+				'Stage 1'
+			End
+
+			It "can start a named group ('$1')"
+				When call group_start "$1"
+				The output should equal "::group::$1"
+			End
 		End
 
 		It 'can end a group'
@@ -57,14 +64,14 @@ Describe 'actions.sh'
 	Describe 'outputs'
 		Describe 'single'
 			Parameters
-				'#1' 'foo' 'bar'
-				'#2' 'answer' '42'
+				'foo' 'bar'
+				'answer' '42'
 			End
 
-			It "can set an output (case $1)"
-				When call set_output "$2" "$3"
+			It "can set an output ('$1=$2')"
+				When call set_output "$1" "$2"
 				The output should equal ''
-				The file "${GITHUB_OUTPUT}" should satisfy contents "$2=$3"
+				The file "${GITHUB_OUTPUT}" should satisfy contents "$1=$2"
 			End
 		End
 
