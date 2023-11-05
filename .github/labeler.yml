@@ -30,3 +30,7 @@ meta:
   - .hadolint.yml
   - .shellcheckrc
   - .yamllint.yml
+
+test:
+  - spec/*
+  - .shellspec

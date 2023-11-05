@@ -114,7 +114,7 @@ while read -r line; do
 
 			if [ "${remaining_capacity}" -eq 0 ]; then
 				info "finished updating after ${max_capacity} update(s)"
-				exit 0
+				break
 			fi
 		else
 			info "no update available for ${tool}"
