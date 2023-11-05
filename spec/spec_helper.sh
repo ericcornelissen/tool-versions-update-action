@@ -3,7 +3,7 @@
 
 # --- ENVIRONMENT --------------------------------------------------------------
 
-export GITHUB_OUTPUT='github_output'
+export GITHUB_OUTPUT='.tmp/github_output'
 
 # --- HOOKS --------------------------------------------------------------------
 
