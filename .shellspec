@@ -1,4 +1,8 @@
 # Check out ShellSpec at: https://shellspec.info/
 
+--covdir _coverage/
+--format documentation
+--reportdir _reports/
 --require spec_helper
 --shell bash
+--show-deprecations

@@ -1,10 +1,12 @@
 SHELL_SCRIPTS:=./bin/*.sh ./lib/*.sh
 SPEC_SCRIPTS:=./spec/*.sh ./spec/**/*.sh
 
+COVERAGE_DIR:=./_coverage
+REPORT_DIR:=./_reports
 TMP_DIR:=./.tmp
+
 ASDF:=$(TMP_DIR)/.asdf
 DEV_IMG:=$(TMP_DIR)/.dev-img
-COVERAGE_DIR:=./coverage
 
 DEV_ENV_NAME:=tool-versions-update-action-dev
 DEV_IMG_NAME:=$(DEV_ENV_NAME)-img
@@ -19,8 +21,9 @@ default: help
 .PHONY: clean
 clean: ## Clean the repository
 	@git clean -fx \
-		$(TMP_DIR) \
-		$(COVERAGE_DIR)
+		$(COVERAGE_DIR) \
+		$(REPORT_DIR) \
+		$(TMP_DIR)
 
 .PHONY: dev-env dev-img
 dev-env: dev-img ## Run an ephemeral development environment with Docker
