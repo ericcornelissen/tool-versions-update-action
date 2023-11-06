@@ -78,28 +78,22 @@ Describe 'bin/update.sh'
 			%text
 			#|::debug::initializing outputs to their default value
 			#|::debug::checking if .tool-versions file exists
+			#|::debug::no exclusions configured
+			#|::debug::no inclusions configured
+			#|::debug::no skips configured
 			#|::group::Updating tools
 			#|::debug::starting with update capacity: 0
 			#|::debug::skipping comment ('# file: .tool-versions')
 			#|::debug::skipping empty line
 			#|::debug::processing line ('shellcheck 0.9.0')
-			#|::debug::checking if shellcheck should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shellcheck...
 			#|::debug::shellcheck current: 0.9.0, latest: 0.9.0
 			#|no update available for shellcheck
 			#|::debug::processing line ('shellspec 0.28.1')
-			#|::debug::checking if shellspec should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.1, latest: 0.28.1
 			#|no update available for shellspec
 			#|::debug::processing line ('shfmt 3.7.0')
-			#|::debug::checking if shfmt should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shfmt...
 			#|::debug::shfmt current: 3.7.0, latest: 3.7.0
 			#|no update available for shfmt
@@ -147,40 +141,31 @@ Describe 'bin/update.sh'
 			%text
 			#|::debug::initializing outputs to their default value
 			#|::debug::checking if .tool-versions file exists
+			#|::debug::no exclusions configured
+			#|::debug::no inclusions configured
+			#|::debug::no skips configured
 			#|::group::Updating tools
 			#|::debug::starting with update capacity: 0
 			#|::debug::processing line ('shellcheck 0.8.0')
-			#|::debug::checking if shellcheck should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shellcheck...
 			#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
 			#|update available for shellcheck
-			#|::debug::no skips configured
 			#|::debug::installing shellcheck@0.9.0
 			#|::debug::applying shellcheck@0.9.0 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::processing line ('shellspec 0.28.0')
-			#|::debug::checking if shellspec should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.0, latest: 0.28.1
 			#|update available for shellspec
-			#|::debug::no skips configured
 			#|::debug::installing shellspec@0.28.1
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: -2
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::processing line ('shfmt 3.6.1')
-			#|::debug::checking if shfmt should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shfmt...
 			#|::debug::shfmt current: 3.6.1, latest: 3.7.0
 			#|update available for shfmt
-			#|::debug::no skips configured
 			#|::debug::installing shfmt@3.7.0
 			#|::debug::applying shfmt@3.7.0 locally
 			#|::debug::remaining update capacity: -3
@@ -232,28 +217,23 @@ Describe 'bin/update.sh'
 			%text
 			#|::debug::initializing outputs to their default value
 			#|::debug::checking if .tool-versions file exists
+			#|::debug::no exclusions configured
+			#|::debug::no inclusions configured
+			#|::debug::no skips configured
 			#|::group::Updating tools
 			#|::debug::starting with update capacity: 2
 			#|::debug::processing line ('shellcheck 0.8.0')
-			#|::debug::checking if shellcheck should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shellcheck...
 			#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
 			#|update available for shellcheck
-			#|::debug::no skips configured
 			#|::debug::installing shellcheck@0.9.0
 			#|::debug::applying shellcheck@0.9.0 locally
 			#|::debug::remaining update capacity: 1
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::processing line ('shellspec 0.28.0')
-			#|::debug::checking if shellspec should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.0, latest: 0.28.1
 			#|update available for shellspec
-			#|::debug::no skips configured
 			#|::debug::installing shellspec@0.28.1
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: 0
@@ -305,20 +285,18 @@ Describe 'bin/update.sh'
 			%text
 			#|::debug::initializing outputs to their default value
 			#|::debug::checking if .tool-versions file exists
+			#|::debug::no inclusions configured
+			#|::debug::no skips configured
 			#|::group::Updating tools
 			#|::debug::starting with update capacity: 0
 			#|::debug::processing line ('shellcheck 0.8.0')
-			#|::debug::checking if shellcheck should be evaluated
 			#|::debug::checking if shellcheck is in the exclusion input
 			#|skipping shellcheck because it is in the exclusion input
 			#|::debug::processing line ('shellspec 0.28.0')
-			#|::debug::checking if shellspec should be evaluated
 			#|::debug::checking if shellspec is in the exclusion input
-			#|::debug::no inclusions configured
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.0, latest: 0.28.1
 			#|update available for shellspec
-			#|::debug::no skips configured
 			#|::debug::installing shellspec@0.28.1
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: -1
@@ -368,23 +346,20 @@ Describe 'bin/update.sh'
 			%text
 			#|::debug::initializing outputs to their default value
 			#|::debug::checking if .tool-versions file exists
+			#|::debug::no exclusions configured
+			#|::debug::no skips configured
 			#|::group::Updating tools
 			#|::debug::starting with update capacity: 0
 			#|::debug::processing line ('shellcheck 0.8.0')
-			#|::debug::checking if shellcheck should be evaluated
-			#|::debug::no exclusions configured
 			#|::debug::checking if shellcheck is NOT in the inclusion input
 			#|evaluating shellcheck...
 			#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
 			#|update available for shellcheck
-			#|::debug::no skips configured
 			#|::debug::installing shellcheck@0.9.0
 			#|::debug::applying shellcheck@0.9.0 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::processing line ('shellspec 0.28.0')
-			#|::debug::checking if shellspec should be evaluated
-			#|::debug::no exclusions configured
 			#|::debug::checking if shellspec is NOT in the inclusion input
 			#|skipping shellspec because it is NOT in the inclusion input
 			#|::endgroup::
@@ -433,12 +408,11 @@ Describe 'bin/update.sh'
 			%text
 			#|::debug::initializing outputs to their default value
 			#|::debug::checking if .tool-versions file exists
+			#|::debug::no exclusions configured
+			#|::debug::no inclusions configured
 			#|::group::Updating tools
 			#|::debug::starting with update capacity: 0
 			#|::debug::processing line ('shellcheck 0.8.0')
-			#|::debug::checking if shellcheck should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shellcheck...
 			#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
 			#|update available for shellcheck
@@ -448,9 +422,6 @@ Describe 'bin/update.sh'
 			#|::debug::found skip mandate for shellcheck@0.9.0
 			#|skipping shellcheck@0.9.0 because it is in the skip input
 			#|::debug::processing line ('shellspec 0.28.0')
-			#|::debug::checking if shellspec should be evaluated
-			#|::debug::no exclusions configured
-			#|::debug::no inclusions configured
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.0, latest: 0.28.1
 			#|update available for shellspec

@@ -12,15 +12,15 @@ Versioning].
 
 ### `tool-versions-update-action`
 
-- _No changes yet._
+- Improve debug logs with fewer repetitions.
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Improve debug logs with fewer repetitions.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Improve debug logs with fewer repetitions.
 
 ## [0.3.8] - 2023-11-05
 

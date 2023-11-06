@@ -30,6 +30,16 @@ if [[ ! -f '.tool-versions' ]]; then
 	exit 1
 fi
 
+if [[ -z ${exclusions} ]]; then
+	debug "no exclusions configured"
+fi
+if [[ -z ${inclusions} ]]; then
+	debug "no inclusions configured"
+fi
+if [[ -z ${skips} ]]; then
+	debug "no skips configured"
+fi
+
 group_start "Updating tools"
 debug "starting with update capacity: ${remaining_capacity}"
 
@@ -46,15 +56,12 @@ while read -r line; do
 
 		tool="$(echo "${line}" | awk '{print $1}')"
 
-		debug "checking if ${tool} should be evaluated"
 		if [[ -n ${exclusions} ]]; then
 			debug "checking if ${tool} is in the exclusion input"
 			if [[ ${exclusions} =~ (^|,)" "*"${tool}"" "*($|,) ]]; then
 				info "skipping ${tool} because it is in the exclusion input"
 				continue
 			fi
-		else
-			debug "no exclusions configured"
 		fi
 
 		if [[ -n ${inclusions} ]]; then
@@ -63,8 +70,6 @@ while read -r line; do
 				info "skipping ${tool} because it is NOT in the inclusion input"
 				continue
 			fi
-		else
-			debug "no inclusions configured"
 		fi
 
 		info "evaluating ${tool}..."
@@ -97,8 +102,6 @@ while read -r line; do
 						;;
 					esac
 				done <<<"${skips}"
-			else
-				debug "no skips configured"
 			fi
 
 			debug "installing ${tool}@${latest_version}"
