@@ -12,7 +12,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /setup
 COPY .tool-versions .
 
-RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.1 \
+RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1 \
 	&& echo '. "$HOME/.asdf/asdf.sh"' > ~/.bashrc \
 	&& . "$HOME/.asdf/asdf.sh" \
 	&& asdf plugin add act \
