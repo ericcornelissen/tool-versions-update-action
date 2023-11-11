@@ -27,6 +27,10 @@ clean: ## Clean the repository
 		$(REPORT_DIR) \
 		$(TMP_DIR)
 
+.PHONY: coverage
+coverage: $(ASDF) | $(TMP_DIR) ## Run tests with coverage
+	@shellspec --kcov
+
 .PHONY: dev-env dev-img
 dev-env: dev-img ## Run an ephemeral development environment container
 	@$(CONTAINER_ENGINE) run \
@@ -70,7 +74,7 @@ lint-yml: $(ASDF) ## Lint YAML files
 	@yamllint -c .yamllint.yml .
 
 .PHONY: test test-e2e
-test: | $(TMP_DIR) ## Run tests
+test: $(ASDF) | $(TMP_DIR) ## Run tests
 	@shellspec
 
 test-e2e: ## Run end-to-end tests
