@@ -1,4 +1,5 @@
 # Check out Docker at: https://www.docker.com/
+# Check out Podman at: https://podman.io/
 
 # NOTE: THIS IMAGE IS INTENDED FOR DEVELOPMENT PURPOSES ONLY
 
@@ -7,14 +8,14 @@ FROM alpine:3.18.4
 RUN apk add --no-cache \
 	bash curl git jq make python3 py3-pip
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ENV ASDF_DIR="/.asdf"
 
 WORKDIR /setup
 COPY .tool-versions .
 
-RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1 \
-	&& echo '. "$HOME/.asdf/asdf.sh"' > ~/.bashrc \
-	&& . "$HOME/.asdf/asdf.sh" \
+RUN git clone https://github.com/asdf-vm/asdf.git /.asdf --branch v0.13.1 \
+	&& echo '. "/.asdf/asdf.sh"' > ~/.bashrc \
+	&& . '/.asdf/asdf.sh' \
 	&& asdf plugin add act \
 	&& asdf plugin add actionlint \
 	&& asdf plugin add hadolint \

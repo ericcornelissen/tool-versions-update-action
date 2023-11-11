@@ -5,7 +5,7 @@
 !/.version
 
 ## Build tooling
-!/Dockerfile
+!/Containerfile
 !/Makefile
 
 ## Configuration
