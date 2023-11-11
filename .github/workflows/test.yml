@@ -28,5 +28,12 @@ jobs:
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
       - name: Install tooling
         uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # v3.0.2
+      - name: Install kcov
+        run: sudo apt-get install kcov
       - name: Run unit tests
-        run: make test
+        run: make coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@eaaf4bedf32dbdc6b720b63067d99c4d77d6047d # v3.1.4
+        if: ${{ always() }}
+        with:
+          file: ./_coverage/tool-versions-update-action [specfiles]/cobertura.xml
