@@ -103,6 +103,7 @@ Describe 'bin/update.sh'
 		snapshot_outputs() {
 			%text
 			#|updated-count=0
+			#|updated-tools=
 		}
 
 		It 'succeeds'
@@ -154,6 +155,7 @@ Describe 'bin/update.sh'
 			#|::debug::applying shellcheck@0.9.0 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
+			#|::debug::overriding 'updated-tools' output with new value
 			#|::debug::processing line ('shellspec 0.28.0')
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.0, latest: 0.28.1
@@ -162,6 +164,7 @@ Describe 'bin/update.sh'
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: -2
 			#|::debug::overriding 'updated-count' output with new value
+			#|::debug::overriding 'updated-tools' output with new value
 			#|::debug::processing line ('shfmt 3.6.1')
 			#|evaluating shfmt...
 			#|::debug::shfmt current: 3.6.1, latest: 3.7.0
@@ -170,15 +173,20 @@ Describe 'bin/update.sh'
 			#|::debug::applying shfmt@3.7.0 locally
 			#|::debug::remaining update capacity: -3
 			#|::debug::overriding 'updated-count' output with new value
+			#|::debug::overriding 'updated-tools' output with new value
 			#|::endgroup::
 		}
 
 		snapshot_outputs() {
 			%text
 			#|updated-count=0
+			#|updated-tools=
 			#|updated-count=1
+			#|updated-tools=shellcheck
 			#|updated-count=2
+			#|updated-tools=shellcheck,shellspec
 			#|updated-count=3
+			#|updated-tools=shellcheck,shellspec,shfmt
 		}
 
 		It 'succeeds'
@@ -230,6 +238,7 @@ Describe 'bin/update.sh'
 			#|::debug::applying shellcheck@0.9.0 locally
 			#|::debug::remaining update capacity: 1
 			#|::debug::overriding 'updated-count' output with new value
+			#|::debug::overriding 'updated-tools' output with new value
 			#|::debug::processing line ('shellspec 0.28.0')
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.0, latest: 0.28.1
@@ -238,6 +247,7 @@ Describe 'bin/update.sh'
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: 0
 			#|::debug::overriding 'updated-count' output with new value
+			#|::debug::overriding 'updated-tools' output with new value
 			#|finished updating after 2 update(s)
 			#|::endgroup::
 		}
@@ -245,8 +255,11 @@ Describe 'bin/update.sh'
 		snapshot_outputs() {
 			%text
 			#|updated-count=0
+			#|updated-tools=
 			#|updated-count=1
+			#|updated-tools=shellcheck
 			#|updated-count=2
+			#|updated-tools=shellcheck,shellspec
 		}
 
 		It 'succeeds'
@@ -301,13 +314,16 @@ Describe 'bin/update.sh'
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
+			#|::debug::overriding 'updated-tools' output with new value
 			#|::endgroup::
 		}
 
 		snapshot_outputs() {
 			%text
 			#|updated-count=0
+			#|updated-tools=
 			#|updated-count=1
+			#|updated-tools=shellspec
 		}
 
 		It 'succeeds'
@@ -359,6 +375,7 @@ Describe 'bin/update.sh'
 			#|::debug::applying shellcheck@0.9.0 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
+			#|::debug::overriding 'updated-tools' output with new value
 			#|::debug::processing line ('shellspec 0.28.0')
 			#|::debug::checking if shellspec is NOT in the inclusion input
 			#|skipping shellspec because it is NOT in the inclusion input
@@ -368,7 +385,9 @@ Describe 'bin/update.sh'
 		snapshot_outputs() {
 			%text
 			#|updated-count=0
+			#|updated-tools=
 			#|updated-count=1
+			#|updated-tools=shellcheck
 		}
 
 		It 'succeeds'
@@ -433,13 +452,16 @@ Describe 'bin/update.sh'
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
+			#|::debug::overriding 'updated-tools' output with new value
 			#|::endgroup::
 		}
 
 		snapshot_outputs() {
 			%text
 			#|updated-count=0
+			#|updated-tools=
 			#|updated-count=1
+			#|updated-tools=shellspec
 		}
 
 		It 'succeeds'
@@ -575,6 +597,7 @@ Describe 'bin/update.sh'
 		snapshot_outputs() {
 			%text
 			#|updated-count=0
+			#|updated-tools=
 		}
 
 		remove_tool_versions() {

@@ -100,6 +100,7 @@ The following outputs are made available:
 | `did-update`    | `true` if at least one tool was updated, `false` otherwise |
 | `pr-number`     | The number of the created Pull Request                     |
 | `updated-count` | The number of tools that were updated                      |
+| `updated-tools` | A comma separated list of the names of the updated tools   |
 
 For information on how to use outputs see the [GitHub Actions output docs].
 
