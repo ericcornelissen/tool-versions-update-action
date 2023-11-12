@@ -12,14 +12,17 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- Add output `updated-tools`.
 - Improve debug logs with fewer repetitions.
 
 ### `tool-versions-update-action/commit`
 
+- Add output `updated-tools`.
 - Improve debug logs with fewer repetitions.
 
 ### `tool-versions-update-action/pr`
 
+- Add output `updated-tools`.
 - Improve debug logs with fewer repetitions.
 
 ## [0.3.8] - 2023-11-05

@@ -11,8 +11,10 @@ inclusions=${ONLY}
 max_capacity=${MAX}
 remaining_capacity=${MAX}
 skips=${SKIP}
+updated_tools=''
 
 output_name_updated_count='updated-count'
+output_name_updated_tools='updated-tools'
 
 # --- Import ----------------------------------------------------------------- #
 
@@ -23,6 +25,7 @@ source "${bin_dir}/../lib/actions.sh"
 
 debug "initializing outputs to their default value"
 set_output "${output_name_updated_count}" "0"
+set_output "${output_name_updated_tools}" "${updated_tools}"
 
 debug "checking if .tool-versions file exists"
 if [[ ! -f '.tool-versions' ]]; then
@@ -114,6 +117,14 @@ while read -r line; do
 
 			debug "overriding '${output_name_updated_count}' output with new value"
 			set_output "${output_name_updated_count}" "$((max_capacity - remaining_capacity))"
+
+			debug "overriding '${output_name_updated_tools}' output with new value"
+			if [ -z "${updated_tools}" ]; then
+				updated_tools="${tool}"
+			else
+				updated_tools="${updated_tools},${tool}"
+			fi
+			set_output "${output_name_updated_tools}" "${updated_tools}"
 
 			if [ "${remaining_capacity}" -eq 0 ]; then
 				info "finished updating after ${max_capacity} update(s)"

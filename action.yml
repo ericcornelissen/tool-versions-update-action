@@ -34,6 +34,9 @@ outputs:
   updated-count:
     description: The number of tools that were updated.
     value: ${{ steps.update.outputs.updated-count }}
+  updated-tools:
+    description: A comma separated list of the names of the updated tools.
+    value: ${{ steps.update.outputs.updated-tools }}
 
 runs:
   using: composite
