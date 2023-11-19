@@ -40,6 +40,6 @@ jobs:
         run: make coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@eaaf4bedf32dbdc6b720b63067d99c4d77d6047d # v3.1.4
-        if: ${{ always() }}
+        if: ${{ matrix.runs-on == 'ubuntu-22.04' }}
         with:
           file: ./_coverage/tool-versions-update-action [specfiles]/cobertura.xml
