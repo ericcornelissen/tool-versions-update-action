@@ -21,8 +21,14 @@ jobs:
       - name: Run bare action
         uses: ./
   unit:
-    name: Unit
-    runs-on: ubuntu-22.04
+    name: Unit (${{ matrix.runs-on }})
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on:
+          - ubuntu-20.04
+          - ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
@@ -34,6 +40,6 @@ jobs:
         run: make coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@eaaf4bedf32dbdc6b720b63067d99c4d77d6047d # v3.1.4
-        if: ${{ always() }}
+        if: ${{ matrix.runs-on == 'ubuntu-22.04' }}
         with:
           file: ./_coverage/tool-versions-update-action [specfiles]/cobertura.xml

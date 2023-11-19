@@ -101,6 +101,12 @@ jobs:
         run: git diff .tool-versions
 ```
 
+### Runners
+
+This action is tested on the official [`ubuntu-20.04`] and [`ubuntu-22.04`]
+runner images. It is recommended to use one of these images when using this
+action.
+
 ### Security
 
 #### Permissions
@@ -121,3 +127,5 @@ license text. The contents of documentation is licensed under [CC BY 4.0].
 [github actions]: https://github.com/features/actions
 [github actions output docs]: https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#steps-context
 [license]: ./LICENSE
+[`ubuntu-20.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
+[`ubuntu-22.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
