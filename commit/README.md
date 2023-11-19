@@ -95,6 +95,12 @@ jobs:
           max: 2
 ```
 
+### Runners
+
+This action is tested on the official [`ubuntu-20.04`] and [`ubuntu-22.04`]
+runner images. It is recommended to use one of these images when using this
+action.
+
 ### Security
 
 #### Permissions
@@ -125,3 +131,5 @@ The contents of this document are licensed under [CC BY 4.0].
 [cc by 4.0]: https://creativecommons.org/licenses/by/4.0/
 [github action]: https://github.com/features/actions
 [github actions output docs]: https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#steps-context
+[`ubuntu-20.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
+[`ubuntu-22.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
