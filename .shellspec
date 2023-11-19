@@ -8,6 +8,6 @@
 
 ## kcov (coverage)
 --covdir _coverage/
---kcov-options "--exclude-pattern=/_coverage/,/_report/,/spec/,/.shellcheckrc,/.shellspec"
+--kcov-options "--exclude-pattern=/_coverage/,/_report/,/script/,/spec/,/.shellcheckrc,/.shellspec"
 --kcov-options "--include-path=. --path-strip-level=1"
 --kcov-options "--include-pattern=.sh"
