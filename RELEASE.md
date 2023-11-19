@@ -18,8 +18,13 @@ found in this file (using v0.1.2 as an example):
    git clone git@github.com:ericcornelissen/tool-versions-update-action.git
    ```
 
-1. Update the version number in the `.version` file following [Semantic
-   Versioning]:
+1. Update the version number following [Semantic Versioning]:
+
+   ```shell
+   ./script/version-bump.sh [major|minor|patch]
+   ```
+
+   Or edit the `.version` file manually:
 
    ```diff
    - 0.1.1
