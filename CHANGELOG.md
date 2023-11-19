@@ -12,6 +12,20 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [0.3.9] - 2023-11-19
+
+### `tool-versions-update-action`
+
 - Add output `updated-tools`.
 - Improve debug logs with fewer repetitions.
 
