@@ -78,7 +78,9 @@ test: $(ASDF) | $(TMP_DIR) ## Run tests
 	@shellspec
 
 test-e2e: ## Run end-to-end tests
-	@act --job test-bare
+	@act \
+		--job bare-action \
+		--workflows .github/workflows/test.yml
 
 .PHONY: update-actions
 update-actions: ## Update (and pin) all actions used by these actions
