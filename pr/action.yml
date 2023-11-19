@@ -68,6 +68,12 @@ inputs:
       GitHub username).
     required: false
     default: ""
+  signoff:
+    description: |
+      Add "Signed-off-by" line at the end of the commit message. See `--signoff`
+      in <https://git-scm.com/docs/git-commit> for more detail.
+    required: false
+    default: false
   skip:
     description: |
       A newline-separated list of "tool version" pairs that should NOT be
@@ -146,3 +152,4 @@ runs:
         # Commit
         commit-message: ${{ inputs.commit-message }}
         add-paths: .tool-versions
+        signoff: ${{ inputs.signoff }}

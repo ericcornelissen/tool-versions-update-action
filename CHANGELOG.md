@@ -22,6 +22,8 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
+- Add input `signoff` to add "Signed-off-by" line at the end of the commit
+  message.
 - Add output `updated-tools`.
 - Improve debug logs with fewer repetitions.
 
