@@ -9,7 +9,6 @@
 !/Makefile
 
 ## Configuration
-!/.actrc
 !/.editorconfig
 !/.hadolint.yml
 !/.shellcheckrc
