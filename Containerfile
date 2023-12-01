@@ -16,7 +16,6 @@ COPY .tool-versions .
 RUN git clone https://github.com/asdf-vm/asdf.git /.asdf --branch v0.13.1 \
 	&& echo '. "/.asdf/asdf.sh"' > ~/.bashrc \
 	&& . '/.asdf/asdf.sh' \
-	&& asdf plugin add act \
 	&& asdf plugin add actionlint \
 	&& asdf plugin add hadolint \
 	&& asdf plugin add shellcheck \
