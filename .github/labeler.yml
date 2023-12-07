@@ -1,36 +1,52 @@
 # Check out Labeler at: https://github.com/actions/labeler
 
 action:base:
-  - action.yml
+  - changed-files:
+      - any-glob-to-any-file:
+          - action.yml
 
 action:commit:
-  - commit/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - commit/*
 
 action:pr:
-  - pr/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - pr/*
 
 ci/cd:
-  - .github/workflows/*
-  - .github/dependabot.yml
-  - .github/labeler.yml
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/workflows/*
+          - .github/dependabot.yml
+          - .github/labeler.yml
 
 dependencies:
-  - .tool-versions
+  - changed-files:
+      - any-glob-to-any-file:
+          - .tool-versions
 
 documentation:
-  - commit/README.md
-  - pr/README.md
-  - README.md
+  - changed-files:
+      - any-glob-to-any-file:
+          - commit/README.md
+          - pr/README.md
+          - README.md
 
 meta:
-  - .github/dependabot.yml
-  - .github/labeler.yml
-  - .editorconfig
-  - .gitattributes
-  - .hadolint.yml
-  - .shellcheckrc
-  - .yamllint.yml
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/dependabot.yml
+          - .github/labeler.yml
+          - .editorconfig
+          - .gitattributes
+          - .hadolint.yml
+          - .shellcheckrc
+          - .yamllint.yml
 
 test:
-  - spec/*
-  - .shellspec
+  - changed-files:
+      - any-glob-to-any-file:
+          - spec/*
+          - .shellspec
