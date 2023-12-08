@@ -43,6 +43,12 @@ file through a commit.
       actionlint https://github.com/crazy-matt/asdf-actionlint
       shellcheck https://github.com/luizm/asdf-shellcheck
 
+    # Add "Signed-off-by" line at the end of the commit message. See `--signoff`
+    # in <https://git-scm.com/docs/git-commit> for more detail.
+    #
+    # Default: false
+    signoff: true
+
     # A newline-separated list of "tool version" pairs that should NOT be
     # updated to.
     #

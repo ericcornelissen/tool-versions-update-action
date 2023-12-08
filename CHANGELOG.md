@@ -16,7 +16,8 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Add input `signoff` to add "Signed-off-by" line at the end of the commit
+  message.
 
 ### `tool-versions-update-action/pr`
 
