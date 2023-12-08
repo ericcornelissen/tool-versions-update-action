@@ -108,7 +108,7 @@ runs:
           echo "value=--signoff" >>"${GITHUB_OUTPUT}"
         fi
       env:
-        SIGNOFF: ${{ inputs.signoff || true }}
+        SIGNOFF: ${{ true && inputs.signoff }}
     - name: Create commit
       id: create-commit
       uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # pin@v5
