@@ -36,6 +36,12 @@ inputs:
       If omitted the default plugins will be available.
     required: false
     default: ""
+  signoff:
+    description: |
+      Add "Signed-off-by" line at the end of the commit message. See `--signoff`
+      in <https://git-scm.com/docs/git-commit> for more detail.
+    required: false
+    default: false
   skip:
     description: |
       A newline-separated list of "tool version" pairs that should NOT be
@@ -94,6 +100,15 @@ runs:
         ONLY: ${{ inputs.only }}
         SKIP: ${{ inputs.skip }}
 
+    - name: Commit options
+      id: commit-options
+      shell: bash
+      run: |
+        if [[ "${SIGNOFF}" == "true" ]]; then
+          echo "value=--signoff" >>"${GITHUB_OUTPUT}"
+        fi
+      env:
+        SIGNOFF: ${{ inputs.signoff || true }}
     - name: Create commit
       id: create-commit
       uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # pin@v5
@@ -105,4 +120,5 @@ runs:
 
         # Commit
         commit_message: ${{ inputs.commit-message }}
+        commit_options: ${{ steps.commit-options.outputs.value }}
         file_pattern: .tool-versions
