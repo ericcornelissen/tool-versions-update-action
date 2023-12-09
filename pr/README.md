@@ -23,8 +23,11 @@ file through a Pull Request.
 
     # The message to use for commits.
     #
-    # Default: "Update .tool-versions"
-    commit-message: Update tooling
+    # This input supports templating, see the "Templating" section for more
+    # information.
+    #
+    # Default: "Update {{updated-tools}}"
+    commit-message: Update {{updated-count}} tool(s) ({{updated-tools}})
 
     # A comma or newline-separated list of labels for Pull Requests.
     #
@@ -61,13 +64,23 @@ file through a Pull Request.
 
     # The body text to use for Pull Requests.
     #
-    # Default: "Bump tools in `.tool-versions`"
+    # This input supports templating, see the "Templating" section for more
+    # information.
+    #
+    # Default: "Update {{updated-count}} tool(s) ({{updated-tools}})"
     pr-body: |
+      Update {{updated-count}} tool(s): {{updated-tools}}
+
+      ---
+
       _This Pull Request was generated using the `tool-versions-update-action`_
 
     # The title to use for Pull Requests.
     #
-    # Default: "Update `.tool-versions`"
+    # This input supports templating, see the "Templating" section for more
+    # information.
+    #
+    # Default: "Update {{updated-count}} tool(s)"
     pr-title: Update tooling
 
     # A comma or newline-separated list of reviewers for Pull Requests (by their
@@ -109,6 +122,33 @@ The following outputs are made available:
 | `updated-tools` | A comma separated list of the names of the updated tools   |
 
 For information on how to use outputs see the [GitHub Actions output docs].
+
+#### Templating
+
+Some inputs support a simple templating language to embed outputs before use. To
+use a template variable use the string `{{output-name}}` in the input value, for
+example:
+
+```text
+This template string uses the '{{updated-count}}' output
+```
+
+could become:
+
+```text
+This template string uses the '3' output
+```
+
+The following inputs support templating:
+
+- `commit-message`
+- `pr-body`
+- `pr-title`
+
+The following outputs are available for templating:
+
+- `updated-count`
+- `updated-tools`
 
 ### Full Example
 

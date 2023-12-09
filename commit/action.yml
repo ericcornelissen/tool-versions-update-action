@@ -14,7 +14,7 @@ inputs:
     description: |
       The message to use for commits.
     required: false
-    default: Update .tool-versions
+    default: Update {{updated-tools}}
   max:
     description: |
       The maximum number of tools to update. 0 indicates no maximum.
@@ -100,6 +100,14 @@ runs:
         ONLY: ${{ inputs.only }}
         SKIP: ${{ inputs.skip }}
 
+    - name: Commit message
+      id: commit-message
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/templating.sh
+      env:
+        TEMPLATE: ${{ inputs.commit-message }}
+        UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
     - name: Commit options
       id: commit-options
       shell: bash
@@ -109,6 +117,7 @@ runs:
         fi
       env:
         SIGNOFF: ${{ inputs.signoff }}
+
     - name: Create commit
       id: create-commit
       uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # pin@v5
@@ -119,6 +128,6 @@ runs:
         branch: ${{ inputs.branch }}
 
         # Commit
-        commit_message: ${{ inputs.commit-message }}
+        commit_message: ${{ steps.commit-message.outputs.value }}
         commit_options: ${{ steps.commit-options.outputs.value }}
         file_pattern: .tool-versions

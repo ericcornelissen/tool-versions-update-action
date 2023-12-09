@@ -17,8 +17,11 @@ file through a commit.
 
     # The message to use for commits.
     #
-    # Default: "Update .tool-versions"
-    commit-message: Update tooling
+    # This input supports templating, see the "Templating" section for more
+    # information.
+    #
+    # Default: "Update {{updated-tools}}"
+    commit-message: Update {{updated-count}} tool(s) ({{updated-tools}})
 
     # The maximum number of tools to update. 0 indicates no maximum.
     #
@@ -75,6 +78,31 @@ The following outputs are made available:
 | `updated-tools` | A comma separated list of the names of the updated tools   |
 
 For information on how to use outputs see the [GitHub Actions output docs].
+
+#### Templating
+
+Some inputs support a simple templating language to embed outputs before use. To
+use a template variable use the string `{{output-name}}` in the input value, for
+example:
+
+```text
+This template string uses the '{{updated-count}}' output
+```
+
+could become:
+
+```text
+This template string uses the '3' output
+```
+
+The following inputs support templating:
+
+- `commit-message`
+
+The following outputs are available for templating:
+
+- `updated-count`
+- `updated-tools`
 
 ### Full Example
 
