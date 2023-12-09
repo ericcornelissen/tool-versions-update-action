@@ -3,7 +3,7 @@
 
 BeforeEach 'clear_github_output'
 
-Describe 'bin/install-plugins.sh'
+Describe 'bin/templating.sh'
 	setup() {
 		export UPDATED_COUNT=2
 		export UPDATED_TOOLS='shellcheck,shellspec'
@@ -20,15 +20,13 @@ Describe 'bin/install-plugins.sh'
 
 		snapshot_stdout() {
 			%text
-			#|::group::Templating...
-			#|::debug::input 'Update {{updated-count}} tool(s)'
+			#|::debug::input for templating is 'Update {{updated-count}} tool(s)'
 			#|::debug::substitute '{{updated-count}}' for '2'
 			#|::debug::substitute '{{updated-tools}}' for 'shellcheck,shellspec'
 			#|::debug::setting output
-			#|::endgroup::
 		}
 
-		snapshot_outputs() {
+		snapshot_output() {
 			%text
 			#|value=Update 2 tool(s)
 		}
@@ -37,7 +35,7 @@ Describe 'bin/install-plugins.sh'
 			When run script bin/templating.sh
 			The status should equal 0
 			The output should equal "$(snapshot_stdout)"
-			The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_outputs)"
+			The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_output)"
 		End
 	End
 
@@ -49,15 +47,13 @@ Describe 'bin/install-plugins.sh'
 
 		snapshot_stdout() {
 			%text
-			#|::group::Templating...
-			#|::debug::input 'Update tool(s) {{updated-tools}}'
+			#|::debug::input for templating is 'Update tool(s) {{updated-tools}}'
 			#|::debug::substitute '{{updated-count}}' for '2'
 			#|::debug::substitute '{{updated-tools}}' for 'shellcheck,shellspec'
 			#|::debug::setting output
-			#|::endgroup::
 		}
 
-		snapshot_outputs() {
+		snapshot_output() {
 			%text
 			#|value=Update tool(s) shellcheck,shellspec
 		}
@@ -66,7 +62,7 @@ Describe 'bin/install-plugins.sh'
 			When run script bin/templating.sh
 			The status should equal 0
 			The output should equal "$(snapshot_stdout)"
-			The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_outputs)"
+			The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_output)"
 		End
 	End
 End

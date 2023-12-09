@@ -86,7 +86,13 @@ use a template variable use the string `{{output-name}}` in the input value, for
 example:
 
 ```text
-This template string uses the {{update-count}} output
+This template string uses the '{{updated-count}}' output
+```
+
+could become:
+
+```text
+This template string uses the '3' output
 ```
 
 The following inputs support templating:
