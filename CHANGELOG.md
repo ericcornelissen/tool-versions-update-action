@@ -18,10 +18,15 @@ Versioning].
 
 - Add input `signoff` to add "Signed-off-by" line at the end of the commit
   message.
+- Add support for templating `updated-count` and `updated-tools` into the input
+  `commit-message`.
+- Update default `commit-message`.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Add support for templating `updated-count` and `updated-tools` into the inputs
+  `commit-message`, `pr-body`, and `pr-title`.
+- Update default `commit-message`, `pr-body`, and `pr-title`.
 
 ## [0.3.9] - 2023-11-19
 
