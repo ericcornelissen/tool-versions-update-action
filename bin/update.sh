@@ -5,7 +5,6 @@
 
 set -eo pipefail
 
-bin_dir=$(dirname "${BASH_SOURCE[0]}")
 exclusions=${NOT}
 inclusions=${ONLY}
 max_capacity=${MAX}
@@ -18,8 +17,10 @@ output_name_updated_tools='updated-tools'
 
 # --- Import ----------------------------------------------------------------- #
 
+bin=$(dirname "${BASH_SOURCE[0]}")
+
 # shellcheck source=./lib/actions.sh
-source "${bin_dir}/../lib/actions.sh"
+source "${bin}/../lib/actions.sh"
 
 # --- Script ----------------------------------------------------------------- #
 
