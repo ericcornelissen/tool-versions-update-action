@@ -5,21 +5,26 @@
 
 set -eo pipefail
 
-bin_dir=$(dirname "${BASH_SOURCE[0]}")
+## Inputs
 exclusions=${NOT}
 inclusions=${ONLY}
 max_capacity=${MAX}
-remaining_capacity=${MAX}
 skips=${SKIP}
-updated_tools=''
 
-output_name_updated_count='updated-count'
-output_name_updated_tools='updated-tools'
+## Constants
+output_name_updated_count="updated-count"
+output_name_updated_tools="updated-tools"
+
+## State
+remaining_capacity=${max_capacity}
+updated_tools=""
 
 # --- Import ----------------------------------------------------------------- #
 
+bin=$(dirname "${BASH_SOURCE[0]}")
+
 # shellcheck source=./lib/actions.sh
-source "${bin_dir}/../lib/actions.sh"
+source "${bin}/../lib/actions.sh"
 
 # --- Script ----------------------------------------------------------------- #
 
@@ -28,7 +33,7 @@ set_output "${output_name_updated_count}" "0"
 set_output "${output_name_updated_tools}" "${updated_tools}"
 
 debug "checking if .tool-versions file exists"
-if [[ ! -f '.tool-versions' ]]; then
+if [[ ! -f ".tool-versions" ]]; then
 	error "no .tool-versions file found, it must be present at the root of your project in order for this action to work"
 	exit 1
 fi
