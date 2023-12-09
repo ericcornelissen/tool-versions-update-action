@@ -8,6 +8,9 @@ set -eo pipefail
 ## Inputs
 template=${TEXT}
 
+## Constants
+output_name_value="value"
+
 ## State
 value=${template}
 
@@ -29,4 +32,4 @@ debug "substitute '{{updated-tools}}' for '${UPDATED_TOOLS}'"
 value=${value//'{{updated-tools}}'/"${UPDATED_TOOLS}"}
 
 debug "setting output"
-set_output "value" "${value}"
+set_output "${output_name_value}" "${value}"
