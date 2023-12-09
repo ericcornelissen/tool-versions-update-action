@@ -25,4 +25,4 @@ debug "substitute '{{updated-tools}}' for '${UPDATED_TOOLS}'"
 value=${value//'{{updated-tools}}'/"${UPDATED_TOOLS}"}
 
 debug "setting output"
-set_output 'value' "${value}"
+set_output "value" "${value}"
