@@ -5,15 +5,19 @@
 
 set -eo pipefail
 
+## Inputs
 exclusions=${NOT}
 inclusions=${ONLY}
 max_capacity=${MAX}
-remaining_capacity=${MAX}
 skips=${SKIP}
-updated_tools=""
 
+## Constants
 output_name_updated_count="updated-count"
 output_name_updated_tools="updated-tools"
+
+## State
+remaining_capacity=${max_capacity}
+updated_tools=""
 
 # --- Import ----------------------------------------------------------------- #
 

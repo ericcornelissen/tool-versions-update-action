@@ -137,7 +137,7 @@ runs:
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/templating.sh
       env:
-        TEMPLATE: ${{ inputs.pr-title }}
+        TEXT: ${{ inputs.pr-title }}
         UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
     - name: Pull Request body
@@ -145,7 +145,7 @@ runs:
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/templating.sh
       env:
-        TEMPLATE: ${{ inputs.pr-body }}
+        TEXT: ${{ inputs.pr-body }}
         UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
     - name: Commit message
@@ -153,7 +153,7 @@ runs:
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/templating.sh
       env:
-        TEMPLATE: ${{ inputs.commit-message }}
+        TEXT: ${{ inputs.commit-message }}
         UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
 

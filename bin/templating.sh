@@ -5,7 +5,11 @@
 
 set -eo pipefail
 
-value=${TEMPLATE}
+## Inputs
+template=${TEXT}
+
+## State
+value=${template}
 
 # --- Import ----------------------------------------------------------------- #
 

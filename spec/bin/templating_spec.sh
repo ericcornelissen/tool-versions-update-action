@@ -7,7 +7,7 @@ Describe 'bin/templating.sh'
 	setup() {
 		export UPDATED_COUNT=2
 		export UPDATED_TOOLS='shellcheck,shellspec'
-		export TEMPLATE="$(input)"
+		export TEXT="$(input)"
 	}
 
 	BeforeEach 'setup'

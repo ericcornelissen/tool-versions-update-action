@@ -5,8 +5,11 @@
 
 set -o pipefail
 
-exit_code=0
+## Inputs
 plugin_list=${LIST}
+
+## State
+exit_code=0
 
 # --- Import ----------------------------------------------------------------- #
 
