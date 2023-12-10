@@ -20,7 +20,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Prevent force pushes to Pull Request that were modified.
 
 ## [0.3.10] - 2023-12-09
 
