@@ -164,16 +164,15 @@ runs:
       shell: bash
       run: |
         if [ -n "$(git rev-parse --verify "origin/${BRANCH}" 2>/dev/null)" ]; then
-          commit_count=$(git rev-list "${BASE}".."origin/${BRANCH}" --count --first-parent)
+          commit_count=$(git rev-list "${BASE}..origin/${BRANCH}" --count)
           if [ "${commit_count}" -gt 1 ]; then
             echo "Pull Request modifications detected, not making changes"
             echo "value=false" >>"${GITHUB_OUTPUT}"
-          else
-            echo "value=true" >>"${GITHUB_OUTPUT}"
+            exit 0
           fi
-        else
-          echo "value=true" >>"${GITHUB_OUTPUT}"
         fi
+
+        echo "value=true" >>"${GITHUB_OUTPUT}"
       env:
         BASE: ${{ inputs.pr-base }}
         BRANCH: ${{ inputs.branch }}
