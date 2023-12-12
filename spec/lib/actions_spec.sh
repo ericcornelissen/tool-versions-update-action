@@ -100,5 +100,24 @@ Describe 'lib/actions.sh'
 				The file "${GITHUB_OUTPUT}" should satisfy contents "$(result)"
 			End
 		End
+
+		It 'can output a multi-line value'
+			value() {
+				%text
+				#|hello
+				#|world
+			}
+			result() {
+				%text
+				#|multiline<<EOF
+				#|hello
+				#|world
+				#|EOF
+			}
+
+			When call set_output 'multiline' "$(value)"
+			The output should equal ''
+			The file "${GITHUB_OUTPUT}" should satisfy contents "$(result)"
+		End
 	End
 End
