@@ -6,11 +6,11 @@ info() {
 }
 
 debug() {
-	echo "::debug::$1"
+	awk '{print "::debug::"$0}' <<<"$1"
 }
 
 error() {
-	echo "::error::$1"
+	awk '{print "::error::"$0}' <<<"$1"
 }
 
 group_start() {
