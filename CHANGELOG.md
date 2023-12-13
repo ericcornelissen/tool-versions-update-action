@@ -16,10 +16,12 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Fix runtime error when `commit-message` spans multiple lines.
 
 ### `tool-versions-update-action/pr`
 
+- Fix runtime error when any of `commit-message`, `pr-body`, or `pr-title` spans
+  multiple lines.
 - Prevent force pushes to Pull Request that were modified.
 
 ## [0.3.10] - 2023-12-09

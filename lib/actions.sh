@@ -6,11 +6,11 @@ info() {
 }
 
 debug() {
-	echo "::debug::$1"
+	awk '{print "::debug::"$0}' <<<"$1"
 }
 
 error() {
-	echo "::error::$1"
+	awk '{print "::error::"$0}' <<<"$1"
 }
 
 group_start() {
@@ -22,5 +22,13 @@ group_end() {
 }
 
 set_output() {
-	echo "$1=$2" >>"${GITHUB_OUTPUT}"
+	if [[ "$(wc -l <<<"$2")" -gt 1 ]]; then
+		{
+			echo "$1<<EOF"
+			echo "$2"
+			echo "EOF"
+		} >>"${GITHUB_OUTPUT}"
+	else
+		echo "$1=$2" >>"${GITHUB_OUTPUT}"
+	fi
 }
