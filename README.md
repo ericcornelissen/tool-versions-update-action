@@ -58,11 +58,13 @@ sub-actions to get up-and-running quickly with one-step automated tooling jobs.
 
 The following outputs are made available:
 
-| Name            | Description                                                |
-| --------------- | ---------------------------------------------------------- |
-| `did-update`    | `true` if at least one tool was updated, `false` otherwise |
-| `updated-count` | The number of tools that were updated                      |
-| `updated-tools` | A comma separated list of the names of the updated tools   |
+| Name                   | Description                                                 |
+| ---------------------- | ----------------------------------------------------------- |
+| `did-update`           | `true` if at least one tool was updated, `false` otherwise  |
+| `updated-count`        | The number of tools that were updated                       |
+| `updated-new-versions` | A comma separated list of the new versions of updated tools |
+| `updated-old-versions` | A comma separated list of the old versions of updated tools |
+| `updated-tools`        | A comma separated list of the names of the updated tools    |
 
 For information on how to use outputs see the [GitHub Actions output docs].
 

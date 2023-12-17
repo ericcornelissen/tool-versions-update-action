@@ -14,10 +14,14 @@ skips=${SKIP}
 ## Constants
 output_name_updated_count="updated-count"
 output_name_updated_tools="updated-tools"
+output_name_updated_old_versions="updated-old-versions"
+output_name_updated_new_versions="updated-new-versions"
 
 ## State
 remaining_capacity=${max_capacity}
 updated_tools=""
+updated_old_versions=""
+updated_new_versions=""
 
 # --- Import ----------------------------------------------------------------- #
 
@@ -26,11 +30,23 @@ bin=$(dirname "${BASH_SOURCE[0]}")
 # shellcheck source=./lib/actions.sh
 source "${bin}/../lib/actions.sh"
 
+# --- Helpers ---------------------------------------------------------------- #
+
+extend_list() {
+	if [ -z "$1" ]; then
+		echo "$2"
+	else
+		echo "$1,$2"
+	fi
+}
+
 # --- Script ----------------------------------------------------------------- #
 
 debug "initializing outputs to their default value"
 set_output "${output_name_updated_count}" "0"
 set_output "${output_name_updated_tools}" "${updated_tools}"
+set_output "${output_name_updated_old_versions}" "${updated_old_versions}"
+set_output "${output_name_updated_new_versions}" "${updated_new_versions}"
 
 debug "checking if .tool-versions file exists"
 if [[ ! -f ".tool-versions" ]]; then
@@ -124,12 +140,16 @@ while read -r line; do
 			set_output "${output_name_updated_count}" "$((max_capacity - remaining_capacity))"
 
 			debug "overriding '${output_name_updated_tools}' output with new value"
-			if [ -z "${updated_tools}" ]; then
-				updated_tools="${tool}"
-			else
-				updated_tools="${updated_tools},${tool}"
-			fi
+			updated_tools="$(extend_list "${updated_tools}" "${tool}")"
 			set_output "${output_name_updated_tools}" "${updated_tools}"
+
+			debug "overriding '${output_name_updated_old_versions}' output with new value"
+			updated_old_versions="$(extend_list "${updated_old_versions}" "${current_version}")"
+			set_output "${output_name_updated_old_versions}" "${updated_old_versions}"
+
+			debug "overriding '${output_name_updated_new_versions}' output with new value"
+			updated_new_versions="$(extend_list "${updated_new_versions}" "${latest_version}")"
+			set_output "${output_name_updated_new_versions}" "${updated_new_versions}"
 
 			if [ "${remaining_capacity}" -eq 0 ]; then
 				info "finished updating after ${max_capacity} update(s)"

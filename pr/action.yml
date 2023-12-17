@@ -99,6 +99,12 @@ outputs:
   updated-count:
     description: The number of tools that were updated.
     value: ${{ steps.update.outputs.updated-count }}
+  updated-new-versions:
+    description: A comma separated list of the new versions of updated tools.
+    value: ${{ steps.update.outputs.new-versions }}
+  updated-old-versions:
+    description: A comma separated list of the old versions of updated tools.
+    value: ${{ steps.update.outputs.old-versions }}
   updated-tools:
     description: A comma separated list of the names of the updated tools.
     value: ${{ steps.update.outputs.updated-tools }}

@@ -12,15 +12,18 @@ Versioning].
 
 ### `tool-versions-update-action`
 
-- _No changes yet._
+- Add output `updated-new-versions`.
+- Add output `updated-old-versions`.
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Add output `updated-new-versions`, which can also be used for templating.
+- Add output `updated-old-versions`, which can also be used for templating.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Add output `updated-new-versions`, which can also be used for templating.
+- Add output `updated-old-versions`, which can also be used for templating.
 
 ## [0.3.11] - 2023-12-13
 
