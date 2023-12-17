@@ -150,6 +150,8 @@ The following inputs support templating:
 The following outputs are available for templating:
 
 - `updated-count`
+- `updated-new-versions`
+- `updated-old-versions`
 - `updated-tools`
 
 ### Full Example
