@@ -20,7 +20,12 @@ inputs:
     description: |
       The message to use for commits.
     required: false
-    default: Update {{updated-tools}}
+    default: |
+      Update {{updated-tools}}
+
+      Update {{updated-count}} tool(s): {{updated-tools}}
+      - Version(s) before: {{updated-old-versions}}
+      - Version(s) after:  {{updated-new-versions}}
   labels:
     description: |
       A comma or newline-separated list of labels for Pull Requests.
@@ -56,7 +61,25 @@ inputs:
     description: |
       The body text to use for Pull Requests.
     required: false
-    default: Update {{updated-count}} tool(s) ({{updated-tools}})
+    default: >
+      Update {{updated-count}} tool(s): {{updated-tools}}
+
+      - Version(s) before: {{updated-old-versions}}
+
+      - Version(s) after: {{updated-new-versions}}
+
+      ---
+
+      This Pull Request was created by the [tool-versions-update-action]. This
+      Pull Request will be updated automatically as long as you don't alter it
+      yourself.
+
+      - If the base changes, the Pull Request will be rebased automatically.
+
+      - If new tool version become available, those will be included in the Pull
+        Request (in accordance with the update configuration).
+
+      [tool-versions-update-action]: https://github.com/ericcornelissen/tool-versions-update-action
   pr-title:
     description: |
       The title to use for Pull Requests.

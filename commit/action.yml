@@ -14,7 +14,12 @@ inputs:
     description: |
       The message to use for commits.
     required: false
-    default: Update {{updated-tools}}
+    default: |
+      Update {{updated-tools}}
+
+      Update {{updated-count}} tool(s): {{updated-tools}}
+      - Version(s) before: {{updated-old-versions}}
+      - Version(s) after:  {{updated-new-versions}}
   max:
     description: |
       The maximum number of tools to update. 0 indicates no maximum.

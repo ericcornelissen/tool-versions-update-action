@@ -20,8 +20,11 @@ file through a commit.
     # This input supports templating, see the "Templating" section for more
     # information.
     #
-    # Default: "Update {{updated-tools}}"
-    commit-message: Update {{updated-count}} tool(s) ({{updated-tools}})
+    # Default (1st line): "Update {{updated-tools}}"
+    commit-message: |
+      Update {{updated-count}} tool(s)
+
+      Update {{updated-tools}}
 
     # The maximum number of tools to update. 0 indicates no maximum.
     #

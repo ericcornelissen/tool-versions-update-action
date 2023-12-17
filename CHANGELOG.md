@@ -19,11 +19,13 @@ Versioning].
 
 - Add output `updated-new-versions`, which can also be used for templating.
 - Add output `updated-old-versions`, which can also be used for templating.
+- Update default `commit-message`.
 
 ### `tool-versions-update-action/pr`
 
 - Add output `updated-new-versions`, which can also be used for templating.
 - Add output `updated-old-versions`, which can also be used for templating.
+- Update default `commit-message` and `pr-body`.
 
 ## [0.3.11] - 2023-12-13
 
