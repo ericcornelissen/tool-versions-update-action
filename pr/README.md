@@ -26,8 +26,11 @@ file through a Pull Request.
     # This input supports templating, see the "Templating" section for more
     # information.
     #
-    # Default: "Update {{updated-tools}}"
-    commit-message: Update {{updated-count}} tool(s) ({{updated-tools}})
+    # Default (1st line): "Update {{updated-tools}}"
+    commit-message: |
+      Update {{updated-count}} tool(s)
+
+      Update {{updated-tools}}
 
     # A comma or newline-separated list of labels for Pull Requests.
     #
@@ -67,7 +70,7 @@ file through a Pull Request.
     # This input supports templating, see the "Templating" section for more
     # information.
     #
-    # Default: "Update {{updated-count}} tool(s) ({{updated-tools}})"
+    # Default (1st line): "Update {{updated-count}} tool(s): {{updated-tools}}"
     pr-body: |
       Update {{updated-count}} tool(s): {{updated-tools}}
 
