@@ -31,11 +31,16 @@ found in this file (using v0.1.2 as an example):
    + 0.1.2
    ```
 
-1. Update the changelog by replacing all instances of `_No changes yet._` with
-   `_Version bump only._`
+1. Update the changelog:
 
-1. Update the changelog by manually adding the following after the
-   `## [Unreleased]` line:
+   ```shell
+   ./script/update-changelog.sh
+   ```
+
+   Or edit the `CHANGELOG.md` file manually. First, replace all instances of
+   `_No changes yet._` with `_Version bump only._`. Second, add the following
+   after the `## [Unreleased]` line, adjusting the version number for the
+   release:
 
    ```markdown
 
