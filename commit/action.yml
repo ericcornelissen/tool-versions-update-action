@@ -130,6 +130,7 @@ runs:
         SIGNOFF: ${{ inputs.signoff }}
 
     - name: Create commit
+      if: ${{ steps.update.outputs.updated-count != '0' }}
       id: create-commit
       uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # pin@v5
       with:

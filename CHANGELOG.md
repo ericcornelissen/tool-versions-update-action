@@ -19,12 +19,14 @@ Versioning].
 
 - Add output `updated-new-versions`, which can also be used for templating.
 - Add output `updated-old-versions`, which can also be used for templating.
+- Don't commit if there are no updates.
 - Update default `commit-message`.
 
 ### `tool-versions-update-action/pr`
 
 - Add output `updated-new-versions`, which can also be used for templating.
 - Add output `updated-old-versions`, which can also be used for templating.
+- Don't open a Pull Request if there are no updates.
 - Update default `commit-message` and `pr-body`.
 
 ## [0.3.11] - 2023-12-13
