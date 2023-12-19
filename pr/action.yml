@@ -70,9 +70,7 @@ inputs:
 
       ---
 
-      This Pull Request was created by the [tool-versions-update-action]. This
-      Pull Request will be updated automatically as long as you don't alter it
-      yourself.
+      This Pull Request was created by the [tool-versions-update-action]. This Pull Request will be updated automatically as long as you don't alter it yourself.
 
       - If the base changes, the Pull Request will be rebased automatically.
 
