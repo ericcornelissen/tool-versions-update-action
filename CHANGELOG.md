@@ -16,11 +16,11 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Don't commit if there are no updates.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Don't open a Pull Request if there are no updates.
 
 ## [0.3.12] - 2023-12-18
 
