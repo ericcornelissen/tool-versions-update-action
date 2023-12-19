@@ -12,6 +12,20 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- Don't commit if there are no updates.
+
+### `tool-versions-update-action/pr`
+
+- Don't open a Pull Request if there are no updates.
+
+## [0.3.12] - 2023-12-18
+
+### `tool-versions-update-action`
+
 - Add output `updated-new-versions`.
 - Add output `updated-old-versions`.
 
@@ -19,14 +33,12 @@ Versioning].
 
 - Add output `updated-new-versions`, which can also be used for templating.
 - Add output `updated-old-versions`, which can also be used for templating.
-- Don't commit if there are no updates.
 - Update default `commit-message`.
 
 ### `tool-versions-update-action/pr`
 
 - Add output `updated-new-versions`, which can also be used for templating.
 - Add output `updated-old-versions`, which can also be used for templating.
-- Don't open a Pull Request if there are no updates.
 - Update default `commit-message` and `pr-body`.
 
 ## [0.3.11] - 2023-12-13
