@@ -118,6 +118,8 @@ runs:
       env:
         TEXT: ${{ inputs.commit-message }}
         UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
     - name: Commit options
       id: commit-options
