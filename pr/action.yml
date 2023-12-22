@@ -164,6 +164,8 @@ runs:
       env:
         TEXT: ${{ inputs.pr-title }}
         UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
     - name: Pull Request body
       id: pr-body
@@ -172,6 +174,8 @@ runs:
       env:
         TEXT: ${{ inputs.pr-body }}
         UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
     - name: Commit message
       id: commit-message
@@ -180,6 +184,8 @@ runs:
       env:
         TEXT: ${{ inputs.commit-message }}
         UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
 
     - name: Check if a Pull Request exists and has been modified

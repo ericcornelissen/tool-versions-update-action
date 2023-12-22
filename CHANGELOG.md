@@ -17,10 +17,14 @@ Versioning].
 ### `tool-versions-update-action/commit`
 
 - Don't commit if there are no updates.
+- Fix `{{updated-new-versions}}` and `{{updated-old-versions}}` being replaced
+  with an empty string when templating.
 
 ### `tool-versions-update-action/pr`
 
 - Don't open a Pull Request if there are no updates.
+- Fix `{{updated-new-versions}}` and `{{updated-old-versions}}` being replaced
+  with an empty string when templating.
 
 ## [0.3.12] - 2023-12-18
 
