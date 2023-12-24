@@ -5,7 +5,7 @@
 !/.version
 
 ## Build tooling
-!/Containerfile
+!/Containerfile.dev
 !/Makefile
 
 ## Configuration
