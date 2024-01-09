@@ -160,7 +160,7 @@ The following outputs are available for templating:
 ### Full Example
 
 This example is for a workflow that can be triggered manually to create a Pull
-Request to update at most 2 tools defined in `.tool-versions` at the time.
+Request to update one or more tools defined in `.tool-versions` at the time.
 
 ```yml
 name: Tooling
@@ -179,9 +179,9 @@ jobs:
     steps:
       - name: Update tooling
         uses: ericcornelissen/tool-versions-update-action/pr@v0
-        with:
-          max: 2
 ```
+
+For more examples see the [recipes].
 
 ### Runners
 
@@ -212,6 +212,83 @@ objects.githubusercontent.com:443
 
 in addition to any endpoints your [asdf] plugins use.
 
+## Recipes
+
+### Parallel Updates
+
+This workflow will create a Pull Request for each tool independently, and try to
+do so daily. The result is that you may get one Pull Request to update one tool
+and another to update another tool at the same time. This is similar to how
+Dependabot Pull Requests work.
+
+To achieve this the recipe uses the `only:` option to update only one tool at
+the time and sets a tool-dependent `branch:` name to create separate Pull
+Requests.
+
+A limitation is that you can't limit the overall number of Pull Request to a
+maximum. A drawback of this approach is that the list of tools is duplicated
+between the workflow (in `matrix:`) and `.tool-versions` file.
+
+```yml
+name: Tooling
+on:
+  schedule:
+    - cron: "0 0 * * *" # see https://crontab.guru/daily
+
+permissions: read-all
+
+jobs:
+  tooling:
+    name: Update ${{ matrix.tool }}
+    runs-on: ubuntu-latest
+    matrix:
+      tool:
+        - actionlint
+        - shellcheck
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Update tooling
+        uses: ericcornelissen/tool-versions-update-action/pr@v0
+        with:
+          branch: bot/tool_versions/${{ matrix.tool }}
+          only: ${{ matrix.tool }}
+```
+
+### One at the Time
+
+This workflow create one Pull Request at the time for only one tool on daily
+schedule. This reduces noise and per-Pull Request load to a minimum.
+
+To achieve this the recipe only uses the `max:` option to limit to updating one
+tool at the time.
+
+A limitation is that the Pull Request might get changed if another tool has an
+update available.
+
+```yml
+name: Tooling
+on:
+  schedule:
+    - cron: "0 0 * * *" # see https://crontab.guru/daily
+
+permissions: read-all
+
+jobs:
+  tooling:
+    name: Update tool
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Update tooling
+        uses: ericcornelissen/tool-versions-update-action/pr@v0
+        with:
+          max: 1
+```
+
 ---
 
 The contents of this document are licensed under [CC BY 4.0].
@@ -220,5 +297,6 @@ The contents of this document are licensed under [CC BY 4.0].
 [cc by 4.0]: https://creativecommons.org/licenses/by/4.0/
 [github action]: https://github.com/features/actions
 [github actions output docs]: https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#steps-context
+[recipes]: #recipes
 [`ubuntu-20.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
 [`ubuntu-22.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
