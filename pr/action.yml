@@ -36,6 +36,10 @@ inputs:
       The maximum number of tools to update. 0 indicates no maximum.
     required: false
     default: 0
+  milestone:
+    description: |
+      The numeric identifier of the milestone to associate the Pull Request to.
+    required: false
   not:
     description: |
       A comma-separated list of tools that should NOT be updated.
@@ -219,6 +223,7 @@ runs:
         reviewers: ${{ inputs.reviewers }}
         assignees: ${{ inputs.assignees }}
         labels: ${{ inputs.labels }}
+        milestone: ${{ inputs.milestone }}
 
         # Branch
         branch: ${{ inputs.branch }}
