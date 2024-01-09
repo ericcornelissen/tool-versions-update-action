@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT-0
+
 # Check out Docker at: https://www.docker.com/
 # Check out Podman at: https://podman.io/
 
