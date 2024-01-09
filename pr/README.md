@@ -42,6 +42,11 @@ file through a Pull Request.
     # Default: 0
     max: 2
 
+    # The numeric identifier of the milestone to associate the Pull Request to.
+    #
+    # Default: *no milestone*
+    milestone: 1
+
     # A comma-separated list of tools that should NOT be updated.
     #
     # Default: ""

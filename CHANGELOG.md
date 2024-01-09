@@ -20,7 +20,8 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Add input `milestone` to set the milestone to be associated with Pull
+  Request.
 
 ## [0.3.13] - 2023-12-22
 
