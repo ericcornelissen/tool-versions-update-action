@@ -65,7 +65,7 @@ lint-ci: $(ASDF) ## Lint CI workflow files
 	@actionlint
 
 lint-container: $(ASDF) ## Lint the Containerfile
-	@hadolint Containerfile
+	@hadolint Containerfile.dev
 
 lint-sh: $(ASDF) ## Lint shell scripts
 	@shellcheck $(SHELL_SCRIPTS) $(SPEC_SCRIPTS)
@@ -107,6 +107,6 @@ $(ASDF): .tool-versions | $(TMP_DIR)
 	@asdf install
 	@touch $(ASDF)
 
-$(DEV_IMG): .tool-versions Containerfile | $(TMP_DIR)
-	@$(CONTAINER_ENGINE) build --file Containerfile --tag $(DEV_IMG_NAME) .
+$(DEV_IMG): .tool-versions Containerfile.dev | $(TMP_DIR)
+	@$(CONTAINER_ENGINE) build --file Containerfile.dev --tag $(DEV_IMG_NAME) .
 	@touch $(DEV_IMG)
