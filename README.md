@@ -121,13 +121,16 @@ This action requires network access to all endpoints your [asdf] plugins use.
 
 ## License
 
-All source code is licensed under the MIT license, see [LICENSE] for the full
-license text. The contents of documentation is licensed under [CC BY 4.0].
+All source code is licensed under the [MIT license], see [LICENSE] for the full
+license text. The contents of documentation is licensed under [CC BY 4.0], code
+snippets under the [MIT-0 license].
 
 [asdf]: https://asdf-vm.com/
 [cc by 4.0]: https://creativecommons.org/licenses/by/4.0/
 [github actions]: https://github.com/features/actions
 [github actions output docs]: https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#steps-context
 [license]: ./LICENSE
+[mit license]: https://opensource.org/license/mit/
+[mit-0 license]: https://opensource.org/license/mit-0/
 [`ubuntu-20.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
 [`ubuntu-22.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md

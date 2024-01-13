@@ -166,11 +166,13 @@ in addition to any endpoints your [asdf] plugins use.
 
 ---
 
-The contents of this document are licensed under [CC BY 4.0].
+The contents of this document are licensed under [CC BY 4.0], code snippets
+under the [MIT-0 license].
 
 [asdf]: https://asdf-vm.com/
 [cc by 4.0]: https://creativecommons.org/licenses/by/4.0/
 [github action]: https://github.com/features/actions
 [github actions output docs]: https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#steps-context
+[mit-0 license]: https://opensource.org/license/mit-0/
 [`ubuntu-20.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
 [`ubuntu-22.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
