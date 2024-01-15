@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT-0
+
 CONTAINER_ENGINE?=docker
 
 SHELL_SCRIPTS:=./bin/*.sh ./lib/*.sh
