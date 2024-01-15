@@ -12,11 +12,12 @@ best-efforts approach when it comes to engaging with security reports.
 The table below shows which versions of the project are currently supported
 with security updates.
 
-| Version | End-of-life                        |
-| ------: | :--------------------------------- |
-|   0.x.x | 2024-01-31 _or_ upon release 1.0.0 |
+| Version | End-of-life |
+| ------: | :---------- |
+|   1.x.x | -           |
+|   0.x.x | 2024-01-15  |
 
-_This table only includes information on versions `<1.0.0`._
+_This table only includes information on versions `<2.0.0`._
 
 ## Reporting a Vulnerability
 
