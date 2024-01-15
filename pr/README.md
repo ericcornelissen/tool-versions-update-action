@@ -91,6 +91,19 @@ file through a Pull Request.
     # Default: "Update {{updated-count}} tool(s)"
     pr-title: Update tooling
 
+    # Configure when Pull Requests are rebased.
+    #
+    # A Pull Request may be rebased if the base branch is updated, a new version
+    # of any of the updated tools becomes available, or a new version of another
+    # tool becomes available.
+    #
+    # Available rebase strategies are:
+    # - always: Always rebase when that is possible.
+    # - untouched (default): Only rebase when there are no additional commits on
+    #   the Pull Request branch.
+    # - never: Never rebase, once a Pull Request is created it won't be updated.
+    rebase-strategy: never
+
     # A comma or newline-separated list of reviewers for Pull Requests (by their
     # GitHub username).
     #

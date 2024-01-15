@@ -22,6 +22,7 @@ Versioning].
 
 - Add input `milestone` to set the milestone to be associated with Pull
   Request.
+- Add input `rebase-strategy` to configure when Pull Requests are rebased.
 
 ## [0.3.13] - 2023-12-22
 

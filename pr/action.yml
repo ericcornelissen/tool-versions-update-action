@@ -83,6 +83,21 @@ inputs:
       The title to use for Pull Requests.
     required: false
     default: Update {{updated-count}} tool(s)
+  rebase-strategy:
+    description: |
+      Configure when Pull Requests are rebased.
+
+      A Pull Request may be rebased if the base branch is updated, a new version
+      of any of the updated tools becomes available, or a new version of another
+      tool becomes available.
+
+      Available rebase strategies are:
+      - always: Always rebase when that is possible.
+      - untouched (default): Only rebase when there are no additional commits on
+        the Pull Request branch.
+      - never: Never rebase, once a Pull Request is created it won't be updated.
+    required: false
+    default: untouched
   reviewers:
     description: |
       A comma or newline-separated list of reviewers for Pull Requests (by their
@@ -193,24 +208,38 @@ runs:
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
 
     - name: Check if a Pull Request exists and has been modified
-      id: modified
+      if: ${{ inputs.rebase-strategy == 'untouched' }}
+      id: pr-modified
       shell: bash
       run: |
         if [ -n "$(git rev-parse --verify "origin/${BRANCH}" 2>/dev/null)" ]; then
           commit_count=$(git rev-list "${BASE}..origin/${BRANCH}" --count)
           if [ "${commit_count}" -gt 1 ]; then
-            echo "Pull Request modifications detected, not making changes"
+            echo "Pull Request modifications detected, not rebasing"
             echo "value=true" >>"${GITHUB_OUTPUT}"
             exit 0
           fi
         fi
-
-        echo "value=false" >>"${GITHUB_OUTPUT}"
       env:
         BASE: ${{ inputs.pr-base }}
         BRANCH: ${{ inputs.branch }}
+    - name: Check if a Pull Request already exists
+      if: ${{ inputs.rebase-strategy == 'never' }}
+      id: pr-exists
+      shell: bash
+      run: |
+        if [ -n "$(git rev-parse --verify "origin/${BRANCH}" 2>/dev/null)" ]; then
+          echo "Pull Request detected, not rebasing"
+          echo "value=true" >>"${GITHUB_OUTPUT}"
+        fi
+      env:
+        BRANCH: ${{ inputs.branch }}
+
     - name: Create Pull Request
-      if: ${{ steps.update.outputs.updated-count != '0' && steps.modified.outputs.value == 'false' }}
+      if:
+        ${{ steps.update.outputs.updated-count != '0' &&
+            steps.pr-modified.outputs.value != 'true' &&
+            steps.pr-exists.outputs.value != 'true' }}
       id: create-pr
       uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # pin@v5
       with:
