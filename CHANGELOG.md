@@ -20,7 +20,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Add input `rebase-strategy` to configure when Pull Requests are rebased.
 
 ## [1.0.0] - 2024-01-15
 
