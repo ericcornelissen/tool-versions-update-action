@@ -75,7 +75,7 @@ file through a Pull Request.
     # This input supports templating, see the "Templating" section for more
     # information.
     #
-    # Default (1st line): "Update {{updated-count}} tool(s): {{updated-tools}}"
+    # Default: *depends on rebase-strategy*
     pr-body: |
       Update {{updated-count}} tool(s): {{updated-tools}}
 

@@ -65,19 +65,7 @@ inputs:
     description: |
       The body text to use for Pull Requests.
     required: false
-    default: |
-      Update {{updated-count}} tool(s): {{updated-tools}}
-      - Version(s) before: {{updated-old-versions}}
-      - Version(s) after: {{updated-new-versions}}
-
-      ---
-
-      This Pull Request was created by the [tool-versions-update-action]. This Pull Request will be updated automatically as long as you don't alter it yourself.
-      - If the base changes, the Pull Request will be rebased automatically.
-      - If new tool version become available, those will be included in the Pull
-        Request (in accordance with the update configuration).
-
-      [tool-versions-update-action]: https://github.com/ericcornelissen/tool-versions-update-action
+    default: __default
   pr-title:
     description: |
       The title to use for Pull Requests.
@@ -176,6 +164,49 @@ runs:
         ONLY: ${{ inputs.only }}
         SKIP: ${{ inputs.skip }}
 
+    - name: Determine Pull Request body
+      id: select-pr-body
+      shell: bash
+      run: |
+        {
+          echo 'value<<EOF'
+          if [ "${BODY}" != '__default' ]; then
+            echo "${BODY}"
+          else
+            echo -n "Update {{updated-count}} tool(s): {{updated-tools}}
+
+        - Version(s) before: {{updated-old-versions}}
+        - Version(s) after: {{updated-new-versions}}
+
+        ---
+
+        This Pull Request was created by the [tool-versions-update-action]. "
+
+            case "${REBASE_STRATEGY}" in
+            'always')
+              echo "It will be updated automatically.
+        - If the base changes, the Pull Request will be rebased automatically.
+        - If new tool version become available, those will be included in the Pull Request (in accordance with the update configuration)."
+              ;;
+            'untouched')
+              echo "It will be updated automatically as long as you don't alter it yourself.
+        - If the base changes, the Pull Request will be rebased automatically.
+        - If new tool version become available, those will be included in the Pull Request (in accordance with the update configuration)."
+              ;;
+            'never')
+              echo "It will not be updated. Merge (or close) it to receive another update."
+              ;;
+            esac
+
+            echo ''
+            echo '[tool-versions-update-action]: https://github.com/ericcornelissen/tool-versions-update-action'
+          fi
+          echo 'EOF'
+        } >>"${GITHUB_OUTPUT}"
+      env:
+        BODY: ${{ inputs.pr-body }}
+        REBASE_STRATEGY: ${{ inputs.rebase-strategy }}
+
     - name: Pull Request title
       id: pr-title
       shell: bash
@@ -191,7 +222,7 @@ runs:
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/templating.sh
       env:
-        TEXT: ${{ inputs.pr-body }}
+        TEXT: ${{ steps.select-pr-body.outputs.value }}
         UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
@@ -217,7 +248,6 @@ runs:
           if [ "${commit_count}" -gt 1 ]; then
             echo "Pull Request modifications detected, not rebasing"
             echo "value=true" >>"${GITHUB_OUTPUT}"
-            exit 0
           fi
         fi
       env:
