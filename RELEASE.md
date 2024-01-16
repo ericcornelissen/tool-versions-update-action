@@ -3,7 +3,7 @@
 # Release Guidelines
 
 To release a new version of the _Tool Versions Update Action_ follow the steps
-found in this file (using v0.1.2 as an example):
+found in this file (using v1.2.3 as an example):
 
 1. Make sure that your local copy of the repository is up-to-date, sync:
 
@@ -27,8 +27,8 @@ found in this file (using v0.1.2 as an example):
    Or edit the `.version` file manually:
 
    ```diff
-   - 0.1.1
-   + 0.1.2
+   - 1.2.2
+   + 1.2.3
    ```
 
 1. Update the changelog:
@@ -56,7 +56,7 @@ found in this file (using v0.1.2 as an example):
 
    - _No changes yet._
 
-   ## [0.1.2] - YYYY-MM-DD
+   ## [1.2.3] - YYYY-MM-DD
 
    ```
 
@@ -95,21 +95,21 @@ found in this file (using v0.1.2 as an example):
    > complete the release process. If not, or only partially, continue following
    > the remaining steps.
 
-1. Update the `v0` branch to point to the same commit as the new tag:
+1. Update the `v1` branch to point to the same commit as the new tag:
 
    ```shell
-   git checkout v0
+   git checkout v1
    git merge main
    ```
 
-1. Push the `v0` branch:
+1. Push the `v1` branch:
 
    ```shell
-   git push origin v0
+   git push origin v1
    ```
 
 1. Create a [GitHub Release] for the [git tag] of the new release. The release
-   title should be "Release {_version_}" (e.g. "Release v0.1.2"). The release
+   title should be "Release {_version_}" (e.g. "Release v1.2.3"). The release
    text should be identical.
 
    Ensure the version is published to the [GitHub Marketplace] as well.
