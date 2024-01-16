@@ -20,9 +20,22 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- Add input `milestone` to set the milestone to be associated with Pull
-  Request.
 - Add input `rebase-strategy` to configure when Pull Requests are rebased.
+
+## [1.0.0] - 2024-01-15
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
+- _Version bump only._
+
+### `tool-versions-update-action/pr`
+
+- Add input `milestone` to set the milestone to be associated with Pull
+  Requests.
 
 ## [0.3.13] - 2023-12-22
 
@@ -75,7 +88,7 @@ Versioning].
 
 - Fix runtime error when any of `commit-message`, `pr-body`, or `pr-title` spans
   multiple lines.
-- Prevent force pushes to Pull Request that were modified.
+- Prevent force pushes to Pull Requests that were modified.
 
 ## [0.3.10] - 2023-12-09
 
