@@ -16,11 +16,12 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Add support for templating to the input `branch`.
 
 ### `tool-versions-update-action/pr`
 
 - Add input `rebase-strategy` to configure when Pull Requests are rebased.
+- Add support for templating to the input `branch`.
 
 ## [1.0.0] - 2024-01-15
 

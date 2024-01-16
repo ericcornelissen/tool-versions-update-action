@@ -12,6 +12,9 @@ file through a commit.
   with:
     # The branch to commit to.
     #
+    # This input supports templating, see the "Templating" section for more
+    # information.
+    #
     # Default: *current or default branch*
     branch: develop
 
@@ -102,6 +105,7 @@ This template string uses the '3' output
 
 The following inputs support templating:
 
+- `branch`
 - `commit-message`
 
 The following outputs are available for templating:
