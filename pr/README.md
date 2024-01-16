@@ -279,11 +279,9 @@ jobs:
 This workflow create one Pull Request at the time for only one tool on daily
 schedule. This reduces noise and per-Pull Request load to a minimum.
 
-To achieve this the recipe only uses the `max:` option to limit to updating one
-tool at the time.
-
-A limitation is that the Pull Request might get changed if another tool has an
-update available.
+To achieve this the recipe uses the `max:` option to limit to updating one tool
+at the time and uses `rebase-strategy:` to prevent any further changes to the
+Pull Request after that.
 
 ```yml
 name: Tooling
@@ -305,6 +303,7 @@ jobs:
         uses: ericcornelissen/tool-versions-update-action/pr@v1
         with:
           max: 1
+          rebase-strategy: never
 ```
 
 ---
