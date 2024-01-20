@@ -237,6 +237,16 @@ runs:
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+    - name: Branch name
+      id: branch
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/templating.sh
+      env:
+        TEXT: ${{ inputs.branch }}
+        UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
+        UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
 
     - name: Check if a Pull Request exists and has been modified
       if: ${{ inputs.rebase-strategy == 'untouched' }}
@@ -252,7 +262,7 @@ runs:
         fi
       env:
         BASE: ${{ inputs.pr-base }}
-        BRANCH: ${{ inputs.branch }}
+        BRANCH: ${{ steps.branch.outputs.value }}
     - name: Check if a Pull Request already exists
       if: ${{ inputs.rebase-strategy == 'never' }}
       id: pr-exists
@@ -263,7 +273,7 @@ runs:
           echo "value=true" >>"${GITHUB_OUTPUT}"
         fi
       env:
-        BRANCH: ${{ inputs.branch }}
+        BRANCH: ${{ steps.branch.outputs.value }}
 
     - name: Create Pull Request
       if: ${{ steps.update.outputs.updated-count != '0' && steps.pr-modified.outputs.value != 'true' && steps.pr-exists.outputs.value != 'true' }}
@@ -282,7 +292,7 @@ runs:
         milestone: ${{ inputs.milestone }}
 
         # Branch
-        branch: ${{ inputs.branch }}
+        branch: ${{ steps.branch.outputs.value }}
 
         # Commit
         commit-message: ${{ steps.commit-message.outputs.value }}

@@ -18,6 +18,9 @@ file through a Pull Request.
 
     # The branch name to use for Pull Requests.
     #
+    # This input supports templating, see the "Templating" section for more
+    # information.
+    #
     # Default: "tool-versions-updates"
     branch: update-tooling
 
@@ -164,6 +167,7 @@ This template string uses the '3' output
 
 The following inputs support templating:
 
+- `branch`
 - `commit-message`
 - `pr-body`
 - `pr-title`
@@ -270,7 +274,7 @@ jobs:
       - name: Update tooling
         uses: ericcornelissen/tool-versions-update-action/pr@v1
         with:
-          branch: bot/tool_versions/${{ matrix.tool }}
+          branch: bot/tool_versions/{{updated-tools}}-{{updated-new-versions}}
           only: ${{ matrix.tool }}
 ```
 

@@ -121,6 +121,17 @@ runs:
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+    - name: Branch name
+      id: branch
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/templating.sh
+      env:
+        TEXT: ${{ inputs.branch }}
+        UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
+        UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+
     - name: Commit options
       id: commit-options
       shell: bash
@@ -139,7 +150,7 @@ runs:
         skip_dirty_check: false
 
         # Branch
-        branch: ${{ inputs.branch }}
+        branch: ${{ steps.branch.outputs.value }}
 
         # Commit
         commit_message: ${{ steps.commit-message.outputs.value }}
