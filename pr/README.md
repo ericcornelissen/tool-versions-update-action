@@ -45,7 +45,7 @@ file through a Pull Request.
     # Default: 0
     max: 2
 
-    # The numeric identifier of the milestone to associate the Pull Request to.
+    # The numeric identifier of the milestone to associate Pull Requests with.
     #
     # Default: *no milestone*
     milestone: 1

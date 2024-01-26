@@ -38,7 +38,7 @@ inputs:
     default: 0
   milestone:
     description: |
-      The numeric identifier of the milestone to associate the Pull Request to.
+      The numeric identifier of the milestone to associate Pull Requests with.
     required: false
   not:
     description: |
