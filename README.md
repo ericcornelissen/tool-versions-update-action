@@ -9,14 +9,6 @@ The actions use [asdf] and various other GitHub Actions to try and update any
 tools defined in your project's `.tool-versions` and apply those updates to the
 project.
 
-## Early Development Notice
-
-This project is currently in early development and so you should expect breaking
-changes from one version to the next. When using this action it is advised to
-pin to an exact version or commit SHA.
-
-The first stable release (if reached) will be v1.0.0.
-
 ## Usage
 
 ```yml
