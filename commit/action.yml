@@ -14,7 +14,12 @@ inputs:
     description: |
       The message to use for commits.
     required: false
-    default: Update .tool-versions
+    default: |
+      Update {{updated-tools}}
+
+      Update {{updated-count}} tool(s): {{updated-tools}}
+      - Version(s) before: {{updated-old-versions}}
+      - Version(s) after:  {{updated-new-versions}}
   max:
     description: |
       The maximum number of tools to update. 0 indicates no maximum.
@@ -36,6 +41,12 @@ inputs:
       If omitted the default plugins will be available.
     required: false
     default: ""
+  signoff:
+    description: |
+      Add "Signed-off-by" line at the end of the commit message. See `--signoff`
+      in <https://git-scm.com/docs/git-commit> for more detail.
+    required: false
+    default: false
   skip:
     description: |
       A newline-separated list of "tool version" pairs that should NOT be
@@ -58,6 +69,15 @@ outputs:
   updated-count:
     description: The number of tools that were updated.
     value: ${{ steps.update.outputs.updated-count }}
+  updated-new-versions:
+    description: A comma separated list of the new versions of updated tools.
+    value: ${{ steps.update.outputs.new-versions }}
+  updated-old-versions:
+    description: A comma separated list of the old versions of updated tools.
+    value: ${{ steps.update.outputs.old-versions }}
+  updated-tools:
+    description: A comma separated list of the names of the updated tools.
+    value: ${{ steps.update.outputs.updated-tools }}
 
 runs:
   using: composite
@@ -91,15 +111,48 @@ runs:
         ONLY: ${{ inputs.only }}
         SKIP: ${{ inputs.skip }}
 
+    - name: Commit message
+      id: commit-message
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/templating.sh
+      env:
+        TEXT: ${{ inputs.commit-message }}
+        UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
+        UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+    - name: Branch name
+      id: branch
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/templating.sh
+      env:
+        TEXT: ${{ inputs.branch }}
+        UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
+        UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+
+    - name: Commit options
+      id: commit-options
+      shell: bash
+      run: |
+        if [[ "${SIGNOFF}" == 'true' ]]; then
+          echo "value=--signoff" >>"${GITHUB_OUTPUT}"
+        fi
+      env:
+        SIGNOFF: ${{ inputs.signoff }}
+
     - name: Create commit
+      if: ${{ steps.update.outputs.updated-count != '0' }}
       id: create-commit
       uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # pin@v5
       with:
         skip_dirty_check: false
 
         # Branch
-        branch: ${{ inputs.branch }}
+        branch: ${{ steps.branch.outputs.value }}
 
         # Commit
-        commit_message: ${{ inputs.commit-message }}
+        commit_message: ${{ steps.commit-message.outputs.value }}
+        commit_options: ${{ steps.commit-options.outputs.value }}
         file_pattern: .tool-versions

@@ -5,11 +5,10 @@
 !/.version
 
 ## Build tooling
-!/Dockerfile
+!/Containerfile.dev
 !/Makefile
 
 ## Configuration
-!/.actrc
 !/.editorconfig
 !/.hadolint.yml
 !/.shellcheckrc
@@ -56,6 +55,11 @@
 !/lib/
 /lib/**
 !/lib/*.sh
+
+## Script
+!/script/
+/script/**
+!/script/*.sh
 
 ## Test
 !/spec/

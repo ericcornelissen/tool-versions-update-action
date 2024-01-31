@@ -20,7 +20,12 @@ inputs:
     description: |
       The message to use for commits.
     required: false
-    default: Update .tool-versions
+    default: |
+      Update {{updated-tools}}
+
+      Update {{updated-count}} tool(s): {{updated-tools}}
+      - Version(s) before: {{updated-old-versions}}
+      - Version(s) after:  {{updated-new-versions}}
   labels:
     description: |
       A comma or newline-separated list of labels for Pull Requests.
@@ -31,6 +36,10 @@ inputs:
       The maximum number of tools to update. 0 indicates no maximum.
     required: false
     default: 0
+  milestone:
+    description: |
+      The numeric identifier of the milestone to associate the Pull Request to.
+    required: false
   not:
     description: |
       A comma-separated list of tools that should NOT be updated.
@@ -56,18 +65,39 @@ inputs:
     description: |
       The body text to use for Pull Requests.
     required: false
-    default: Bump tools in `.tool-versions`
+    default: __default
   pr-title:
     description: |
       The title to use for Pull Requests.
     required: false
-    default: Update `.tool-versions`
+    default: Update {{updated-count}} tool(s)
+  rebase-strategy:
+    description: |
+      Configure when Pull Requests are rebased.
+
+      A Pull Request may be rebased if the base branch is updated, a new version
+      of any of the updated tools becomes available, or a new version of another
+      tool becomes available.
+
+      Available rebase strategies are:
+      - always: Always rebase when that is possible.
+      - untouched (default): Only rebase when there are no additional commits on
+        the Pull Request branch.
+      - never: Never rebase, once a Pull Request is created it won't be updated.
+    required: false
+    default: untouched
   reviewers:
     description: |
       A comma or newline-separated list of reviewers for Pull Requests (by their
       GitHub username).
     required: false
     default: ""
+  signoff:
+    description: |
+      Add "Signed-off-by" line at the end of the commit message. See `--signoff`
+      in <https://git-scm.com/docs/git-commit> for more detail.
+    required: false
+    default: false
   skip:
     description: |
       A newline-separated list of "tool version" pairs that should NOT be
@@ -93,12 +123,23 @@ outputs:
   updated-count:
     description: The number of tools that were updated.
     value: ${{ steps.update.outputs.updated-count }}
+  updated-new-versions:
+    description: A comma separated list of the new versions of updated tools.
+    value: ${{ steps.update.outputs.new-versions }}
+  updated-old-versions:
+    description: A comma separated list of the old versions of updated tools.
+    value: ${{ steps.update.outputs.old-versions }}
+  updated-tools:
+    description: A comma separated list of the names of the updated tools.
+    value: ${{ steps.update.outputs.updated-tools }}
 
 runs:
   using: composite
   steps:
     - name: Checkout repository
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # pin@v4
+      with:
+        fetch-depth: 0
 
     - name: Setup asdf
       if: ${{ inputs.plugins != '' }}
@@ -123,23 +164,137 @@ runs:
         ONLY: ${{ inputs.only }}
         SKIP: ${{ inputs.skip }}
 
+    - name: Determine Pull Request body
+      id: select-pr-body
+      shell: bash
+      run: |
+        {
+          echo 'value<<EOF'
+          if [ "${BODY}" != '__default' ]; then
+            echo "${BODY}"
+          else
+            echo -n "Update {{updated-count}} tool(s): {{updated-tools}}
+
+        - Version(s) before: {{updated-old-versions}}
+        - Version(s) after: {{updated-new-versions}}
+
+        ---
+
+        This Pull Request was created by the [tool-versions-update-action]. "
+
+            case "${REBASE_STRATEGY}" in
+            'always')
+              echo "It will be updated automatically.
+        - If the base changes, the Pull Request will be rebased automatically.
+        - If new tool version become available, those will be included in the Pull Request (in accordance with the update configuration)."
+              ;;
+            'untouched')
+              echo "It will be updated automatically as long as you don't alter it yourself.
+        - If the base changes, the Pull Request will be rebased automatically.
+        - If new tool version become available, those will be included in the Pull Request (in accordance with the update configuration)."
+              ;;
+            'never')
+              echo "It will not be updated. Merge (or close) it to receive another update."
+              ;;
+            esac
+
+            echo ''
+            echo '[tool-versions-update-action]: https://github.com/ericcornelissen/tool-versions-update-action'
+          fi
+          echo 'EOF'
+        } >>"${GITHUB_OUTPUT}"
+      env:
+        BODY: ${{ inputs.pr-body }}
+        REBASE_STRATEGY: ${{ inputs.rebase-strategy }}
+
+    - name: Pull Request title
+      id: pr-title
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/templating.sh
+      env:
+        TEXT: ${{ inputs.pr-title }}
+        UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
+        UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+    - name: Pull Request body
+      id: pr-body
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/templating.sh
+      env:
+        TEXT: ${{ steps.select-pr-body.outputs.value }}
+        UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
+        UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+    - name: Commit message
+      id: commit-message
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/templating.sh
+      env:
+        TEXT: ${{ inputs.commit-message }}
+        UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
+        UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+    - name: Branch name
+      id: branch
+      shell: bash
+      run: $GITHUB_ACTION_PATH/../bin/templating.sh
+      env:
+        TEXT: ${{ inputs.branch }}
+        UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
+        UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
+        UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
+        UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+
+    - name: Check if a Pull Request exists and has been modified
+      if: ${{ inputs.rebase-strategy == 'untouched' }}
+      id: pr-modified
+      shell: bash
+      run: |
+        if [ -n "$(git rev-parse --verify "origin/${BRANCH}" 2>/dev/null)" ]; then
+          commit_count=$(git rev-list "${BASE}..origin/${BRANCH}" --count)
+          if [ "${commit_count}" -gt 1 ]; then
+            echo "Pull Request modifications detected, not rebasing"
+            echo "value=true" >>"${GITHUB_OUTPUT}"
+          fi
+        fi
+      env:
+        BASE: ${{ inputs.pr-base }}
+        BRANCH: ${{ steps.branch.outputs.value }}
+    - name: Check if a Pull Request already exists
+      if: ${{ inputs.rebase-strategy == 'never' }}
+      id: pr-exists
+      shell: bash
+      run: |
+        if [ -n "$(git rev-parse --verify "origin/${BRANCH}" 2>/dev/null)" ]; then
+          echo "Pull Request detected, not rebasing"
+          echo "value=true" >>"${GITHUB_OUTPUT}"
+        fi
+      env:
+        BRANCH: ${{ steps.branch.outputs.value }}
+
     - name: Create Pull Request
+      if: ${{ steps.update.outputs.updated-count != '0' && steps.pr-modified.outputs.value != 'true' && steps.pr-exists.outputs.value != 'true' }}
       id: create-pr
       uses: peter-evans/create-pull-request@92d14460eb6875c1cfdd8c66cb26612e8af7e95b # pin@v6-rc
       with:
         token: ${{ inputs.token }}
 
         # Pull Request
-        title: ${{ inputs.pr-title }}
-        body: ${{ inputs.pr-body }}
+        title: ${{ steps.pr-title.outputs.value }}
+        body: ${{ steps.pr-body.outputs.value }}
         base: ${{ inputs.pr-base }}
         reviewers: ${{ inputs.reviewers }}
         assignees: ${{ inputs.assignees }}
         labels: ${{ inputs.labels }}
+        milestone: ${{ inputs.milestone }}
 
         # Branch
-        branch: ${{ inputs.branch }}
+        branch: ${{ steps.branch.outputs.value }}
 
         # Commit
-        commit-message: ${{ inputs.commit-message }}
+        commit-message: ${{ steps.commit-message.outputs.value }}
         add-paths: .tool-versions
+        signoff: ${{ inputs.signoff }}

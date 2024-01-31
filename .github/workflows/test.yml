@@ -21,12 +21,25 @@ jobs:
       - name: Run bare action
         uses: ./
   unit:
-    name: Unit
-    runs-on: ubuntu-22.04
+    name: Unit (${{ matrix.runs-on }})
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on:
+          - ubuntu-20.04
+          - ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
       - name: Install tooling
         uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # v3.0.2
+      - name: Install kcov
+        run: sudo apt-get install kcov
       - name: Run unit tests
-        run: make test
+        run: make coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@4fe8c5f003fae66aa5ebb77cfd3e7bfbbda0b6b0 # v3.1.5
+        if: ${{ matrix.runs-on == 'ubuntu-22.04' }}
+        with:
+          file: ./_coverage/tool-versions-update-action [specfiles]/cobertura.xml

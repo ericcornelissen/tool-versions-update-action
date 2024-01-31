@@ -5,14 +5,18 @@
 
 set -o pipefail
 
-bin_dir=$(dirname "${BASH_SOURCE[0]}")
-exit_code=0
+## Inputs
 plugin_list=${LIST}
+
+## State
+exit_code=0
 
 # --- Import ----------------------------------------------------------------- #
 
+bin=$(dirname "${BASH_SOURCE[0]}")
+
 # shellcheck source=./lib/actions.sh
-source "${bin_dir}/../lib/actions.sh"
+source "${bin}/../lib/actions.sh"
 
 # --- Script ----------------------------------------------------------------- #
 

@@ -7,26 +7,66 @@ Describe 'lib/actions.sh'
 	Include lib/actions.sh
 
 	Describe 'debug logging'
-		Parameters
-			'foobar'
-			'Something happened'
+		Describe 'single-line'
+			Parameters
+				'foobar'
+				'Something happened'
+			End
+
+			It "can write a debug log ('$1')"
+				When call debug "$1"
+				The output should equal "::debug::$1"
+			End
 		End
 
-		It "can write a debug log ('$1')"
-			When call debug "$1"
-			The output should equal "::debug::$1"
+		Describe 'multi-line'
+			value() {
+				%text
+				#|foo
+				#|bar
+			}
+			result() {
+				%text
+				#|::debug::foo
+				#|::debug::bar
+			}
+
+			It 'can write an error log'
+				When call debug "$(value)"
+				The output should equal "$(result)"
+			End
 		End
 	End
 
 	Describe 'error logging'
-		Parameters
-			'foobar'
-			'That didn''t go well'
+		Describe 'single-line'
+			Parameters
+				'foobar'
+				'That didn''t go well'
+			End
+
+			It "can write an error log ('$1')"
+				When call error "$1"
+				The output should equal "::error::$1"
+			End
 		End
 
-		It "can write an error log ('$1')"
-			When call error "$1"
-			The output should equal "::error::$1"
+		Describe 'multi-line'
+			value() {
+				%text
+				#|hello
+				#|world
+			}
+			result() {
+				%text
+				#|::error::hello
+				#|::error::world
+			}
+
+			It 'can write an error log'
+				When call error "$(value)"
+				The output should equal "$(result)"
+			End
 		End
 	End
 
@@ -99,6 +139,25 @@ Describe 'lib/actions.sh'
 				The output should equal ''
 				The file "${GITHUB_OUTPUT}" should satisfy contents "$(result)"
 			End
+		End
+
+		It 'can output a multi-line value'
+			value() {
+				%text
+				#|hello
+				#|world
+			}
+			result() {
+				%text
+				#|multiline<<EOF
+				#|hello
+				#|world
+				#|EOF
+			}
+
+			When call set_output 'multiline' "$(value)"
+			The output should equal ''
+			The file "${GITHUB_OUTPUT}" should satisfy contents "$(result)"
 		End
 	End
 End

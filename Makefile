@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: MIT-0
+
+CONTAINER_ENGINE?=docker
+
 SHELL_SCRIPTS:=./bin/*.sh ./lib/*.sh
 SPEC_SCRIPTS:=./spec/*.sh ./spec/**/*.sh
 
@@ -25,9 +29,13 @@ clean: ## Clean the repository
 		$(REPORT_DIR) \
 		$(TMP_DIR)
 
+.PHONY: coverage
+coverage: $(ASDF) | $(TMP_DIR) ## Run tests with coverage
+	@shellspec --kcov
+
 .PHONY: dev-env dev-img
-dev-env: dev-img ## Run an ephemeral development environment with Docker
-	@docker run \
+dev-env: dev-img ## Run an ephemeral development environment container
+	@$(CONTAINER_ENGINE) run \
 		-it \
 		--rm \
 		--workdir "/tool-versions-update-action" \
@@ -35,7 +43,7 @@ dev-env: dev-img ## Run an ephemeral development environment with Docker
 		--name "$(DEV_ENV_NAME)" \
 		"$(DEV_IMG_NAME)"
 
-dev-img: $(DEV_IMG) ## Build a development environment image with Docker
+dev-img: $(DEV_IMG) ## Build a development environment container image
 
 .PHONY: format format-check
 format: $(ASDF) ## Format the source code
@@ -52,14 +60,14 @@ help: ## Show this help message
 		printf "  \033[36m%-30s\033[0m %s\n", $$1, $$NF \
 	}' $(MAKEFILE_LIST)
 
-.PHONY: lint lint-ci lint-docker lint-sh lint-yml
-lint: lint-ci lint-docker lint-sh lint-yml ## Run lint-*
+.PHONY: lint lint-ci lint-container lint-sh lint-yml
+lint: lint-ci lint-container lint-sh lint-yml ## Run lint-*
 
 lint-ci: $(ASDF) ## Lint CI workflow files
 	@actionlint
 
-lint-docker: $(ASDF) ## Lint the Dockerfile
-	@hadolint Dockerfile
+lint-container: $(ASDF) ## Lint the Containerfile
+	@hadolint Containerfile.dev
 
 lint-sh: $(ASDF) ## Lint shell scripts
 	@shellcheck $(SHELL_SCRIPTS) $(SPEC_SCRIPTS)
@@ -68,15 +76,12 @@ lint-yml: $(ASDF) ## Lint YAML files
 	@yamllint -c .yamllint.yml .
 
 .PHONY: test test-e2e
-test: | $(TMP_DIR) ## Run tests
+test: $(ASDF) | $(TMP_DIR) ## Run tests
 	@shellspec
-
-test-e2e: ## Run end-to-end tests
-	@act --job test-bare
 
 .PHONY: update-actions
 update-actions: ## Update (and pin) all actions used by these actions
-	@docker run \
+	@$(CONTAINER_ENGINE) run \
 		--rm \
 		--workdir "/tool-versions-update-action" \
 		--mount "type=bind,source=$(shell pwd),target=/tool-versions-update-action" \
@@ -104,6 +109,6 @@ $(ASDF): .tool-versions | $(TMP_DIR)
 	@asdf install
 	@touch $(ASDF)
 
-$(DEV_IMG): .tool-versions Dockerfile | $(TMP_DIR)
-	@docker build --tag $(DEV_IMG_NAME) .
+$(DEV_IMG): .tool-versions Containerfile.dev | $(TMP_DIR)
+	@$(CONTAINER_ENGINE) build --file Containerfile.dev --tag $(DEV_IMG_NAME) .
 	@touch $(DEV_IMG)

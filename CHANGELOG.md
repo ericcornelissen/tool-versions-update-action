@@ -22,6 +22,128 @@ Versioning].
 
 - Bump `peter-evans/create-pull-request` from v5.0.2 to v6-rc.
 
+## [1.1.0] - 2024-01-26
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
+- Add support for templating to the input `branch`.
+
+### `tool-versions-update-action/pr`
+
+- Add input `rebase-strategy` to configure when Pull Requests are rebased.
+- Add support for templating to the input `branch`.
+
+## [1.0.0] - 2024-01-15
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
+- _Version bump only._
+
+### `tool-versions-update-action/pr`
+
+- Add input `milestone` to set the milestone to be associated with Pull
+  Requests.
+
+## [0.3.13] - 2023-12-22
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
+- Don't commit if there are no updates.
+- Fix `{{updated-new-versions}}` and `{{updated-old-versions}}` being replaced
+  with an empty string when templating.
+
+### `tool-versions-update-action/pr`
+
+- Don't open a Pull Request if there are no updates.
+- Fix `{{updated-new-versions}}` and `{{updated-old-versions}}` being replaced
+  with an empty string when templating.
+
+## [0.3.12] - 2023-12-18
+
+### `tool-versions-update-action`
+
+- Add output `updated-new-versions`.
+- Add output `updated-old-versions`.
+
+### `tool-versions-update-action/commit`
+
+- Add output `updated-new-versions`, which can also be used for templating.
+- Add output `updated-old-versions`, which can also be used for templating.
+- Update default `commit-message`.
+
+### `tool-versions-update-action/pr`
+
+- Add output `updated-new-versions`, which can also be used for templating.
+- Add output `updated-old-versions`, which can also be used for templating.
+- Update default `commit-message` and `pr-body`.
+
+## [0.3.11] - 2023-12-13
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
+- Fix runtime error when `commit-message` spans multiple lines.
+
+### `tool-versions-update-action/pr`
+
+- Fix runtime error when any of `commit-message`, `pr-body`, or `pr-title` spans
+  multiple lines.
+- Prevent force pushes to Pull Requests that were modified.
+
+## [0.3.10] - 2023-12-09
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
+- Add input `signoff` to add "Signed-off-by" line at the end of the commit
+  message.
+- Add support for templating `updated-count` and `updated-tools` into the input
+  `commit-message`.
+- Update default `commit-message`.
+
+### `tool-versions-update-action/pr`
+
+- Add support for templating `updated-count` and `updated-tools` into the inputs
+  `commit-message`, `pr-body`, and `pr-title`.
+- Update default `commit-message`, `pr-body`, and `pr-title`.
+
+## [0.3.9] - 2023-11-19
+
+### `tool-versions-update-action`
+
+- Add output `updated-tools`.
+- Improve debug logs with fewer repetitions.
+
+### `tool-versions-update-action/commit`
+
+- Add output `updated-tools`.
+- Improve debug logs with fewer repetitions.
+
+### `tool-versions-update-action/pr`
+
+- Add input `signoff` to add "Signed-off-by" line at the end of the commit
+  message.
+- Add output `updated-tools`.
+- Improve debug logs with fewer repetitions.
+
 ## [0.3.8] - 2023-11-05
 
 ### `tool-versions-update-action`
