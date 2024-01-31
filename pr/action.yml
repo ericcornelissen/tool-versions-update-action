@@ -278,7 +278,7 @@ runs:
     - name: Create Pull Request
       if: ${{ steps.update.outputs.updated-count != '0' && steps.pr-modified.outputs.value != 'true' && steps.pr-exists.outputs.value != 'true' }}
       id: create-pr
-      uses: peter-evans/create-pull-request@92d14460eb6875c1cfdd8c66cb26612e8af7e95b # pin@v6-rc
+      uses: peter-evans/create-pull-request@b1ddad2c994a25fbc81a28b3ec0e368bb2021c50 # pin@v6
       with:
         token: ${{ inputs.token }}
 
