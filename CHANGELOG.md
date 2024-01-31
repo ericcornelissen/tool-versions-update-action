@@ -199,7 +199,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- Add input `branch` to configure the branch name for the Pull Request.
+- Add input `branch` to configure the branch name for Pull Requests.
 - Bump `actions/checkout` from v3.5.3 to v3.6.0.
 
 ## [0.3.5] - 2023-08-19
@@ -214,8 +214,8 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- Add input `assignees` to configure the user(s) assigned to the Pull Request.
-- Add input `reviewers` to configure the user(s) to review the Pull Request.
+- Add input `assignees` to configure the user(s) assigned to Pull Requests.
+- Add input `reviewers` to configure the user(s) to review Pull Requests.
 - Add output `commit-sha`.
 - Add output `pr-number`.
 
@@ -231,7 +231,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- Add input `pr-base` input to configure the base branch of the Pull Request.
+- Add input `pr-base` input to configure the base branch of Pull Requests.
 - Add output `did-update`.
 
 ## [0.3.3] - 2023-07-22
@@ -248,8 +248,8 @@ Versioning].
 ### `tool-versions-update-action/pr`
 
 - Add input `commit-message` to configure the commit message.
-- Add input `pr-body` to configure the Pull Request description.
-- Add input `pr-title`  to configure the Pull Request title.
+- Add input `pr-body` to configure the description of Pull Requests.
+- Add input `pr-title`  to configure the title of Pull Requests.
 - Pin all actions used by this action.
 
 ## [0.3.2] - 2023-07-18
