@@ -15,6 +15,8 @@ DEV_IMG:=$(TMP_DIR)/.dev-img
 DEV_ENV_NAME:=tool-versions-update-action-dev
 DEV_IMG_NAME:=$(DEV_ENV_NAME)-img
 
+SHELLCHECK_OPTS:='--enable=avoid-nullary-conditions --enable=deprecate-which --enable=quote-safe-variables --enable=require-variable-braces'
+
 ################################################################################
 ### Commands ###################################################################
 ################################################################################
@@ -64,13 +66,16 @@ help: ## Show this help message
 lint: lint-ci lint-container lint-sh lint-yml ## Run lint-*
 
 lint-ci: $(ASDF) ## Lint CI workflow files
-	@actionlint
+	@SHELLCHECK_OPTS=$(SHELLCHECK_OPTS) \
+		actionlint
 
 lint-container: $(ASDF) ## Lint the Containerfile
 	@hadolint Containerfile.dev
 
 lint-sh: $(ASDF) ## Lint shell scripts
-	@shellcheck $(SHELL_SCRIPTS) $(SPEC_SCRIPTS)
+	@SHELLCHECK_OPTS=$(SHELLCHECK_OPTS) \
+		shellcheck \
+		$(SHELL_SCRIPTS) $(SPEC_SCRIPTS)
 
 lint-yml: $(ASDF) ## Lint YAML files
 	@yamllint -c .yamllint.yml .
