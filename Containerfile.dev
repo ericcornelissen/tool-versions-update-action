@@ -3,7 +3,7 @@
 # Check out Docker at: https://www.docker.com/
 # Check out Podman at: https://podman.io/
 
-FROM docker.io/alpine:3.18.4
+FROM docker.io/alpine:3.19.1
 
 RUN apk add --no-cache \
 	bash curl git jq make python3 py3-pip
