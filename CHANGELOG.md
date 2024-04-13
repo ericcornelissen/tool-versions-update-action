@@ -16,11 +16,11 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Bump `stefanzweifel/git-auto-commit-action` from v5.0.0 to v5.0.1.
 
 ### `tool-versions-update-action/pr`
 
-- Bump `peter-evans/create-pull-request` from v6.0.0 to v6.0.2.
+- Bump `peter-evans/create-pull-request` from v6.0.0 to v6.0.3.
 
 ## [1.1.1] - 2024-02-03
 
