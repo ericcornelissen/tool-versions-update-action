@@ -20,7 +20,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- Bump `peter-evans/create-pull-request` from v6.0.0 to v6.0.3.
+- Bump `peter-evans/create-pull-request` from v6.0.0 to v6.0.4.
 
 ## [1.1.1] - 2024-02-03
 
