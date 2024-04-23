@@ -16,6 +16,20 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [1.1.2] - 2024-04-23
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
 - Bump `actions/checkout` from v4.1.1 to v4.1.3.
 - Bump `stefanzweifel/git-auto-commit-action` from v5.0.0 to v5.0.1.
 
