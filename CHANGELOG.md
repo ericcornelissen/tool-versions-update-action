@@ -350,7 +350,7 @@ Versioning].
 
 - BREAKING: Moved to `tool-versions-update-action/pr`.
 
-### `tool-versions-update-action/comment`
+### `tool-versions-update-action/commit`
 
 - _Initial release._
 
