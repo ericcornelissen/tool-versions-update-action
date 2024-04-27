@@ -16,11 +16,12 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Bump `actions/checkout` from v4.1.3 to v4.1.4.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Bump `actions/checkout` from v4.1.3 to v4.1.4.
+- Bump `peter-evans/create-pull-request` from v6.0.4 to v6.0.5.
 
 ## [1.1.2] - 2024-04-23
 
