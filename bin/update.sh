@@ -67,6 +67,8 @@ fi
 group_start "Updating tools"
 debug "starting with update capacity: ${remaining_capacity}"
 
+tool_versions="$(cat '.tool-versions')"
+
 while read -r line; do
 	case "${line}" in
 	"")
@@ -160,6 +162,6 @@ while read -r line; do
 		fi
 		;;
 	esac
-done <".tool-versions"
+done <<<"${tool_versions}"
 
 group_end

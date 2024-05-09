@@ -22,9 +22,14 @@ Describe 'bin/update.sh'
 	AfterEach 'teardown'
 
 	Mock asdf
-		case "$1" in
+		command="$1"
+		case "${command}" in
 		'latest')
-			case "$2" in
+			tool="$2"
+			case "${tool}" in
+				'actionlint')
+					echo '1.7.0'
+					;;
 				'shellcheck')
 					echo '0.9.0'
 					;;
@@ -40,7 +45,9 @@ Describe 'bin/update.sh'
 			# Nothing to do..
 			;;
 		'local')
-			# Nothing to do..
+			tool="$2"
+			version="$3"
+			sed -i "s/^${tool}.*$/${tool} ${version}/g" .tool-versions
 			;;
 		*)
 			exit 127
@@ -203,6 +210,76 @@ Describe 'bin/update.sh'
 			#|updated-tools=shellcheck,shellspec,shfmt
 			#|updated-old-versions=0.8.0,0.28.0,3.6.1
 			#|updated-new-versions=0.9.0,0.28.1,3.7.0
+		}
+
+		It 'succeeds'
+			When run script bin/update.sh
+			The status should equal 0
+			The output should equal "$(snapshot_stdout)"
+			The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_outputs)"
+		End
+	End
+
+	Describe 'an update shortens the .tool-versions file mid-updating'
+		exclusions() {
+			echo
+		}
+
+		inclusions() {
+			echo
+		}
+
+		max_capacity() {
+			echo '0'
+		}
+
+		skips() {
+			echo
+		}
+
+		tool_versions() {
+			%text
+			#|actionlint 1.6.27
+			#|shellspec 0.28.1
+		}
+
+		snapshot_stdout() {
+			%text
+			#|::debug::initializing outputs to their default value
+			#|::debug::checking if .tool-versions file exists
+			#|::debug::no exclusions configured
+			#|::debug::no inclusions configured
+			#|::debug::no skips configured
+			#|::group::Updating tools
+			#|::debug::starting with update capacity: 0
+			#|::debug::processing line ('actionlint 1.6.27')
+			#|evaluating actionlint...
+			#|::debug::actionlint current: 1.6.27, latest: 1.7.0
+			#|update available for actionlint
+			#|::debug::installing actionlint@1.7.0
+			#|::debug::applying actionlint@1.7.0 locally
+			#|::debug::remaining update capacity: -1
+			#|::debug::overriding 'updated-count' output with new value
+			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-old-versions' output with new value
+			#|::debug::overriding 'updated-new-versions' output with new value
+			#|::debug::processing line ('shellspec 0.28.1')
+			#|evaluating shellspec...
+			#|::debug::shellspec current: 0.28.1, latest: 0.28.1
+			#|no update available for shellspec
+			#|::endgroup::
+		}
+
+		snapshot_outputs() {
+			%text
+			#|updated-count=0
+			#|updated-tools=
+			#|updated-old-versions=
+			#|updated-new-versions=
+			#|updated-count=1
+			#|updated-tools=actionlint
+			#|updated-old-versions=1.6.27
+			#|updated-new-versions=1.7.0
 		}
 
 		It 'succeeds'
