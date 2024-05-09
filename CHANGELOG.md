@@ -12,16 +12,18 @@ Versioning].
 
 ### `tool-versions-update-action`
 
-- _No changes yet._
+- Fix failures due to tool updates that change the length of a version string.
 
 ### `tool-versions-update-action/commit`
 
 - Bump `actions/checkout` from v4.1.3 to v4.1.4.
+- Fix failures due to tool updates that change the length of a version string.
 
 ### `tool-versions-update-action/pr`
 
 - Bump `actions/checkout` from v4.1.3 to v4.1.4.
 - Bump `peter-evans/create-pull-request` from v6.0.4 to v6.0.5.
+- Fix failures due to tool updates that change the length of a version string.
 
 ## [1.1.2] - 2024-04-23
 
