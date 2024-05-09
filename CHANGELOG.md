@@ -12,6 +12,20 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [1.1.3] - 2024-05-09
+
+### `tool-versions-update-action`
+
 - Fix failures due to tool updates that change the length of a version string.
 
 ### `tool-versions-update-action/commit`
