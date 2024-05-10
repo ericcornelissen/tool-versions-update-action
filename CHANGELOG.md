@@ -16,11 +16,11 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Downgrade `actions/checkout` from v4.1.5 to v4.1.4.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Downgrade `actions/checkout` from v4.1.5 to v4.1.4.
 
 ## [1.1.3] - 2024-05-09
 
