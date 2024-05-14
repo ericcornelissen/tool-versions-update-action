@@ -207,9 +207,9 @@ For more examples see the [recipes].
 
 ### Runners
 
-This action is tested on the official [`ubuntu-20.04`] and [`ubuntu-22.04`]
-runner images. It is recommended to use one of these images when using this
-action.
+This action is tested on the official [`ubuntu-20.04`], [`ubuntu-22.04`], and
+[`ubuntu-24.04`] runner images. It is recommended to use one of these images
+when using this action.
 
 ### Security
 
@@ -323,3 +323,4 @@ under the [MIT-0 license].
 [recipes]: #recipes
 [`ubuntu-20.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
 [`ubuntu-22.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
+[`ubuntu-24.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
