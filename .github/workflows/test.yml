@@ -39,7 +39,7 @@ jobs:
       - name: Run unit tests
         run: make coverage
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@84508663e988701840491b86de86b666e8a86bed # v4.3.0
+        uses: codecov/codecov-action@125fc84a9a348dbcf27191600683ec096ec9021c # v4.4.1
         if: ${{ matrix.runs-on == 'ubuntu-22.04' }}
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
