@@ -38,10 +38,3 @@ jobs:
         run: sudo apt-get install kcov
       - name: Run unit tests
         run: make coverage
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@84508663e988701840491b86de86b666e8a86bed # v4.3.0
-        if: ${{ matrix.runs-on == 'ubuntu-22.04' }}
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        with:
-          file: ./_coverage/tool-versions-update-action [specfiles]/cobertura.xml
