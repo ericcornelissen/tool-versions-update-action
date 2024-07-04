@@ -80,6 +80,16 @@ lint-sh: $(ASDF) ## Lint shell scripts
 lint-yml: $(ASDF) ## Lint YAML files
 	@yamllint -c .yamllint.yml .
 
+.PHONY: sast
+sast: ## Perform static application security testing
+	@$(CONTAINER_ENGINE) run \
+		--rm \
+		--volume $(shell pwd):/src \
+		docker.io/ericornelissen/ades:v24.06 \
+		./commit/action.yml \
+		./pr/action.yml \
+		./action.yml
+
 .PHONY: test test-e2e
 test: $(ASDF) | $(TMP_DIR) ## Run tests
 	@shellspec
