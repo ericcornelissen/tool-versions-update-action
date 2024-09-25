@@ -16,12 +16,26 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [1.1.4] - 2024-09-20
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
 - Bump `actions/checkout` from v4.1.5 to v4.1.7.
 
 ### `tool-versions-update-action/pr`
 
 - Bump `actions/checkout` from v4.1.5 to v4.1.7.
-- Bump `peter-evans/create-pull-request` from v6.0.5 to v7.0.1.
+- Bump `peter-evans/create-pull-request` from v6.0.5 to v7.0.5.
 
 ## [1.1.3] - 2024-05-09
 
