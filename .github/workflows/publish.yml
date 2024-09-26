@@ -9,7 +9,7 @@ permissions: read-all
 jobs:
   release-branch:
     name: Release branch
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: write # To push a branch update
     steps:
@@ -44,7 +44,7 @@ jobs:
           git push origin "HEAD:${MAJOR_VERSION}" --force
   github:
     name: GitHub Release
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: write # To create a GitHub Release
     steps:
