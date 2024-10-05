@@ -35,7 +35,23 @@ jobs:
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
       - name: Install tooling
         uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # v3.0.2
-      - name: Install kcov
+      - name: Install kcov (from package)
+        if: ${{ matrix.runs-on != 'ubuntu-24.04' }}
         run: sudo apt-get install kcov
+      - name: Install kcov (from source)
+        if: ${{ matrix.runs-on == 'ubuntu-24.04' }}
+        run: |
+          sudo apt-get install binutils-dev libssl-dev libcurl4-openssl-dev libelf-dev libstdc++-12-dev zlib1g-dev libdw-dev libiberty-dev
+
+          cd /tmp/
+          git clone https://github.com/SimonKagstrom/kcov.git
+          cd ./kcov/
+          git checkout a39874f938ce13f7a65f253120d1ec946b349ffe # v43
+
+          mkdir build
+          cd ./build/
+          cmake ..
+          make
+          sudo make install
       - name: Run unit tests
         run: make coverage
