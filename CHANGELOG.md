@@ -16,11 +16,11 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Bump `actions/checkout` from v4.1.7 to v4.2.1.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Bump `actions/checkout` from v4.1.7 to v4.2.1.
 
 ## [1.1.4] - 2024-09-20
 
