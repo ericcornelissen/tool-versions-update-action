@@ -6,7 +6,9 @@
 FROM docker.io/alpine:3.19.1
 
 RUN apk add --no-cache \
-	bash curl git jq make python3 py3-pip
+	bash curl git jq make python3 py3-pip \
+	&& \
+	git config --global --add safe.directory /tool-versions-update-action
 
 ENV ASDF_DIR="/.asdf"
 
