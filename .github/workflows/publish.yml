@@ -62,7 +62,7 @@ jobs:
             const tag = ref.replace(/^refs\/tags\//, "")
             return tag
       - name: Create GitHub Release
-        uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5 # v1.14.0
+        uses: ncipollo/release-action@cdcc88a9acf3ca41c16c37bb7d21b9ad48560d87 # v1.15.0
         with:
           name: Release ${{ steps.version.outputs.result }}
           body: Release ${{ steps.version.outputs.result }}
