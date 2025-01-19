@@ -107,7 +107,7 @@ update-actions: ## Update (and pin) all actions used by these actions
 		\
 		"--update-notifier=false" \
 		"--yes" \
-		"pin-github-action@^1.5.0" \
+		"pin-github-action@^2.0.2" \
 		"commit/action.yml" "pr/action.yml" "action.yml"
 
 .PHONY: verify

@@ -276,7 +276,10 @@ runs:
         BRANCH: ${{ steps.branch.outputs.value }}
 
     - name: Create Pull Request
-      if: ${{ steps.update.outputs.updated-count != '0' && steps.pr-modified.outputs.value != 'true' && steps.pr-exists.outputs.value != 'true' }}
+      if:
+        ${{ steps.update.outputs.updated-count != '0' &&
+            steps.pr-modified.outputs.value != 'true' &&
+            steps.pr-exists.outputs.value != 'true' }}
       id: create-pr
       uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # pin@v7
       with:
