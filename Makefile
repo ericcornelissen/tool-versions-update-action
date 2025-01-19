@@ -85,7 +85,7 @@ sast: ## Perform static application security testing
 	@$(CONTAINER_ENGINE) run \
 		--rm \
 		--volume $(shell pwd):/src \
-		docker.io/ericornelissen/ades:v24.06 \
+		docker.io/ericornelissen/ades:v24.12 \
 		./commit/action.yml \
 		./pr/action.yml \
 		./action.yml
