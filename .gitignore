@@ -42,6 +42,7 @@
 ## GitHub platform
 !/.github/
 /.github/**
+!/.github/codeql.yml
 !/.github/dependabot.yml
 !/.github/labeler.yml
 !/.github/workflows
