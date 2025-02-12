@@ -81,7 +81,9 @@ lint-yml: $(ASDF) ## Lint YAML files
 	@yamllint -c .yamllint.yml .
 
 .PHONY: sast
-sast: ## Perform static application security testing
+sast: sast-ades sast-zizmor ## Perform static application security testing
+
+sast-ades:
 	@$(CONTAINER_ENGINE) run \
 		--rm \
 		--volume $(shell pwd):/src \
@@ -89,6 +91,15 @@ sast: ## Perform static application security testing
 		./commit/action.yml \
 		./pr/action.yml \
 		./action.yml
+
+sast-zizmor:
+	@$(CONTAINER_ENGINE) run \
+		--rm \
+		--volume $(shell pwd):/src \
+		ghcr.io/woodruffw/zizmor:v1.3.1 \
+		/src/commit/action.yml \
+		/src/pr/action.yml \
+		/src/action.yml
 
 .PHONY: test test-e2e
 test: $(ASDF) | $(TMP_DIR) ## Run tests
