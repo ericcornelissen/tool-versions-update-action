@@ -1,4 +1,4 @@
-# Check out ShellSpec at: https://shellspec.info/
+# Configuration file for ShellSpec (https://shellspec.info/)
 
 --format documentation
 --reportdir _reports/
