@@ -97,9 +97,9 @@ jobs:
 
 ### Runners
 
-This action is tested on the official [`ubuntu-20.04`], [`ubuntu-22.04`], and
-[`ubuntu-24.04`] runner images. It is recommended to use one of these images
-when using this action.
+This action is tested on the official [`ubuntu-22.04`] and [`ubuntu-24.04`]
+runner images. It is recommended to use one of these images when using this
+action.
 
 ### Security
 
@@ -124,6 +124,5 @@ snippets under the [MIT-0 license].
 [license]: ./LICENSE
 [mit license]: https://opensource.org/license/mit/
 [mit-0 license]: https://opensource.org/license/mit-0/
-[`ubuntu-20.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
 [`ubuntu-22.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
 [`ubuntu-24.04`]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
