@@ -87,7 +87,7 @@ sast-ades:
 	@$(CONTAINER_ENGINE) run \
 		--rm \
 		--volume $(shell pwd):/src \
-		docker.io/ericornelissen/ades:v24.12 \
+		docker.io/ericornelissen/ades:v25.02 \
 		./commit/action.yml \
 		./pr/action.yml \
 		./action.yml
@@ -96,7 +96,7 @@ sast-zizmor:
 	@$(CONTAINER_ENGINE) run \
 		--rm \
 		--volume $(shell pwd):/src \
-		ghcr.io/woodruffw/zizmor:v1.3.1 \
+		ghcr.io/woodruffw/zizmor:1.4.0 \
 		/src/commit/action.yml \
 		/src/pr/action.yml \
 		/src/action.yml
