@@ -16,7 +16,7 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- Bump `stefanzweifel/git-auto-commit-action` from v5.0.1 to v5.1.0.
+- Bump `stefanzweifel/git-auto-commit-action` from v5.0.1 to v5.2.0.
 
 ### `tool-versions-update-action/pr`
 
