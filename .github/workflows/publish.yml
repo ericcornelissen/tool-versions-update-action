@@ -18,25 +18,16 @@ jobs:
         with:
           fetch-depth: 0
       - name: Get version
-        uses: actions/github-script@e69ef5462fd455e02edcaf4dd7708eda96b9eda0 # v7.0.0
         id: version
-        with:
-          result-encoding: string
-          script: |
-            const ref = context.ref
-            const tag = ref.replace(/^refs\/tags\//, "")
-            return tag
+        shell: bash
+        run: |
+          echo "result=${GITHUB_REF#refs/tags/}" >>"${GITHUB_OUTPUT}"
       - name: Get major version
-        uses: actions/github-script@e69ef5462fd455e02edcaf4dd7708eda96b9eda0 # v7.0.0
         id: major_version
         env:
           VERSION: ${{ steps.version.outputs.result }}
-        with:
-          result-encoding: string
-          script: |
-            const tag = `${process.env.VERSION}`
-            const majorVersion = tag.split(".")[0]
-            return majorVersion
+        run: |
+          echo "result=${VERSION%%.*}" >>"${GITHUB_OUTPUT}"
       - name: Update major version branch
         env:
           MAJOR_VERSION: ${{ steps.major_version.outputs.result }}
@@ -53,14 +44,10 @@ jobs:
         with:
           persist-credentials: false
       - name: Get version
-        uses: actions/github-script@e69ef5462fd455e02edcaf4dd7708eda96b9eda0 # v7.0.0
         id: version
-        with:
-          result-encoding: string
-          script: |
-            const ref = context.ref
-            const tag = ref.replace(/^refs\/tags\//, "")
-            return tag
+        shell: bash
+        run: |
+          echo "result=${GITHUB_REF#refs/tags/}" >>"${GITHUB_OUTPUT}"
       - name: Create GitHub Release
         uses: ncipollo/release-action@cdcc88a9acf3ca41c16c37bb7d21b9ad48560d87 # v1.15.0
         with:
