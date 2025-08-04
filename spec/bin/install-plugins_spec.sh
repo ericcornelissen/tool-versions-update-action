@@ -1,4 +1,4 @@
-# shellcheck shell=bash disable=SC2155,SC2317
+# shellcheck shell=bash disable=SC2155,SC2218,SC2317,SC2329
 # SPDX-License-Identifier: MIT
 
 BeforeEach 'clear_github_output'
