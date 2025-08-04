@@ -15,7 +15,7 @@ DEV_IMG:=$(TMP_DIR)/.dev-img
 DEV_ENV_NAME:=tool-versions-update-action-dev
 DEV_IMG_NAME:=$(DEV_ENV_NAME)-img
 
-SHELLCHECK_OPTS:='--enable=avoid-nullary-conditions --enable=deprecate-which --enable=quote-safe-variables --enable=require-variable-braces'
+SHELLCHECK_OPTS:='--enable=avoid-nullary-conditions --enable=deprecate-which --enable=quote-safe-variables --enable=require-variable-braces --enable=useless-use-of-cat'
 
 ################################################################################
 ### Commands ###################################################################
