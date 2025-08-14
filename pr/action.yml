@@ -140,6 +140,7 @@ runs:
       uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # pin@v4
       with:
         fetch-depth: 0
+        persist-credentials: true
 
     - name: Setup asdf
       if: ${{ inputs.plugins != '' }}
