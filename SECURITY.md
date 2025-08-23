@@ -56,6 +56,18 @@ Try to include as many of the following items as possible in a security report:
 
 [cwe]: https://cwe.mitre.org/
 
+### Threat Model
+
+The action considers the GitHub Actions runner, Bash, `asdf`, any default and
+user-specified `asdf` plugins, and any third-party GitHub Action used to be
+trusted. All external inputs, including from the workflow and the target
+repository, are considered untrusted. Any violation of confidentiality,
+integrity, or availability is considered a security issue.
+
+The project considers the GitHub infrastructure and all project maintainers to
+be trusted. Any action that is performed on the repository by any other GitHub
+user is considered untrusted.
+
 ## Advisories
 
 > **Note**: Advisories will be created only for vulnerabilities present in
