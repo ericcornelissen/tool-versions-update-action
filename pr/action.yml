@@ -144,7 +144,7 @@ runs:
 
     - name: Setup asdf
       if: ${{ inputs.plugins != '' }}
-      uses: asdf-vm/actions/setup@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # pin@v3
+      uses: asdf-vm/actions/setup@1902764435ca0dd2f3388eea723a4f92a4eb8302 # pin@v4
     - name: Configure asdf plugins
       if: ${{ inputs.plugins != '' }}
       shell: bash
@@ -153,7 +153,7 @@ runs:
         LIST: ${{ inputs.plugins }}
 
     - name: Install asdf
-      uses: asdf-vm/actions/install@05e0d2ed97b598bfce82fd30daf324ae0c4570e6 # pin@v3
+      uses: asdf-vm/actions/install@1902764435ca0dd2f3388eea723a4f92a4eb8302 # pin@v4
 
     - name: Look for updates
       id: update

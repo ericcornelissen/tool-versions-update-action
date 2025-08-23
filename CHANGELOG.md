@@ -17,10 +17,12 @@ Versioning].
 ### `tool-versions-update-action/commit`
 
 - Bump `actions/checkout` from v4.3.0 to v5.0.0.
+- Bump `asdf-vm/actions` from v3.0.2 to v4.0.0.
 
 ### `tool-versions-update-action/pr`
 
 - Bump `actions/checkout` from v4.3.0 to v5.0.0.
+- Bump `asdf-vm/actions` from v3.0.2 to v4.0.0.
 
 ## [1.1.6] - 2025-08-23
 
