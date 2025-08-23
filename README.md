@@ -12,7 +12,7 @@ project.
 ## Usage
 
 ```yml
-- uses: ericcornelissen/tool-versions-update-action@v1
+- uses: ericcornelissen/tool-versions-update-action@v2
   with:
     # The maximum number of tools to update. 0 indicates no maximum.
     #
@@ -86,7 +86,7 @@ jobs:
       #   run: |
       #     asdf plugin add example https://github.com/ericcornelissen/asdf-example
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action/commit@v1
+        uses: ericcornelissen/tool-versions-update-action/commit@v2
         id: tooling
         with:
           max: 2

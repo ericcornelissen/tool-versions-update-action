@@ -16,6 +16,23 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [2.0.0] - 2025-08-23
+
+Breaking change: this release increases the minimum compatible runner version to
+v2.327.1 (to support the Node.js v24 runtime) and the `asdf` version to v0.16.0.
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
 - Bump `actions/checkout` from v4.3.0 to v5.0.0.
 - Bump `asdf-vm/actions` from v3.0.2 to v4.0.0.
 

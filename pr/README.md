@@ -8,7 +8,7 @@ file through a Pull Request.
 ## Usage
 
 ```yml
-- uses: ericcornelissen/tool-versions-update-action/pr@v1
+- uses: ericcornelissen/tool-versions-update-action/pr@v2
   with:
     # A comma or newline-separated list of assignees for Pull Requests (by their
     # GitHub username).
@@ -200,7 +200,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action/pr@v1
+        uses: ericcornelissen/tool-versions-update-action/pr@v2
 ```
 
 For more examples see the [recipes].
@@ -272,7 +272,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action/pr@v1
+        uses: ericcornelissen/tool-versions-update-action/pr@v2
         with:
           branch: bot/tool_versions/{{updated-tools}}-{{updated-new-versions}}
           only: ${{ matrix.tool }}
@@ -304,7 +304,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Update tooling
-        uses: ericcornelissen/tool-versions-update-action/pr@v1
+        uses: ericcornelissen/tool-versions-update-action/pr@v2
         with:
           max: 1
           rebase-strategy: never
