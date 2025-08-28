@@ -44,7 +44,7 @@ Describe 'bin/update.sh'
 		'install')
 			# Nothing to do..
 			;;
-		'local')
+		'set')
 			tool="$2"
 			version="$3"
 			sed -i "s/^${tool}.*$/${tool} ${version}/g" .tool-versions
@@ -623,7 +623,7 @@ Describe 'bin/update.sh'
 					;;
 				'install')
 					;;
-				'local')
+				'set')
 					;;
 				*)
 					exit 127
@@ -647,7 +647,7 @@ Describe 'bin/update.sh'
 				'install')
 					exit 2
 					;;
-				'local')
+				'set')
 					;;
 				*)
 					exit 127
@@ -670,7 +670,7 @@ Describe 'bin/update.sh'
 					;;
 				'install')
 					;;
-				'local')
+				'set')
 					exit 3
 					;;
 				*)
