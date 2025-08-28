@@ -12,6 +12,20 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [2.0.1] - 2025-08-28
+
+### `tool-versions-update-action`
+
 - Fix "invalid command: local".
 
 ### `tool-versions-update-action/commit`

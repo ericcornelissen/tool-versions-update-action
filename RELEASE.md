@@ -27,8 +27,8 @@ found in this file (using v2.3.4 as an example):
    Or edit the `.version` file manually:
 
    ```diff
-   - 1.2.2
-   + 1.2.3
+   - 2.3.3
+   + 2.3.4
    ```
 
 1. Update the changelog:
@@ -56,7 +56,7 @@ found in this file (using v2.3.4 as an example):
 
    - _No changes yet._
 
-   ## [1.2.3] - YYYY-MM-DD
+   ## [2.3.4] - YYYY-MM-DD
 
    ```
 
