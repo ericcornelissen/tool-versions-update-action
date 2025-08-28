@@ -132,7 +132,7 @@ $(TMP_DIR):
 	@mkdir $(TMP_DIR)
 
 $(ASDF): .tool-versions | $(TMP_DIR)
-	@asdf install
+	@asdf install || true
 	@touch $(ASDF)
 
 $(DEV_IMG): .tool-versions Containerfile.dev | $(TMP_DIR)
