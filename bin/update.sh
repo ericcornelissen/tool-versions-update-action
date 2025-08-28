@@ -133,7 +133,7 @@ while read -r line; do
 			debug "installing ${tool}@${latest_version}"
 			asdf install "${tool}" "${latest_version}"
 			debug "applying ${tool}@${latest_version} locally"
-			asdf local "${tool}" "${latest_version}"
+			asdf set "${tool}" "${latest_version}"
 
 			remaining_capacity=$((remaining_capacity - 1))
 			debug "remaining update capacity: ${remaining_capacity}"
