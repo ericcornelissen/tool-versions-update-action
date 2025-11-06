@@ -130,8 +130,6 @@ while read -r line; do
 				done <<<"${skips}"
 			fi
 
-			debug "installing ${tool}@${latest_version}"
-			asdf install "${tool}" "${latest_version}"
 			debug "applying ${tool}@${latest_version} locally"
 			asdf set "${tool}" "${latest_version}"
 
