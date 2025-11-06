@@ -58,6 +58,11 @@ inputs:
       The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
     required: false
     default: ${{ github.token }}
+  asdf_skip_install:
+    description: |
+      Skip installing tools from .tool-versions file. Plugins will still be added.
+    required: false
+    default: false
 
 outputs:
   commit-sha:
@@ -100,6 +105,8 @@ runs:
 
     - name: Install asdf
       uses: asdf-vm/actions/install@1902764435ca0dd2f3388eea723a4f92a4eb8302 # pin@v4
+      with:
+        skip_install: ${{ inputs.asdf_skip_install }}
 
     - name: Look for updates
       id: update
