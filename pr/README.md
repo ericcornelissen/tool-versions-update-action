@@ -35,6 +35,11 @@ file through a Pull Request.
 
       Update {{updated-tools}}
 
+    # Install tools from .tool-versions file. Plugins will still be added.
+    #
+    # Default: true
+    install-tools: false
+
     # A comma or newline-separated list of labels for Pull Requests.
     #
     # Default: *no labels*
