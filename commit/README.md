@@ -29,6 +29,11 @@ file through a commit.
 
       Update {{updated-tools}}
 
+    # Install tools from .tool-versions file. Plugins will still be added.
+    #
+    # Default: true
+    install-tools: false
+
     # The maximum number of tools to update. 0 indicates no maximum.
     #
     # Default: 0
