@@ -16,11 +16,11 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Add option `install-tools` to support disabling tool installation.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Add option `install-tools` to support disabling tool installation.
 
 ## [2.0.1] - 2025-08-28
 
