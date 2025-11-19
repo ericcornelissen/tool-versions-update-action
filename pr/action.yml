@@ -150,20 +150,17 @@ runs:
 
     - name: Setup asdf
       uses: asdf-vm/actions/setup@1902764435ca0dd2f3388eea723a4f92a4eb8302 # pin@v4
-
     - name: Configure asdf plugins
       if: ${{ inputs.plugins != '' }}
       shell: bash
       run: $GITHUB_ACTION_PATH/../bin/install-plugins.sh
       env:
         LIST: ${{ inputs.plugins }}
-
     - name: Install asdf plugins
       if: ${{ inputs.plugins == '' }}
       uses: asdf-vm/actions/plugins-add@1902764435ca0dd2f3388eea723a4f92a4eb8302 # pin@v4
       with:
         skip_install: true
-
     - name: Install asdf tools
       if: ${{ inputs.install-tools == 'true' }}
       uses: asdf-vm/actions/install@1902764435ca0dd2f3388eea723a4f92a4eb8302 # pin@v4
