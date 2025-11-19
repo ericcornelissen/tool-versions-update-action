@@ -29,7 +29,8 @@ file through a commit.
 
       Update {{updated-tools}}
 
-    # Install tools from .tool-versions file. Plugins will still be added.
+    # Whether to install tools from the .tool-versions file. Plugins will always
+    # be added.
     #
     # Default: true
     install-tools: false

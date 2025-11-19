@@ -22,7 +22,8 @@ inputs:
       - Version(s) after:  {{updated-new-versions}}
   install-tools:
     description: |
-      Install tools from .tool-versions file. Plugins will still be added.
+      Whether to install tools from the .tool-versions file. Plugins will always
+      be added.
     required: false
     default: true
   max:
@@ -110,7 +111,7 @@ runs:
         skip_install: true
 
     - name: Install asdf tools
-      if: ${{ inputs.install-tools }}
+      if: ${{ inputs.install-tools == 'true' }}
       uses: asdf-vm/actions/install@1902764435ca0dd2f3388eea723a4f92a4eb8302 # pin@v4
       with:
         skip_install: true
