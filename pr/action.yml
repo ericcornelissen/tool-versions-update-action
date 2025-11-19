@@ -270,7 +270,7 @@ runs:
       shell: bash
       run: |
         if [ -n "$(git rev-parse --verify "origin/${BRANCH}" 2>/dev/null)" ]; then
-          commit_count=$(git rev-list "origin/${BASE}..origin/${BRANCH}" --count)
+          commit_count=$(git rev-list "${BASE}..origin/${BRANCH}" --count)
           if [ "${commit_count}" -gt 1 ]; then
             echo "Pull Request modifications detected, not rebasing"
             echo "value=true" >>"${GITHUB_OUTPUT}"
