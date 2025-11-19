@@ -44,11 +44,27 @@ extend_list() {
 	fi
 }
 
+json_escape() {
+	local string="$1"
+	# Escape backslashes, quotes, and common control characters
+	string="${string//\\/\\\\}"  # Escape backslashes first
+	string="${string//\"/\\\"}"  # Escape double quotes
+	string="${string//$'\t'/\\t}" # Escape tabs
+	string="${string//$'\n'/\\n}" # Escape newlines
+	string="${string//$'\r'/\\r}" # Escape carriage returns
+	echo "${string}"
+}
+
 add_to_json_array() {
 	local json_array="$1"
 	local tool_name="$2"
 	local old_version="$3"
 	local new_version="$4"
+
+	# Escape values for JSON
+	tool_name="$(json_escape "${tool_name}")"
+	old_version="$(json_escape "${old_version}")"
+	new_version="$(json_escape "${new_version}")"
 
 	local new_item="{\"name\":\"${tool_name}\",\"oldVersion\":\"${old_version}\",\"newVersion\":\"${new_version}\"}"
 
@@ -65,6 +81,11 @@ add_to_table() {
 	local tool_name="$2"
 	local old_version="$3"
 	local new_version="$4"
+
+	# Escape pipe characters to prevent breaking table formatting
+	tool_name="${tool_name//|/\\|}"
+	old_version="${old_version//|/\\|}"
+	new_version="${new_version//|/\\|}"
 
 	if [ -z "${table}" ]; then
 		# Initialize table with header
