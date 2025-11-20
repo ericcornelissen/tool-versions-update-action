@@ -32,3 +32,21 @@ set_output() {
 		echo "$1=$2" >>"${GITHUB_OUTPUT}"
 	fi
 }
+
+escape_json() {
+	local string="$1"
+	# Escape backslashes, quotes, and common control characters
+	string="${string//\\/\\\\}"  # Escape backslashes first
+	string="${string//\"/\\\"}"  # Escape double quotes
+	string="${string//$'\t'/\\t}" # Escape tabs
+	string="${string//$'\n'/\\n}" # Escape newlines
+	string="${string//$'\r'/\\r}" # Escape carriage returns
+	echo "${string}"
+}
+
+escape_pipes() {
+	local string="$1"
+	# Escape pipe characters to prevent breaking table formatting
+	string="${string//|/\\|}"
+	echo "${string}"
+}
