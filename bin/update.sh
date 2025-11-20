@@ -16,7 +16,6 @@ output_name_updated_count="updated-count"
 output_name_updated_tools="updated-tools"
 output_name_updated_old_versions="updated-old-versions"
 output_name_updated_new_versions="updated-new-versions"
-output_name_updated_tools_json="updated-tools-json"
 output_name_updated_tools_table="updated-tools-table"
 
 ## State
@@ -24,7 +23,6 @@ remaining_capacity=${max_capacity}
 updated_tools=""
 updated_old_versions=""
 updated_new_versions=""
-updated_tools_json="[]"
 updated_tools_table=""
 
 # --- Import ----------------------------------------------------------------- #
@@ -72,7 +70,6 @@ set_output "${output_name_updated_count}" "0"
 set_output "${output_name_updated_tools}" "${updated_tools}"
 set_output "${output_name_updated_old_versions}" "${updated_old_versions}"
 set_output "${output_name_updated_new_versions}" "${updated_new_versions}"
-set_output "${output_name_updated_tools_json}" "${updated_tools_json}"
 set_output "${output_name_updated_tools_table}" "${updated_tools_table}"
 
 debug "checking if .tool-versions file exists"
@@ -178,9 +175,6 @@ while read -r line; do
 			updated_new_versions="$(extend_list "${updated_new_versions}" "${latest_version}")"
 			set_output "${output_name_updated_new_versions}" "${updated_new_versions}"
 
-			debug "overriding '${output_name_updated_tools_json}' output with new value"
-			updated_tools_json="$(add_to_json_array "${updated_tools_json}" "${tool}" "${current_version}" "${latest_version}")"
-			set_output "${output_name_updated_tools_json}" "${updated_tools_json}"
 
 			debug "overriding '${output_name_updated_tools_table}' output with new value"
 			updated_tools_table="$(add_to_table "${updated_tools_table}" "${tool}" "${current_version}" "${latest_version}")"
