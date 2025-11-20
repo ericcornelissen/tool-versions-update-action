@@ -190,10 +190,7 @@ runs:
           if [ "${BODY}" != '__default' ]; then
             echo "${BODY}"
           else
-            echo -n "Update {{updated-count}} tool(s): {{updated-tools}}
-
-        - Version(s) before: {{updated-old-versions}}
-        - Version(s) after: {{updated-new-versions}}
+            echo -n "Updated tools:\n{{updated-tools-table}}
 
         ---
 
