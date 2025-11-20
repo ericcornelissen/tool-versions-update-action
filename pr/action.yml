@@ -241,6 +241,7 @@ runs:
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+        UPDATED_TOOLS_TABLE: ${{ steps.update.outputs.updated-tools-table }}
     - name: Commit message
       id: commit-message
       shell: bash
