@@ -88,7 +88,6 @@ add_to_table() {
 	new_version="${new_version//|/\\|}"
 
 	if [ -z "${table}" ]; then
-		# Initialize table with header
 		echo "| Tool | Old Version | New Version |
 | --- | --- | --- |
 | ${tool_name} | ${old_version} | ${new_version} |"
