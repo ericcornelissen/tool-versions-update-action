@@ -90,7 +90,7 @@ add_to_table() {
 	if [ -z "${table}" ]; then
 		# Initialize table with header
 		echo "| Tool | Old Version | New Version |
-|------|-------------|-------------|
+| --- | --- | --- |
 | ${tool_name} | ${old_version} | ${new_version} |"
 	else
 		# Add new row

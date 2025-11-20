@@ -57,7 +57,7 @@ The following outputs are made available:
 | `updated-new-versions` | A comma separated list of the new versions of updated tools                       |
 | `updated-old-versions` | A comma separated list of the old versions of updated tools                       |
 | `updated-tools`        | A comma separated list of the names of the updated tools                          |
-| `updated-tools-json`   | A JSON array of objects containing the name, old and new version of updated tools |
+| `updated-tools-json`   | A JSON array of objects containing the name, old, and new version of the updated tools |
 | `updated-tools-table`  | A markdown table showing the tool names with their old and new versions           |
 
 For information on how to use outputs see the [GitHub Actions output docs].
