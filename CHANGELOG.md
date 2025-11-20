@@ -16,6 +16,20 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [2.1.0] - 2025-11-20
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
 - Add option `install-tools` to support disabling tool installation.
 - Bump `actions/checkout` from v5.0.0 to v5.0.1.
 - Bump `asdf-vm/actions` from v4.0.0 to v4.0.1.
