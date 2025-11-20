@@ -41,9 +41,6 @@ Describe 'bin/update.sh'
 					;;
 			esac
 			;;
-		'install')
-			# Nothing to do..
-			;;
 		'set')
 			tool="$2"
 			version="$3"
@@ -160,7 +157,6 @@ Describe 'bin/update.sh'
 			#|evaluating shellcheck...
 			#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
 			#|update available for shellcheck
-			#|::debug::installing shellcheck@0.9.0
 			#|::debug::applying shellcheck@0.9.0 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
@@ -171,7 +167,6 @@ Describe 'bin/update.sh'
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.0, latest: 0.28.1
 			#|update available for shellspec
-			#|::debug::installing shellspec@0.28.1
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: -2
 			#|::debug::overriding 'updated-count' output with new value
@@ -182,7 +177,6 @@ Describe 'bin/update.sh'
 			#|evaluating shfmt...
 			#|::debug::shfmt current: 3.6.1, latest: 3.7.0
 			#|update available for shfmt
-			#|::debug::installing shfmt@3.7.0
 			#|::debug::applying shfmt@3.7.0 locally
 			#|::debug::remaining update capacity: -3
 			#|::debug::overriding 'updated-count' output with new value
@@ -256,7 +250,6 @@ Describe 'bin/update.sh'
 			#|evaluating actionlint...
 			#|::debug::actionlint current: 1.6.27, latest: 1.7.0
 			#|update available for actionlint
-			#|::debug::installing actionlint@1.7.0
 			#|::debug::applying actionlint@1.7.0 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
@@ -327,7 +320,6 @@ Describe 'bin/update.sh'
 			#|evaluating shellcheck...
 			#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
 			#|update available for shellcheck
-			#|::debug::installing shellcheck@0.9.0
 			#|::debug::applying shellcheck@0.9.0 locally
 			#|::debug::remaining update capacity: 1
 			#|::debug::overriding 'updated-count' output with new value
@@ -338,7 +330,6 @@ Describe 'bin/update.sh'
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.0, latest: 0.28.1
 			#|update available for shellspec
-			#|::debug::installing shellspec@0.28.1
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: 0
 			#|::debug::overriding 'updated-count' output with new value
@@ -413,7 +404,6 @@ Describe 'bin/update.sh'
 			#|evaluating shellspec...
 			#|::debug::shellspec current: 0.28.0, latest: 0.28.1
 			#|update available for shellspec
-			#|::debug::installing shellspec@0.28.1
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
@@ -480,7 +470,6 @@ Describe 'bin/update.sh'
 			#|evaluating shellcheck...
 			#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
 			#|update available for shellcheck
-			#|::debug::installing shellcheck@0.9.0
 			#|::debug::applying shellcheck@0.9.0 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
@@ -563,7 +552,6 @@ Describe 'bin/update.sh'
 			#|::debug::skipping empty skip input line
 			#|::debug::processing skip input line ('shellcheck 0.9.0')
 			#|::debug::found skip mandate for shellcheck@0.9.0
-			#|::debug::installing shellspec@0.28.1
 			#|::debug::applying shellspec@0.28.1 locally
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
@@ -621,8 +609,6 @@ Describe 'bin/update.sh'
 				'latest')
 					exit 1
 					;;
-				'install')
-					;;
 				'set')
 					;;
 				*)
@@ -638,37 +624,11 @@ Describe 'bin/update.sh'
 			End
 		End
 
-		Describe 'latest could not be installed'
-			Mock asdf
-				case "$1" in
-				'latest')
-					echo '0.9.0'
-					;;
-				'install')
-					exit 2
-					;;
-				'set')
-					;;
-				*)
-					exit 127
-					;;
-				esac
-			End
-
-			It 'fails'
-				When run script bin/update.sh
-				The status should equal 2
-				The output should not equal ''
-			End
-		End
-
 		Describe 'latest could not be applied locally'
 			Mock asdf
 				case "$1" in
 				'latest')
 					echo '0.9.0'
-					;;
-				'install')
 					;;
 				'set')
 					exit 3
