@@ -31,6 +31,8 @@ bin=$(dirname "${BASH_SOURCE[0]}")
 
 # shellcheck source=./lib/actions.sh
 source "${bin}/../lib/actions.sh"
+# shellcheck source=./lib/escape.sh
+source "${bin}/../lib/escape.sh"
 
 # --- Helpers ---------------------------------------------------------------- #
 
@@ -48,19 +50,18 @@ add_to_table() {
 	local old_version="$3"
 	local new_version="$4"
 
-	tool_name="$(escape_pipes "${tool_name}")"
-	old_version="$(escape_pipes "${old_version}")"
-	new_version="$(escape_pipes "${new_version}")"
+	tool_name="$(escape_markdown_table_pipes "${tool_name}")"
+	old_version="$(escape_markdown_table_pipes "${old_version}")"
+	new_version="$(escape_markdown_table_pipes "${new_version}")"
 
 	if [ -z "${table}" ]; then
-		echo "| Tool | Old Version | New Version |
-| --- | --- | --- |
-| ${tool_name} | ${old_version} | ${new_version} |"
+		echo '|Tool|Old Version|New Version|'
+		echo '|---|---|---|'
 	else
-		# Add new row
-		echo "${table}
-| ${tool_name} | ${old_version} | ${new_version} |"
+		echo "${table}"
 	fi
+
+	echo "|${tool_name}|${old_version}|${new_version}|"
 }
 
 # --- Script ----------------------------------------------------------------- #
@@ -68,9 +69,9 @@ add_to_table() {
 debug "initializing outputs to their default value"
 set_output "${output_name_updated_count}" "0"
 set_output "${output_name_updated_tools}" "${updated_tools}"
+set_output "${output_name_updated_tools_table}" "${updated_tools_table}"
 set_output "${output_name_updated_old_versions}" "${updated_old_versions}"
 set_output "${output_name_updated_new_versions}" "${updated_new_versions}"
-set_output "${output_name_updated_tools_table}" "${updated_tools_table}"
 
 debug "checking if .tool-versions file exists"
 if [[ ! -f ".tool-versions" ]]; then
@@ -167,6 +168,10 @@ while read -r line; do
 			updated_tools="$(extend_list "${updated_tools}" "${tool}")"
 			set_output "${output_name_updated_tools}" "${updated_tools}"
 
+			debug "overriding '${output_name_updated_tools_table}' output with new value"
+			updated_tools_table="$(add_to_table "${updated_tools_table}" "${tool}" "${current_version}" "${latest_version}")"
+			set_output "${output_name_updated_tools_table}" "${updated_tools_table}"
+
 			debug "overriding '${output_name_updated_old_versions}' output with new value"
 			updated_old_versions="$(extend_list "${updated_old_versions}" "${current_version}")"
 			set_output "${output_name_updated_old_versions}" "${updated_old_versions}"
@@ -174,11 +179,6 @@ while read -r line; do
 			debug "overriding '${output_name_updated_new_versions}' output with new value"
 			updated_new_versions="$(extend_list "${updated_new_versions}" "${latest_version}")"
 			set_output "${output_name_updated_new_versions}" "${updated_new_versions}"
-
-
-			debug "overriding '${output_name_updated_tools_table}' output with new value"
-			updated_tools_table="$(add_to_table "${updated_tools_table}" "${tool}" "${current_version}" "${latest_version}")"
-			set_output "${output_name_updated_tools_table}" "${updated_tools_table}"
 
 			if [ "${remaining_capacity}" -eq 0 ]; then
 				info "finished updating after ${max_capacity} update(s)"
