@@ -16,12 +16,14 @@ output_name_updated_count="updated-count"
 output_name_updated_tools="updated-tools"
 output_name_updated_old_versions="updated-old-versions"
 output_name_updated_new_versions="updated-new-versions"
+output_name_updated_tools_table="updated-tools-table"
 
 ## State
 remaining_capacity=${max_capacity}
 updated_tools=""
 updated_old_versions=""
 updated_new_versions=""
+updated_tools_table=""
 
 # --- Import ----------------------------------------------------------------- #
 
@@ -29,6 +31,8 @@ bin=$(dirname "${BASH_SOURCE[0]}")
 
 # shellcheck source=./lib/actions.sh
 source "${bin}/../lib/actions.sh"
+# shellcheck source=./lib/escape.sh
+source "${bin}/../lib/escape.sh"
 
 # --- Helpers ---------------------------------------------------------------- #
 
@@ -40,11 +44,32 @@ extend_list() {
 	fi
 }
 
+add_to_table() {
+	local table="$1"
+	local tool_name="$2"
+	local old_version="$3"
+	local new_version="$4"
+
+	tool_name="$(escape_markdown_table_pipes "${tool_name}")"
+	old_version="$(escape_markdown_table_pipes "${old_version}")"
+	new_version="$(escape_markdown_table_pipes "${new_version}")"
+
+	if [ -z "${table}" ]; then
+		echo '|Tool|Old Version|New Version|'
+		echo '|---|---|---|'
+	else
+		echo "${table}"
+	fi
+
+	echo "|${tool_name}|${old_version}|${new_version}|"
+}
+
 # --- Script ----------------------------------------------------------------- #
 
 debug "initializing outputs to their default value"
 set_output "${output_name_updated_count}" "0"
 set_output "${output_name_updated_tools}" "${updated_tools}"
+set_output "${output_name_updated_tools_table}" "${updated_tools_table}"
 set_output "${output_name_updated_old_versions}" "${updated_old_versions}"
 set_output "${output_name_updated_new_versions}" "${updated_new_versions}"
 
@@ -142,6 +167,10 @@ while read -r line; do
 			debug "overriding '${output_name_updated_tools}' output with new value"
 			updated_tools="$(extend_list "${updated_tools}" "${tool}")"
 			set_output "${output_name_updated_tools}" "${updated_tools}"
+
+			debug "overriding '${output_name_updated_tools_table}' output with new value"
+			updated_tools_table="$(add_to_table "${updated_tools_table}" "${tool}" "${current_version}" "${latest_version}")"
+			set_output "${output_name_updated_tools_table}" "${updated_tools_table}"
 
 			debug "overriding '${output_name_updated_old_versions}' output with new value"
 			updated_old_versions="$(extend_list "${updated_old_versions}" "${current_version}")"

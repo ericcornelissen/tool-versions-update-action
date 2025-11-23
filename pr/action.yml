@@ -23,9 +23,9 @@ inputs:
     default: |
       Update {{updated-tools}}
 
-      Update {{updated-count}} tool(s): {{updated-tools}}
-      - Version(s) before: {{updated-old-versions}}
-      - Version(s) after:  {{updated-new-versions}}
+      Update {{updated-count}} tool(s)
+
+      {{updated-tools-table}}
   install-tools:
     description: |
       Whether to install tools from the .tool-versions file. Plugins will always
@@ -138,6 +138,10 @@ outputs:
   updated-tools:
     description: A comma separated list of the names of the updated tools.
     value: ${{ steps.update.outputs.updated-tools }}
+  updated-tools-table:
+    description: |
+       A markdown table showing the tool names with their old and new versions.
+    value: ${{ steps.update.outputs.updated-tools-table }}
 
 runs:
   using: composite
@@ -186,10 +190,9 @@ runs:
           if [ "${BODY}" != '__default' ]; then
             echo "${BODY}"
           else
-            echo -n "Update {{updated-count}} tool(s): {{updated-tools}}
+            echo -n "Update {{updated-count}} tool(s)
 
-        - Version(s) before: {{updated-old-versions}}
-        - Version(s) after: {{updated-new-versions}}
+        {{updated-tools-table}}
 
         ---
 
@@ -230,6 +233,7 @@ runs:
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+        UPDATED_TOOLS_TABLE: ~
     - name: Pull Request body
       id: pr-body
       shell: bash
@@ -240,6 +244,7 @@ runs:
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+        UPDATED_TOOLS_TABLE: ${{ steps.update.outputs.updated-tools-table }}
     - name: Commit message
       id: commit-message
       shell: bash
@@ -250,6 +255,7 @@ runs:
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+        UPDATED_TOOLS_TABLE: ${{ steps.update.outputs.updated-tools-table }}
     - name: Branch name
       id: branch
       shell: bash
@@ -260,6 +266,7 @@ runs:
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+        UPDATED_TOOLS_TABLE: ${{ steps.update.outputs.updated-tools-table }}
 
     - name: Check if a Pull Request exists and has been modified
       if: ${{ inputs.rebase-strategy == 'untouched' }}

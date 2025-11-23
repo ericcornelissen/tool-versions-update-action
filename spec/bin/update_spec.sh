@@ -108,6 +108,7 @@ Describe 'bin/update.sh'
 			%text
 			#|updated-count=0
 			#|updated-tools=
+			#|updated-tools-table=
 			#|updated-old-versions=
 			#|updated-new-versions=
 		}
@@ -161,6 +162,7 @@ Describe 'bin/update.sh'
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-tools-table' output with new value
 			#|::debug::overriding 'updated-old-versions' output with new value
 			#|::debug::overriding 'updated-new-versions' output with new value
 			#|::debug::processing line ('shellspec 0.28.0')
@@ -171,6 +173,7 @@ Describe 'bin/update.sh'
 			#|::debug::remaining update capacity: -2
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-tools-table' output with new value
 			#|::debug::overriding 'updated-old-versions' output with new value
 			#|::debug::overriding 'updated-new-versions' output with new value
 			#|::debug::processing line ('shfmt 3.6.1')
@@ -181,6 +184,7 @@ Describe 'bin/update.sh'
 			#|::debug::remaining update capacity: -3
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-tools-table' output with new value
 			#|::debug::overriding 'updated-old-versions' output with new value
 			#|::debug::overriding 'updated-new-versions' output with new value
 			#|::endgroup::
@@ -190,18 +194,37 @@ Describe 'bin/update.sh'
 			%text
 			#|updated-count=0
 			#|updated-tools=
+			#|updated-tools-table=
 			#|updated-old-versions=
 			#|updated-new-versions=
 			#|updated-count=1
 			#|updated-tools=shellcheck
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellcheck|0.8.0|0.9.0|
+			#|EOF
 			#|updated-old-versions=0.8.0
 			#|updated-new-versions=0.9.0
 			#|updated-count=2
 			#|updated-tools=shellcheck,shellspec
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellcheck|0.8.0|0.9.0|
+			#||shellspec|0.28.0|0.28.1|
+			#|EOF
 			#|updated-old-versions=0.8.0,0.28.0
 			#|updated-new-versions=0.9.0,0.28.1
 			#|updated-count=3
 			#|updated-tools=shellcheck,shellspec,shfmt
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellcheck|0.8.0|0.9.0|
+			#||shellspec|0.28.0|0.28.1|
+			#||shfmt|3.6.1|3.7.0|
+			#|EOF
 			#|updated-old-versions=0.8.0,0.28.0,3.6.1
 			#|updated-new-versions=0.9.0,0.28.1,3.7.0
 		}
@@ -254,6 +277,7 @@ Describe 'bin/update.sh'
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-tools-table' output with new value
 			#|::debug::overriding 'updated-old-versions' output with new value
 			#|::debug::overriding 'updated-new-versions' output with new value
 			#|::debug::processing line ('shellspec 0.28.1')
@@ -267,10 +291,16 @@ Describe 'bin/update.sh'
 			%text
 			#|updated-count=0
 			#|updated-tools=
+			#|updated-tools-table=
 			#|updated-old-versions=
 			#|updated-new-versions=
 			#|updated-count=1
 			#|updated-tools=actionlint
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||actionlint|1.6.27|1.7.0|
+			#|EOF
 			#|updated-old-versions=1.6.27
 			#|updated-new-versions=1.7.0
 		}
@@ -324,6 +354,7 @@ Describe 'bin/update.sh'
 			#|::debug::remaining update capacity: 1
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-tools-table' output with new value
 			#|::debug::overriding 'updated-old-versions' output with new value
 			#|::debug::overriding 'updated-new-versions' output with new value
 			#|::debug::processing line ('shellspec 0.28.0')
@@ -334,6 +365,7 @@ Describe 'bin/update.sh'
 			#|::debug::remaining update capacity: 0
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-tools-table' output with new value
 			#|::debug::overriding 'updated-old-versions' output with new value
 			#|::debug::overriding 'updated-new-versions' output with new value
 			#|finished updating after 2 update(s)
@@ -344,14 +376,26 @@ Describe 'bin/update.sh'
 			%text
 			#|updated-count=0
 			#|updated-tools=
+			#|updated-tools-table=
 			#|updated-old-versions=
 			#|updated-new-versions=
 			#|updated-count=1
 			#|updated-tools=shellcheck
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellcheck|0.8.0|0.9.0|
+			#|EOF
 			#|updated-old-versions=0.8.0
 			#|updated-new-versions=0.9.0
 			#|updated-count=2
 			#|updated-tools=shellcheck,shellspec
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellcheck|0.8.0|0.9.0|
+			#||shellspec|0.28.0|0.28.1|
+			#|EOF
 			#|updated-old-versions=0.8.0,0.28.0
 			#|updated-new-versions=0.9.0,0.28.1
 		}
@@ -408,6 +452,7 @@ Describe 'bin/update.sh'
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-tools-table' output with new value
 			#|::debug::overriding 'updated-old-versions' output with new value
 			#|::debug::overriding 'updated-new-versions' output with new value
 			#|::endgroup::
@@ -417,10 +462,16 @@ Describe 'bin/update.sh'
 			%text
 			#|updated-count=0
 			#|updated-tools=
+			#|updated-tools-table=
 			#|updated-old-versions=
 			#|updated-new-versions=
 			#|updated-count=1
 			#|updated-tools=shellspec
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellspec|0.28.0|0.28.1|
+			#|EOF
 			#|updated-old-versions=0.28.0
 			#|updated-new-versions=0.28.1
 		}
@@ -474,6 +525,7 @@ Describe 'bin/update.sh'
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-tools-table' output with new value
 			#|::debug::overriding 'updated-old-versions' output with new value
 			#|::debug::overriding 'updated-new-versions' output with new value
 			#|::debug::processing line ('shellspec 0.28.0')
@@ -486,10 +538,16 @@ Describe 'bin/update.sh'
 			%text
 			#|updated-count=0
 			#|updated-tools=
+			#|updated-tools-table=
 			#|updated-old-versions=
 			#|updated-new-versions=
 			#|updated-count=1
 			#|updated-tools=shellcheck
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellcheck|0.8.0|0.9.0|
+			#|EOF
 			#|updated-old-versions=0.8.0
 			#|updated-new-versions=0.9.0
 		}
@@ -556,6 +614,7 @@ Describe 'bin/update.sh'
 			#|::debug::remaining update capacity: -1
 			#|::debug::overriding 'updated-count' output with new value
 			#|::debug::overriding 'updated-tools' output with new value
+			#|::debug::overriding 'updated-tools-table' output with new value
 			#|::debug::overriding 'updated-old-versions' output with new value
 			#|::debug::overriding 'updated-new-versions' output with new value
 			#|::endgroup::
@@ -565,10 +624,16 @@ Describe 'bin/update.sh'
 			%text
 			#|updated-count=0
 			#|updated-tools=
+			#|updated-tools-table=
 			#|updated-old-versions=
 			#|updated-new-versions=
 			#|updated-count=1
 			#|updated-tools=shellspec
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellspec|0.28.0|0.28.1|
+			#|EOF
 			#|updated-old-versions=0.28.0
 			#|updated-new-versions=0.28.1
 		}
@@ -679,6 +744,7 @@ Describe 'bin/update.sh'
 			%text
 			#|updated-count=0
 			#|updated-tools=
+			#|updated-tools-table=
 			#|updated-old-versions=
 			#|updated-new-versions=
 		}

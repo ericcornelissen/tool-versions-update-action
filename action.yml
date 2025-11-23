@@ -43,6 +43,10 @@ outputs:
   updated-tools:
     description: A comma separated list of the names of the updated tools.
     value: ${{ steps.update.outputs.updated-tools }}
+  updated-tools-table:
+    description: |
+       A markdown table showing the tool names with their old and new versions.
+    value: ${{ steps.update.outputs.updated-tools-table }}
 
 runs:
   using: composite

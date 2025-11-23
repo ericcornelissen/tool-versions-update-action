@@ -9,6 +9,10 @@ Describe 'bin/templating.sh'
 		export UPDATED_NEW_VERSIONS='0.9.0,0.28.1'
 		export UPDATED_OLD_VERSIONS='0.8.0,0.28.0'
 		export UPDATED_TOOLS='shellcheck,shellspec'
+		export UPDATED_TOOLS_TABLE='|Tool|Old Version|New Version|
+|---|---|---|
+|shellcheck|0.8.0|0.9.0|
+|shellspec|0.28.0|0.28.1|'
 		export TEXT="$(input)"
 	}
 
@@ -27,6 +31,10 @@ Describe 'bin/templating.sh'
 			#|::debug::substitute '{{updated-new-versions}}' for '0.9.0,0.28.1'
 			#|::debug::substitute '{{updated-old-versions}}' for '0.8.0,0.28.0'
 			#|::debug::substitute '{{updated-tools}}' for 'shellcheck,shellspec'
+			#|::debug::substitute '{{updated-tools-table}}' for '|Tool|Old Version|New Version|
+			#|::debug::|---|---|---|
+			#|::debug::|shellcheck|0.8.0|0.9.0|
+			#|::debug::|shellspec|0.28.0|0.28.1|'
 			#|::debug::setting output
 		}
 
@@ -56,6 +64,10 @@ Describe 'bin/templating.sh'
 			#|::debug::substitute '{{updated-new-versions}}' for '0.9.0,0.28.1'
 			#|::debug::substitute '{{updated-old-versions}}' for '0.8.0,0.28.0'
 			#|::debug::substitute '{{updated-tools}}' for 'shellcheck,shellspec'
+			#|::debug::substitute '{{updated-tools-table}}' for '|Tool|Old Version|New Version|
+			#|::debug::|---|---|---|
+			#|::debug::|shellcheck|0.8.0|0.9.0|
+			#|::debug::|shellspec|0.28.0|0.28.1|'
 			#|::debug::setting output
 		}
 
@@ -85,6 +97,10 @@ Describe 'bin/templating.sh'
 			#|::debug::substitute '{{updated-new-versions}}' for '0.9.0,0.28.1'
 			#|::debug::substitute '{{updated-old-versions}}' for '0.8.0,0.28.0'
 			#|::debug::substitute '{{updated-tools}}' for 'shellcheck,shellspec'
+			#|::debug::substitute '{{updated-tools-table}}' for '|Tool|Old Version|New Version|
+			#|::debug::|---|---|---|
+			#|::debug::|shellcheck|0.8.0|0.9.0|
+			#|::debug::|shellspec|0.28.0|0.28.1|'
 			#|::debug::setting output
 		}
 
@@ -114,12 +130,57 @@ Describe 'bin/templating.sh'
 			#|::debug::substitute '{{updated-new-versions}}' for '0.9.0,0.28.1'
 			#|::debug::substitute '{{updated-old-versions}}' for '0.8.0,0.28.0'
 			#|::debug::substitute '{{updated-tools}}' for 'shellcheck,shellspec'
+			#|::debug::substitute '{{updated-tools-table}}' for '|Tool|Old Version|New Version|
+			#|::debug::|---|---|---|
+			#|::debug::|shellcheck|0.8.0|0.9.0|
+			#|::debug::|shellspec|0.28.0|0.28.1|'
 			#|::debug::setting output
 		}
 
 		snapshot_output() {
 			%text
 			#|value=Update tool(s) shellcheck,shellspec
+		}
+
+		It 'works for a simple example'
+			When run script bin/templating.sh
+			The status should equal 0
+			The output should equal "$(snapshot_stdout)"
+			The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_output)"
+		End
+	End
+
+	Describe '{{updated-tools-table}}'
+		input() {
+			%text
+			#|The following table gives an overview of the updates:
+			#|{{updated-tools-table}}
+		}
+
+		snapshot_stdout() {
+			%text
+			#|::debug::input for templating is 'The following table gives an overview of the updates:
+			#|::debug::{{updated-tools-table}}'
+			#|::debug::substitute '{{updated-count}}' for '2'
+			#|::debug::substitute '{{updated-new-versions}}' for '0.9.0,0.28.1'
+			#|::debug::substitute '{{updated-old-versions}}' for '0.8.0,0.28.0'
+			#|::debug::substitute '{{updated-tools}}' for 'shellcheck,shellspec'
+			#|::debug::substitute '{{updated-tools-table}}' for '|Tool|Old Version|New Version|
+			#|::debug::|---|---|---|
+			#|::debug::|shellcheck|0.8.0|0.9.0|
+			#|::debug::|shellspec|0.28.0|0.28.1|'
+			#|::debug::setting output
+		}
+
+		snapshot_output() {
+			%text
+			#|value<<EOF
+			#|The following table gives an overview of the updates:
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellcheck|0.8.0|0.9.0|
+			#||shellspec|0.28.0|0.28.1|
+			#|EOF
 		}
 
 		It 'works for a simple example'

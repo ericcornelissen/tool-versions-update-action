@@ -143,15 +143,16 @@ file through a Pull Request.
 
 The following outputs are made available:
 
-| Name                   | Description                                                 |
-| ---------------------- | ----------------------------------------------------------- |
-| `commit-sha`           | The SHA identifier of the created commit                    |
-| `did-update`           | `true` if at least one tool was updated, `false` otherwise  |
-| `pr-number`            | The number of the created Pull Request                      |
-| `updated-count`        | The number of tools that were updated                       |
-| `updated-new-versions` | A comma separated list of the new versions of updated tools |
-| `updated-old-versions` | A comma separated list of the old versions of updated tools |
-| `updated-tools`        | A comma separated list of the names of the updated tools    |
+| Name                   | Description                                                             |
+| ---------------------- | ----------------------------------------------------------------------- |
+| `commit-sha`           | The SHA identifier of the created commit                                |
+| `did-update`           | `true` if at least one tool was updated, `false` otherwise              |
+| `pr-number`            | The number of the created Pull Request                                  |
+| `updated-count`        | The number of tools that were updated                                   |
+| `updated-new-versions` | A comma separated list of the new versions of updated tools             |
+| `updated-old-versions` | A comma separated list of the old versions of updated tools             |
+| `updated-tools`        | A comma separated list of the names of the updated tools                |
+| `updated-tools-table`  | A markdown table showing the tool names with their old and new versions |
 
 For information on how to use outputs see the [GitHub Actions output docs].
 
@@ -184,6 +185,7 @@ The following outputs are available for templating:
 - `updated-new-versions`
 - `updated-old-versions`
 - `updated-tools`
+- `updated-tools-table` (except in `pr-title`)
 
 ### Full Example
 
