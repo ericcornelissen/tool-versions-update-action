@@ -37,5 +37,8 @@ value=${value//'{{updated-old-versions}}'/"${UPDATED_OLD_VERSIONS}"}
 debug "substitute '{{updated-tools}}' for '${UPDATED_TOOLS}'"
 value=${value//'{{updated-tools}}'/"${UPDATED_TOOLS}"}
 
+debug "substitute '{{updated-tools-table}}' for '${UPDATED_TOOLS_TABLE}'"
+value=${value//'{{updated-tools-table}}'/"${UPDATED_TOOLS_TABLE}"}
+
 debug "setting output"
 set_output "${output_name_value}" "${value}"

@@ -84,6 +84,10 @@ outputs:
   updated-tools:
     description: A comma separated list of the names of the updated tools.
     value: ${{ steps.update.outputs.updated-tools }}
+  updated-tools-table:
+    description: |
+      A markdown table showing the tool names with their old and new versions.
+    value: ${{ steps.update.outputs.updated-tools-table }}
 
 runs:
   using: composite
@@ -133,6 +137,7 @@ runs:
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+        UPDATED_TOOLS_TABLE: ${{ steps.update.outputs.updated-tools-table }}
     - name: Branch name
       id: branch
       shell: bash
@@ -143,6 +148,7 @@ runs:
         UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
         UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
         UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
+        UPDATED_TOOLS_TABLE: ${{ steps.update.outputs.updated-tools-table }}
 
     - name: Commit options
       id: commit-options
