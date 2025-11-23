@@ -92,6 +92,8 @@ The following outputs are made available:
 | `updated-tools`        | A comma separated list of the names of the updated tools                |
 | `updated-tools-table`  | A markdown table showing the tool names with their old and new versions |
 
+See [the example](../README.md#outputs) for more details.
+
 For information on how to use outputs see the [GitHub Actions output docs].
 
 #### Templating

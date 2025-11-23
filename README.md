@@ -61,6 +61,35 @@ The following outputs are made available:
 
 For information on how to use outputs see the [GitHub Actions output docs].
 
+#### Example
+
+Consider a scenario where
+
+```ini
+# file: .tool-versions
+
+shellcheck 0.10.0          # latest=0.11.0
+shellspec 0.28.0           # latest=0.28.1
+shfmt 3.12.0               # latest=3.12.0
+```
+
+then the output values would look something like (depending on the configuration
+used):
+
+- `did-update`: `true`
+- `updated-count`: `2`
+- `updated-new-versions`: `0.11.0,0.28.1`
+- `updated-old-versions`: `0.10.0,0.28.0`
+- `updated-tools`: `shellcheck,shellspec`
+- `updated-tools-table`:
+
+  ```markdown
+  |Tool|Old Version|New Version|
+  |---|---|---|
+  |shellcheck|0.10.0|0.11.0|
+  |shellspec|0.28.0|0.28.1|
+  ```
+
 ### Full Example
 
 This example is for a workflow that can be triggered manually to log available
