@@ -12,6 +12,20 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [2.2.0] - 2025-11-23
+
+### `tool-versions-update-action`
+
 - Add output `updated-tools-table`.
 
 ### `tool-versions-update-action/commit`
