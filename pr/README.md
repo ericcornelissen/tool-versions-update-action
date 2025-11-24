@@ -18,6 +18,9 @@ jobs:
   tooling:
     name: Update tooling
     uses: ericcornelissen/tool-versions-update-action/.github/workflows/pr.yml@v2
+    permissions:
+      contents: write # To push a commit
+      pull-requests: write # To open a Pull Request
     secrets:
       # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
       #
