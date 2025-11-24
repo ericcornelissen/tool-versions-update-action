@@ -186,13 +186,20 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
+      - name: Checkout tool-versions-update-action
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # pin@v5
+        with:
+          fetch-depth: 1
+          path: tool-versions-update-action
+          persist-credentials: true
+          repository: ericcornelissen/tool-versions-update-action
 
       - name: Setup asdf
         uses: asdf-vm/actions/setup@b7bcd026f18772e44fe1026d729e1611cc435d47 # pin@v4
       - name: Configure asdf plugins
         if: ${{ inputs.plugins != '' }}
         shell: bash
-        run: $GITHUB_ACTION_PATH/../bin/install-plugins.sh
+        run: ./tool-versions-update-action/bin/install-plugins.sh
         env:
           LIST: ${{ inputs.plugins }}
       - name: Install asdf plugins
@@ -209,7 +216,7 @@ jobs:
       - name: Look for updates
         id: update
         shell: bash
-        run: $GITHUB_ACTION_PATH/../bin/update.sh
+        run: ./tool-versions-update-action/bin/update.sh
         env:
           MAX: ${{ inputs.max }}
           NOT: ${{ inputs.not }}
@@ -261,7 +268,7 @@ jobs:
       - name: Pull Request title
         id: pr-title
         shell: bash
-        run: $GITHUB_ACTION_PATH/../bin/templating.sh
+        run: ./tool-versions-update-action/bin/templating.sh
         env:
           TEXT: ${{ inputs.pr-title }}
           UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
@@ -272,7 +279,7 @@ jobs:
       - name: Pull Request body
         id: pr-body
         shell: bash
-        run: $GITHUB_ACTION_PATH/../bin/templating.sh
+        run: ./tool-versions-update-action/bin/templating.sh
         env:
           TEXT: ${{ steps.select-pr-body.outputs.value }}
           UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
@@ -283,7 +290,7 @@ jobs:
       - name: Commit message
         id: commit-message
         shell: bash
-        run: $GITHUB_ACTION_PATH/../bin/templating.sh
+        run: ./tool-versions-update-action/bin/templating.sh
         env:
           TEXT: ${{ inputs.commit-message }}
           UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
@@ -294,7 +301,7 @@ jobs:
       - name: Branch name
         id: branch
         shell: bash
-        run: $GITHUB_ACTION_PATH/../bin/templating.sh
+        run: ./tool-versions-update-action/bin/templating.sh
         env:
           TEXT: ${{ inputs.branch }}
           UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
