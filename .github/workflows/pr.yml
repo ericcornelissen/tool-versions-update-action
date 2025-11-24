@@ -166,7 +166,9 @@ on:
           The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
         required: true
 
-permissions: read-all
+permissions:
+  contents: write # To push a commit
+  pull-requests: write # To open a Pull Request
 
 jobs:
   update:
