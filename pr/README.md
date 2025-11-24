@@ -8,6 +8,149 @@ file through a Pull Request.
 ## Usage
 
 ```yml
+name: Tooling
+on:
+  workflow_dispatch: ~
+
+permissions: read-all
+
+jobs:
+  tooling:
+    name: Update tooling
+    uses: ericcornelissen/tool-versions-update-action/.github/workflows/pr.yml@v2
+    secrets:
+      # The $GITHUB_TOKEN or a repository scoped Personal Access Token (PAT).
+      #
+      # Default: $GITHUB_TOKEN
+      token: ${{ github.token }}
+    with:
+      # A comma or newline-separated list of assignees for Pull Requests (by their
+      # GitHub username).
+      #
+      # Default: ""
+      assignees: ericcornelissen
+
+      # The branch name to use for Pull Requests.
+      #
+      # This input supports templating, see the "Templating" section for more
+      # information.
+      #
+      # Default: "tool-versions-updates"
+      branch: update-tooling
+
+      # The message to use for commits.
+      #
+      # This input supports templating, see the "Templating" section for more
+      # information.
+      #
+      # Default (1st line): "Update {{updated-tools}}"
+      commit-message: |
+        Update {{updated-count}} tool(s)
+
+        Update {{updated-tools}}
+
+      # Whether to install tools from the .tool-versions file. Plugins will always
+      # be added.
+      #
+      # Default: true
+      install-tools: false
+
+      # A comma or newline-separated list of labels for Pull Requests.
+      #
+      # Default: *no labels*
+      labels: tools
+
+      # The maximum number of tools to update. 0 indicates no maximum.
+      #
+      # Default: 0
+      max: 2
+
+      # The numeric identifier of the milestone to associate Pull Requests with.
+      #
+      # Default: *no milestone*
+      milestone: 1
+
+      # A comma-separated list of tools that should NOT be updated.
+      #
+      # Default: ""
+      not: actionlint,shfmt
+
+      # A comma-separated list of tools that should be updated, ignoring others.
+      #
+      # Default: ""
+      only: shellcheck
+
+      # A newline-separated list of "plugin url" pairs that should be installed.
+      # If omitted the default plugins will be available.
+      #
+      # Default: ""
+      plugins: |
+        actionlint https://github.com/crazy-matt/asdf-actionlint
+        shellcheck https://github.com/luizm/asdf-shellcheck
+
+      # The base branch to use for Pull Requests.
+      #
+      # Default: *current branch*
+      pr-base: develop
+
+      # The body text to use for Pull Requests.
+      #
+      # This input supports templating, see the "Templating" section for more
+      # information.
+      #
+      # Default: *depends on rebase-strategy*
+      pr-body: |
+        Update {{updated-count}} tool(s): {{updated-tools}}
+
+        ---
+
+        _This Pull Request was generated using the `tool-versions-update-action`_
+
+      # The title to use for Pull Requests.
+      #
+      # This input supports templating, see the "Templating" section for more
+      # information.
+      #
+      # Default: "Update {{updated-count}} tool(s)"
+      pr-title: Update tooling
+
+      # Configure when Pull Requests are rebased.
+      #
+      # A Pull Request may be rebased if the base branch is updated, a new version
+      # of any of the updated tools becomes available, or a new version of another
+      # tool becomes available.
+      #
+      # Available rebase strategies are:
+      # - always: Always rebase when that is possible.
+      # - untouched (default): Only rebase when there are no additional commits on
+      #   the Pull Request branch.
+      # - never: Never rebase, once a Pull Request is created it won't be updated.
+      rebase-strategy: never
+
+      # A comma or newline-separated list of reviewers for Pull Requests (by their
+      # GitHub username).
+      #
+      # Default: ""
+      reviewers: ericcornelissen
+
+      # Add "Signed-off-by" line at the end of the commit message. See `--signoff`
+      # in <https://git-scm.com/docs/git-commit> for more detail.
+      #
+      # Default: false
+      signoff: true
+
+      # A newline-separated list of "tool version" pairs that should NOT be
+      # updated to.
+      #
+      # Default: ""
+      skip: |
+        shfmt 3.6.0
+        yamllint 1.31.0
+```
+
+## Usage (Legacy)
+
+```yml
 - uses: ericcornelissen/tool-versions-update-action/pr@v2
   with:
     # A comma or newline-separated list of assignees for Pull Requests (by their
