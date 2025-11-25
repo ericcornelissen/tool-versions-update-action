@@ -134,6 +134,10 @@ outputs:
     description: |
       The number of the created Pull Request.
     value: ${{ steps.create-pr.outputs.pull-request-number }}
+  pr-url:
+    description: |
+      The url of the created Pull Request.
+    value: ${{ steps.create-pr.outputs.pull-request-url }}
   updated-count:
     description: |
       The number of tools that were updated.
