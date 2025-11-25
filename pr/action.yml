@@ -337,3 +337,13 @@ runs:
         commit-message: ${{ steps.commit-message.outputs.value }}
         add-paths: .tool-versions
         signoff: ${{ inputs.signoff }}
+    - name: Auto-approve Pull Request
+      if: ${{ steps.update.outputs.updated-count != '0' &&
+        steps.pr-modified.outputs.value != 'true' &&
+        steps.pr-exists.outputs.value != 'true' &&
+        inputs.pr-auto-approve == 'true' }}
+      run: gh pr review --approve "$PR_URL"
+      env:
+        PR_URL: ${{steps.create-pr.outputs.pull-request-url}}
+        GH_TOKEN: ${{ inputs.token }}
+      shell: sh
