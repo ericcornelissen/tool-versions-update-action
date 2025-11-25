@@ -77,6 +77,11 @@ inputs:
       The title to use for Pull Requests.
     required: false
     default: Update {{updated-count}} tool(s)
+  pr-auto-approve:
+    description: |
+      Whether to automatically approve the created Pull Request.
+    required: false
+    default: false
   rebase-strategy:
     description: |
       Configure when Pull Requests are rebased.
