@@ -101,7 +101,6 @@ file through a Pull Request.
     pr-title: Update tooling
 
     # Whether to automatically approve the created Pull Request.
-    # Requires a token with 'pull-requests: write' permission.
     #
     # Default: false
     pr-auto-approve: true
@@ -154,7 +153,6 @@ The following outputs are made available:
 | `commit-sha`           | The SHA identifier of the created commit                                |
 | `did-update`           | `true` if at least one tool was updated, `false` otherwise              |
 | `pr-number`            | The number of the created Pull Request                                  |
-| `pr-url`               | The URL of the created Pull Request                                     |
 | `updated-count`        | The number of tools that were updated                                   |
 | `updated-new-versions` | A comma separated list of the new versions of updated tools             |
 | `updated-old-versions` | A comma separated list of the old versions of updated tools             |
