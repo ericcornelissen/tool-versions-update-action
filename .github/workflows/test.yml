@@ -44,6 +44,7 @@ jobs:
       - name: Install kcov (from source)
         if: ${{ matrix.runs-on == 'ubuntu-24.04' }}
         run: |
+          sudo apt-get update
           sudo apt-get install binutils-dev libssl-dev libcurl4-openssl-dev libelf-dev libstdc++-12-dev zlib1g-dev libdw-dev libiberty-dev
 
           cd /tmp/

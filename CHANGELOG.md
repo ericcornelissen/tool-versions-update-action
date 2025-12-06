@@ -20,7 +20,7 @@ Versioning].
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Bump `peter-evans/create-pull-request` from v7.0.9 to v7.0.11.
 
 ## [2.2.0] - 2025-11-23
 
