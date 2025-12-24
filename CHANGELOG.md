@@ -16,7 +16,7 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Bump `stefanzweifel/git-auto-commit-action` from v6.0.1 to v7.1.0.
 
 ### `tool-versions-update-action/pr`
 
