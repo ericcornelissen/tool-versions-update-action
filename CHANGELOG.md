@@ -16,10 +16,12 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
+- Bump `actions/checkout` from v5.0.1 to v6.0.1.
 - Bump `stefanzweifel/git-auto-commit-action` from v6.0.1 to v7.1.0.
 
 ### `tool-versions-update-action/pr`
 
+- Bump `actions/checkout` from v5.0.1 to v6.0.1.
 - Bump `peter-evans/create-pull-request` from v7.0.9 to v8.0.0.
 
 ## [2.2.0] - 2025-11-23
