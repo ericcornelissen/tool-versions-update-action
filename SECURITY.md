@@ -7,7 +7,7 @@ issues seriously. We appreciate your efforts to responsibly disclose your
 findings. Due to the non-funded and open-source nature of the project, we take a
 best-efforts approach when it comes to engaging with security reports.
 
-This document should be considered expired after 2026-01-01. If you are reading
+This document should be considered expired after 2026-06-01. If you are reading
 this after that date you should try to find an up-to-date version in the
 official source repository.
 
@@ -21,8 +21,6 @@ with security updates.
 |   2.x.x | -           |
 |   1.x.x | 2026-01-01  |
 |   0.x.x | 2024-01-15  |
-
-_This table only includes information on versions `<3.0.0`._
 
 ## Reporting a Vulnerability
 
