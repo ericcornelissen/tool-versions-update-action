@@ -188,20 +188,24 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
-      - name: Checkout tool-versions-update-action
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-        with:
-          fetch-depth: 1
-          path: tool-versions-update-action
-          persist-credentials: true
-          repository: ericcornelissen/tool-versions-update-action
 
       - name: Setup asdf
         uses: asdf-vm/actions/setup@b7bcd026f18772e44fe1026d729e1611cc435d47 # v4.0.1
       - name: Configure asdf plugins
         if: ${{ inputs.plugins != '' }}
         shell: bash
-        run: ./tool-versions-update-action/bin/install-plugins.sh
+        run: |
+          while read -r line; do
+            case "${line}" in
+            "")
+              ;;
+            *)
+              name="$(echo "${line}" | awk '{print $1}')"
+              url="$(echo "${line}" | awk '{print $2}')"
+              asdf plugin add "${name}" "${url}" &>/dev/null
+              ;;
+            esac
+          done <<<"${LIST}"
         env:
           LIST: ${{ inputs.plugins }}
       - name: Install asdf plugins
@@ -217,13 +221,12 @@ jobs:
 
       - name: Look for updates
         id: update
-        shell: bash
-        run: ./tool-versions-update-action/bin/update.sh
-        env:
-          MAX: ${{ inputs.max }}
-          NOT: ${{ inputs.not }}
-          ONLY: ${{ inputs.only }}
-          SKIP: ${{ inputs.skip }}
+        uses: ericcornelissen/tool-versions-update-action@v2.2.1
+        with:
+          max: ${{ inputs.max }}
+          not: ${{ inputs.not }}
+          only: ${{ inputs.only }}
+          skip: ${{ inputs.skip }}
 
       - name: Determine Pull Request body
         id: select-pr-body
@@ -270,20 +273,30 @@ jobs:
       - name: Pull Request title
         id: pr-title
         shell: bash
-        run: ./tool-versions-update-action/bin/templating.sh
+        run: |
+          value=${ORIGINAL}
+          value=${value//'{{updated-count}}'/"${UPDATED_COUNT}"}
+          value=${value//'{{updated-new-versions}}'/"${UPDATED_NEW_VERSIONS}"}
+          value=${value//'{{updated-old-versions}}'/"${UPDATED_OLD_VERSIONS}"}
+          value=${value//'{{updated-tools}}'/"${UPDATED_TOOLS}"}
         env:
-          TEXT: ${{ inputs.pr-title }}
+          ORIGINAL: ${{ inputs.pr-title }}
           UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
           UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
           UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
           UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
-          UPDATED_TOOLS_TABLE: ~
       - name: Pull Request body
         id: pr-body
         shell: bash
-        run: ./tool-versions-update-action/bin/templating.sh
+        run: |
+          value=${ORIGINAL}
+          value=${value//'{{updated-count}}'/"${UPDATED_COUNT}"}
+          value=${value//'{{updated-new-versions}}'/"${UPDATED_NEW_VERSIONS}"}
+          value=${value//'{{updated-old-versions}}'/"${UPDATED_OLD_VERSIONS}"}
+          value=${value//'{{updated-tools}}'/"${UPDATED_TOOLS}"}
+          value=${value//'{{updated-tools-table}}'/"${UPDATED_TOOLS_TABLE}"}
         env:
-          TEXT: ${{ steps.select-pr-body.outputs.value }}
+          ORIGINAL: ${{ steps.select-pr-body.outputs.value }}
           UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
           UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
           UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
@@ -292,9 +305,15 @@ jobs:
       - name: Commit message
         id: commit-message
         shell: bash
-        run: ./tool-versions-update-action/bin/templating.sh
+        run: |
+          value=${ORIGINAL}
+          value=${value//'{{updated-count}}'/"${UPDATED_COUNT}"}
+          value=${value//'{{updated-new-versions}}'/"${UPDATED_NEW_VERSIONS}"}
+          value=${value//'{{updated-old-versions}}'/"${UPDATED_OLD_VERSIONS}"}
+          value=${value//'{{updated-tools}}'/"${UPDATED_TOOLS}"}
+          value=${value//'{{updated-tools-table}}'/"${UPDATED_TOOLS_TABLE}"}
         env:
-          TEXT: ${{ inputs.commit-message }}
+          ORIGINAL: ${{ inputs.commit-message }}
           UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
           UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
           UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
@@ -303,14 +322,18 @@ jobs:
       - name: Branch name
         id: branch
         shell: bash
-        run: ./tool-versions-update-action/bin/templating.sh
+        run: |
+          value=${ORIGINAL}
+          value=${value//'{{updated-count}}'/"${UPDATED_COUNT}"}
+          value=${value//'{{updated-new-versions}}'/"${UPDATED_NEW_VERSIONS}"}
+          value=${value//'{{updated-old-versions}}'/"${UPDATED_OLD_VERSIONS}"}
+          value=${value//'{{updated-tools}}'/"${UPDATED_TOOLS}"}
         env:
-          TEXT: ${{ inputs.branch }}
+          ORIGINAL: ${{ inputs.branch }}
           UPDATED_COUNT: ${{ steps.update.outputs.updated-count }}
           UPDATED_NEW_VERSIONS: ${{ steps.update.outputs.updated-new-versions }}
           UPDATED_OLD_VERSIONS: ${{ steps.update.outputs.updated-old-versions }}
           UPDATED_TOOLS: ${{ steps.update.outputs.updated-tools }}
-          UPDATED_TOOLS_TABLE: ${{ steps.update.outputs.updated-tools-table }}
 
       - name: Check if a Pull Request exists and has been modified
         if: ${{ inputs.rebase-strategy == 'untouched' }}
