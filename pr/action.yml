@@ -154,7 +154,7 @@ runs:
   using: composite
   steps:
     - name: Checkout repository
-      uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # pin@v5
+      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # pin@v6
       with:
         fetch-depth: 0
         persist-credentials: true
@@ -308,7 +308,7 @@ runs:
             steps.pr-modified.outputs.value != 'true' &&
             steps.pr-exists.outputs.value != 'true' }}
       id: create-pr
-      uses: peter-evans/create-pull-request@84ae59a2cdc2258d6fa0732dd66352dddae2a412 # pin@v7
+      uses: peter-evans/create-pull-request@98357b18bf14b5342f975ff684046ec3b2a07725 # pin@v8
       with:
         token: ${{ inputs.token }}
 
