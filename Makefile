@@ -83,20 +83,20 @@ lint-yml: $(ASDF) ## Lint YAML files
 .PHONY: sast
 sast: sast-ades sast-zizmor ## Perform static application security testing
 
-sast-ades:
+sast-ades: # v26.01.0
 	@$(CONTAINER_ENGINE) run \
 		--rm \
 		--volume $(shell pwd):/src \
-		docker.io/ericornelissen/ades:v25.11 \
+		docker.io/ericornelissen/ades@sha256:f692c4eae64020f03e2e55d77dc0050422aac750df1490a683e78812ada20162 \
 		./commit/action.yml \
 		./pr/action.yml \
 		./action.yml
 
-sast-zizmor:
+sast-zizmor: # v1.20.0
 	@$(CONTAINER_ENGINE) run \
 		--rm \
 		--volume $(shell pwd):/src \
-		ghcr.io/zizmorcore/zizmor:1.16.3 \
+		ghcr.io/zizmorcore/zizmor@sha256:4a574a15fc2bfb6c3b30db75410f1faeb7a94b5355d46dcbd32309047dd6d097 \
 		/src/commit/action.yml \
 		/src/pr/action.yml \
 		/src/action.yml
