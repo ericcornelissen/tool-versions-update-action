@@ -21,7 +21,7 @@ Versioning].
 ### `tool-versions-update-action/pr`
 
 - Bump `actions/checkout` from v6.0.1 to v6.0.2.
-- Bump `peter-evans/create-pull-request` from v8.0.0 to v8.1.0.
+- Bump `peter-evans/create-pull-request` from v8.0.0 to v8.1.1.
 
 ## [2.2.1] - 2025-12-24
 
