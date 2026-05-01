@@ -42,9 +42,9 @@
 ## GitHub platform
 !/.github/
 /.github/**
+!/.github/actionlint.yml
 !/.github/codeql.yml
 !/.github/dependabot.yml
-!/.github/labeler.yml
 !/.github/workflows
 /.github/workflows/**
 !/.github/workflows/*.yml
