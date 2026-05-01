@@ -108,9 +108,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Install asdf
-        uses: asdf-vm/actions/install@v2
+        uses: asdf-vm/actions/install@v4
       # Optionally configure asdf plugins depending on your needs.
       # - name: Configure asdf plugins
       #   run: |
