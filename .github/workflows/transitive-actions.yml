@@ -53,6 +53,6 @@ jobs:
 
           Bump the versions of dependencies used in composite action to the latest available version.
 
-          If any dependency wasn't previously pinned, it should be pinned now.
+          If any dependency was not previously pinned, it should be pinned now.
 
           Please update the `CHANGELOG.md` in accordance with these changes before you merge this.'
