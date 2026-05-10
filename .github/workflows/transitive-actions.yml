@@ -7,7 +7,7 @@ on:
 permissions: read-all
 
 jobs:
-  tooling:
+  update:
     name: Update
     runs-on: ubuntu-24.04
     permissions:
@@ -33,6 +33,11 @@ jobs:
           GH_TOKEN: ${{ steps.automation-token.outputs.token }}
           REPOSITORY: ${{ github.repository }}
         run: |
+          if git diff --quiet 'commit/action.yml' 'pr/action.yml' 'action.yml'; then
+            echo 'No changes.'
+            exit 0
+          fi
+
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
 
