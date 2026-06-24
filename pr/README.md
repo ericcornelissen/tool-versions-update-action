@@ -100,6 +100,11 @@ file through a Pull Request.
     # Default: "Update {{updated-count}} tool(s)"
     pr-title: Update tooling
 
+    # Whether to automatically approve the created Pull Request.
+    #
+    # Default: false
+    pr-auto-approve: true
+
     # Configure when Pull Requests are rebased.
     #
     # A Pull Request may be rebased if the base branch is updated, a new version
