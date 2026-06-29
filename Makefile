@@ -97,6 +97,8 @@ sast-zizmor: # v1.26.1
 		--rm \
 		--volume $(shell pwd):/src \
 		ghcr.io/zizmorcore/zizmor@sha256:d1117e5dbd9ee4970644067b534ab6ab50371f3c6f7f4d05446eb603a6e78f48 \
+		--config /src/.zizmor.yml \
+		--pedantic \
 		/src/commit/action.yml \
 		/src/pr/action.yml \
 		/src/action.yml

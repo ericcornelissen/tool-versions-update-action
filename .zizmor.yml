@@ -1,0 +1,5 @@
+# Configuration file for zizmor (https://docs.zizmor.sh/)
+
+rules:
+  superfluous-actions:
+    disable: true
