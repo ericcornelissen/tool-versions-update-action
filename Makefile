@@ -92,11 +92,11 @@ sast-ades: # v26.03.0
 		./pr/action.yml \
 		./action.yml
 
-sast-zizmor: # v1.22.0
+sast-zizmor: # v1.26.1
 	@$(CONTAINER_ENGINE) run \
 		--rm \
 		--volume $(shell pwd):/src \
-		ghcr.io/zizmorcore/zizmor@sha256:c04a14fa9efebdae40b7f999127996fcb31dd7eb0163f5d899be301aaab635e2 \
+		ghcr.io/zizmorcore/zizmor@sha256:d1117e5dbd9ee4970644067b534ab6ab50371f3c6f7f4d05446eb603a6e78f48 \
 		/src/commit/action.yml \
 		/src/pr/action.yml \
 		/src/action.yml
