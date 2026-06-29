@@ -15,6 +15,7 @@
 !/.shellspec
 !/.tool-versions
 !/.yamllint.yml
+!/.zizmor.yml
 
 ## OSS documentation
 !/CHANGELOG.md
