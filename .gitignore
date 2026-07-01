@@ -9,6 +9,7 @@
 !/Makefile
 
 ## Configuration
+!/.actionlint.yml
 !/.editorconfig
 !/.hadolint.yml
 !/.shellcheckrc
@@ -43,7 +44,6 @@
 ## GitHub platform
 !/.github/
 /.github/**
-!/.github/actionlint.yml
 !/.github/codeql.yml
 !/.github/dependabot.yml
 !/.github/workflows

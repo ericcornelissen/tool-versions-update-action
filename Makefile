@@ -67,7 +67,8 @@ lint: lint-ci lint-container lint-sh lint-yml ## Run lint-*
 
 lint-ci: $(ASDF) ## Lint CI workflow files
 	@SHELLCHECK_OPTS=$(SHELLCHECK_OPTS) \
-		actionlint
+		actionlint \
+		-config-file .actionlint.yml
 
 lint-container: $(ASDF) ## Lint the Containerfile
 	@hadolint Containerfile.dev
