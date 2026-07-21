@@ -16,11 +16,11 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
-- _No changes yet._
+- Bump `actions/checkout` from v7.0.0 to v7.0.1.
 
 ### `tool-versions-update-action/pr`
 
-- _No changes yet._
+- Bump `actions/checkout` from v7.0.0 to v7.0.1.
 
 ## [2.2.2] - 2026-06-29
 
