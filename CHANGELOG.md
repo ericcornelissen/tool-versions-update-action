@@ -12,15 +12,17 @@ Versioning].
 
 ### `tool-versions-update-action`
 
-- _No changes yet._
+- Retry obtaining the latest version of tools 3 times with increasing delay.
 
 ### `tool-versions-update-action/commit`
 
 - Bump `actions/checkout` from v7.0.0 to v7.0.1.
+- Retry obtaining the latest version of tools 3 times with increasing delay.
 
 ### `tool-versions-update-action/pr`
 
 - Bump `actions/checkout` from v7.0.0 to v7.0.1.
+- Retry obtaining the latest version of tools 3 times with increasing delay.
 
 ## [2.2.2] - 2026-06-29
 

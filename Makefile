@@ -1,6 +1,10 @@
 # SPDX-License-Identifier: MIT-0
 
-CONTAINER_ENGINE?=docker
+ifneq (, $(shell which docker))
+	CONTAINER_ENGINE?=docker
+else
+	CONTAINER_ENGINE?=podman
+endif
 
 SHELL_SCRIPTS:=./bin/*.sh ./lib/*.sh
 SPEC_SCRIPTS:=./spec/*.sh ./spec/**/*.sh
