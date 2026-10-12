@@ -82,6 +82,38 @@ Describe 'lib/actions.sh'
 		End
 	End
 
+	Describe 'warning logging'
+		Describe 'single-line'
+			Parameters
+				'foobar'
+				'That didn''t go well'
+			End
+
+			It "can write an warn log ('$1')"
+				When call warn "$1"
+				The output should equal "::warning::$1"
+			End
+		End
+
+		Describe 'multi-line'
+			value() {
+				%text
+				#|hello
+				#|world
+			}
+			result() {
+				%text
+				#|::warning::hello
+				#|::warning::world
+			}
+
+			It 'can write an warn log'
+				When call warn "$(value)"
+				The output should equal "$(result)"
+			End
+		End
+	End
+
 	Describe 'log groups'
 		Describe 'start'
 			Parameters

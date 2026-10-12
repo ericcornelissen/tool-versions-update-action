@@ -9,6 +9,7 @@ Describe 'bin/update.sh'
 		export ONLY="$(inclusions)"
 		export MAX="$(max_capacity)"
 		export SKIP="$(skips)"
+		export retry_delay=0
 
 		mv .tool-versions .tool-versions.bak
 		tool_versions >>.tool-versions
@@ -646,6 +647,209 @@ Describe 'bin/update.sh'
 		End
 	End
 
+	Describe 'asdf intermittent failure'
+		BeforeEach 'echo 0 >.attempt'
+		AfterEach 'rm -f .attempt'
+
+		exclusions() {
+			echo
+		}
+
+		inclusions() {
+			echo
+		}
+
+		max_capacity() {
+			echo '0'
+		}
+
+		skips() {
+			echo
+		}
+
+		tool_versions() {
+			%text
+			#|shellcheck 0.8.0
+		}
+
+		snapshot_outputs() {
+			%text
+			#|updated-count=0
+			#|updated-tools=
+			#|updated-tools-table=
+			#|updated-old-versions=
+			#|updated-new-versions=
+			#|updated-count=1
+			#|updated-tools=shellcheck
+			#|updated-tools-table<<EOF
+			#||Tool|Old Version|New Version|
+			#||---|---|---|
+			#||shellcheck|0.8.0|0.9.0|
+			#|EOF
+			#|updated-old-versions=0.8.0
+			#|updated-new-versions=0.9.0
+		}
+
+		Describe 'latest could not be obtained once'
+			snapshot_stdout() {
+				%text
+				#|::debug::initializing outputs to their default value
+				#|::debug::checking if .tool-versions file exists
+				#|::debug::no exclusions configured
+				#|::debug::no inclusions configured
+				#|::debug::no skips configured
+				#|::group::Updating tools
+				#|::debug::starting with update capacity: 0
+				#|::debug::processing line ('shellcheck 0.8.0')
+				#|evaluating shellcheck...
+				#|::warning::could not get latest version for shellcheck, retrying (1/3)...
+				#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
+				#|update available for shellcheck
+				#|::debug::applying shellcheck@0.9.0 locally
+				#|::debug::remaining update capacity: -1
+				#|::debug::overriding 'updated-count' output with new value
+				#|::debug::overriding 'updated-tools' output with new value
+				#|::debug::overriding 'updated-tools-table' output with new value
+				#|::debug::overriding 'updated-old-versions' output with new value
+				#|::debug::overriding 'updated-new-versions' output with new value
+				#|::endgroup::
+			}
+
+			Mock asdf
+				case "$1" in
+				'latest')
+					attempt=$(cat '.attempt')
+					if (( attempt < 1 )); then
+						echo $((attempt + 1)) >'.attempt'
+						exit 1
+					else
+						echo '0.9.0'
+					fi
+					;;
+				'set')
+					;;
+				*)
+					exit 127
+					;;
+				esac
+			End
+
+			It 'succeeds'
+				When run script bin/update.sh
+				The status should equal 0
+				The output should equal "$(snapshot_stdout)"
+				The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_outputs)"
+			End
+		End
+
+		Describe 'latest could not be obtained twice'
+			snapshot_stdout() {
+				%text
+				#|::debug::initializing outputs to their default value
+				#|::debug::checking if .tool-versions file exists
+				#|::debug::no exclusions configured
+				#|::debug::no inclusions configured
+				#|::debug::no skips configured
+				#|::group::Updating tools
+				#|::debug::starting with update capacity: 0
+				#|::debug::processing line ('shellcheck 0.8.0')
+				#|evaluating shellcheck...
+				#|::warning::could not get latest version for shellcheck, retrying (1/3)...
+				#|::warning::could not get latest version for shellcheck, retrying (2/3)...
+				#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
+				#|update available for shellcheck
+				#|::debug::applying shellcheck@0.9.0 locally
+				#|::debug::remaining update capacity: -1
+				#|::debug::overriding 'updated-count' output with new value
+				#|::debug::overriding 'updated-tools' output with new value
+				#|::debug::overriding 'updated-tools-table' output with new value
+				#|::debug::overriding 'updated-old-versions' output with new value
+				#|::debug::overriding 'updated-new-versions' output with new value
+				#|::endgroup::
+			}
+
+			Mock asdf
+				case "$1" in
+				'latest')
+					attempt=$(cat '.attempt')
+					if (( attempt < 2 )); then
+						echo $((attempt + 1)) >'.attempt'
+						exit 1
+					else
+						echo '0.9.0'
+					fi
+					;;
+				'set')
+					;;
+				*)
+					exit 127
+					;;
+				esac
+			End
+
+			It 'succeeds'
+				When run script bin/update.sh
+				The status should equal 0
+				The output should equal "$(snapshot_stdout)"
+				The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_outputs)"
+			End
+		End
+
+		Describe 'latest could not be obtained thrice'
+			snapshot_stdout() {
+				%text
+				#|::debug::initializing outputs to their default value
+				#|::debug::checking if .tool-versions file exists
+				#|::debug::no exclusions configured
+				#|::debug::no inclusions configured
+				#|::debug::no skips configured
+				#|::group::Updating tools
+				#|::debug::starting with update capacity: 0
+				#|::debug::processing line ('shellcheck 0.8.0')
+				#|evaluating shellcheck...
+				#|::warning::could not get latest version for shellcheck, retrying (1/3)...
+				#|::warning::could not get latest version for shellcheck, retrying (2/3)...
+				#|::warning::could not get latest version for shellcheck, retrying (3/3)...
+				#|::debug::shellcheck current: 0.8.0, latest: 0.9.0
+				#|update available for shellcheck
+				#|::debug::applying shellcheck@0.9.0 locally
+				#|::debug::remaining update capacity: -1
+				#|::debug::overriding 'updated-count' output with new value
+				#|::debug::overriding 'updated-tools' output with new value
+				#|::debug::overriding 'updated-tools-table' output with new value
+				#|::debug::overriding 'updated-old-versions' output with new value
+				#|::debug::overriding 'updated-new-versions' output with new value
+				#|::endgroup::
+			}
+
+			Mock asdf
+				case "$1" in
+				'latest')
+					attempt=$(cat '.attempt')
+					if (( attempt < 3 )); then
+						echo $((attempt + 1)) >'.attempt'
+						exit 1
+					else
+						echo '0.9.0'
+					fi
+					;;
+				'set')
+					;;
+				*)
+					exit 127
+					;;
+				esac
+			End
+
+			It 'succeeds'
+				When run script bin/update.sh
+				The status should equal 0
+				The output should equal "$(snapshot_stdout)"
+				The file "${GITHUB_OUTPUT}" should satisfy contents "$(snapshot_outputs)"
+			End
+		End
+	End
+
 	Describe 'asdf failure'
 		exclusions() {
 			echo
@@ -706,7 +910,7 @@ Describe 'bin/update.sh'
 
 			It 'fails'
 				When run script bin/update.sh
-				The status should equal 3
+				The status should equal 1
 				The output should not equal ''
 			End
 		End

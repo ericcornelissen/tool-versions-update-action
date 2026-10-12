@@ -3,7 +3,7 @@
 
 # --- Setup ------------------------------------------------------------------ #
 
-set -eo pipefail
+set -o pipefail
 
 ## Inputs
 exclusions=${NOT}
@@ -17,6 +17,7 @@ output_name_updated_tools="updated-tools"
 output_name_updated_old_versions="updated-old-versions"
 output_name_updated_new_versions="updated-new-versions"
 output_name_updated_tools_table="updated-tools-table"
+retry_delay=${retry_delay:-15}
 
 ## State
 remaining_capacity=${max_capacity}
@@ -125,8 +126,19 @@ while read -r line; do
 
 		info "evaluating ${tool}..."
 
+		attempt=0
+		until latest_version="$(asdf latest "${tool}")"; do
+			if ((attempt >= 3)); then
+				error "could not get latest version for ${tool}"
+				exit 1
+			fi
+
+			((attempt++))
+			warn "could not get latest version for ${tool}, retrying (${attempt}/3)..."
+			sleep "$((attempt * retry_delay))"
+		done
+
 		current_version="$(echo "${line}" | awk '{print $2}')"
-		latest_version="$(asdf latest "${tool}")"
 		debug "${tool} current: ${current_version}, latest: ${latest_version}"
 
 		if [ "${current_version}" != "${latest_version}" ]; then
@@ -156,7 +168,10 @@ while read -r line; do
 			fi
 
 			debug "applying ${tool}@${latest_version} locally"
-			asdf set "${tool}" "${latest_version}"
+			if ! asdf set "${tool}" "${latest_version}"; then
+				error "could not set latest version for ${tool}"
+				exit 1
+			fi
 
 			remaining_capacity=$((remaining_capacity - 1))
 			debug "remaining update capacity: ${remaining_capacity}"
