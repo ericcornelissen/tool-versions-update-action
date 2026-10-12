@@ -12,6 +12,20 @@ Versioning].
 
 ### `tool-versions-update-action`
 
+- _No changes yet._
+
+### `tool-versions-update-action/commit`
+
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [2.2.3] - 2026-10-12
+
+### `tool-versions-update-action`
+
 - Retry obtaining the latest version of tools 3 times with increasing delay.
 
 ### `tool-versions-update-action/commit`
