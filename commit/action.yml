@@ -169,7 +169,7 @@ runs:
     - name: Create commit
       if: ${{ steps.update.outputs.updated-count != '0' }}
       id: create-commit
-      uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # pin@v7
+      uses: stefanzweifel/git-auto-commit-action@d0b01107b5db882071f96de5dd4b54961ea93f4c # pin@v7
       with:
         skip_dirty_check: false
 
