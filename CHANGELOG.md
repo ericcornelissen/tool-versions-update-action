@@ -21,7 +21,7 @@ Versioning].
 ### `tool-versions-update-action/pr`
 
 - Always include the 'created by' and usage trailer in the Pull Request body.
-- Bump `peter-evans/create-pull-request` from v8.1.1 to v8.1.2.
+- Bump `peter-evans/create-pull-request` from v8.1.1 to v8.1.3.
 
 ## [2.2.3] - 2026-10-12
 
