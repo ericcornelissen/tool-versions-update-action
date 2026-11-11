@@ -16,6 +16,20 @@ Versioning].
 
 ### `tool-versions-update-action/commit`
 
+- _No changes yet._
+
+### `tool-versions-update-action/pr`
+
+- _No changes yet._
+
+## [2.2.4] - 2026-11-11
+
+### `tool-versions-update-action`
+
+- _Version bump only._
+
+### `tool-versions-update-action/commit`
+
 - Bump `stefanzweifel/git-auto-commit-action` from v7.2.0 to v7.2.1.
 
 ### `tool-versions-update-action/pr`
